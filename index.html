@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SV Web Studio - Premium Web Design</title>
+    <meta name="description" content="Servicios de creación de páginas web modernas y sofisticadas.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#inicio" class="logo">SV <span class="accent">Studio</span></a>
+
+            <ul class="nav-links">
+                <li><a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
+                <li><a href="#portafolio" data-es="Portafolio" data-en="Portfolio">Portafolio</a></li>
+                <li><a href="#nosotros" data-es="Sobre nosotros" data-en="About Us">Sobre nosotros</a></li>
+                <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="langToggle" class="lang-btn" aria-label="Toggle language">
+                    <span class="lang-text">EN</span>
+                </button>
+                <a href="#cotiza" class="cta-nav" data-es="Cotiza tu proyecto" data-en="Get a Quote">Cotiza tu
+                    proyecto</a>
+            </div>
+
+            <!-- Mobile menu toggle -->
+            <button class="menu-toggle" aria-label="Menu" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-nav-links">
+            <li><a href="#inicio" class="mobile-link" data-es="Inicio" data-en="Home">Inicio</a></li>
+            <li><a href="#portafolio" class="mobile-link" data-es="Portafolio" data-en="Portfolio">Portafolio</a></li>
+            <li><a href="#nosotros" class="mobile-link" data-es="Sobre nosotros" data-en="About Us">Sobre nosotros</a>
+            </li>
+            <li><a href="#contacto" class="mobile-link" data-es="Contacto" data-en="Contact">Contacto</a></li>
+            <li><a href="#cotiza" class="mobile-link accent" data-es="Cotiza tu proyecto" data-en="Get a Quote">Cotiza
+                    tu proyecto</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="inicio" class="hero">
+        <div class="hero-content reveal">
+            <h1 class="hero-title" data-es="Diseño web que impresiona." data-en="Web design that impresses.">Diseño web
+                que impresiona.</h1>
+            <p class="hero-subtitle"
+                data-es="Creamos experiencias digitales sofisticadas y a la medida para marcas que buscan destacar."
+                data-en="We create sophisticated, tailor-made digital experiences for brands looking to stand out.">
+                Creamos experiencias digitales sofisticadas y a la medida para marcas que buscan destacar.</p>
+            <div class="hero-buttons">
+                <a href="#portafolio" class="btn btn-secondary" data-es="Ver nuestro trabajo"
+                    data-en="View our work">Ver nuestro trabajo</a>
+                <a href="#cotiza" class="btn btn-primary" data-es="Empezar un proyecto"
+                    data-en="Start a project">Empezar un proyecto</a>
+            </div>
+        </div>
+        <div class="hero-media reveal-delay">
+            <div class="hero-glow"></div>
+            <div class="hero-image-placeholder">
+                <div class="browser-mockup">
+                    <div class="browser-dots"><span></span><span></span><span></span></div>
+                    <div class="browser-content"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section id="portafolio" class="portfolio section-padding">
+        <div class="container section-header reveal">
+            <h2 class="section-title" data-es="Nuestro Portafolio" data-en="Our Portfolio">Nuestro Portafolio</h2>
+            <p class="section-desc" data-es="Proyectos seleccionados que combinan estética y funcionalidad."
+                data-en="Selected projects that combine aesthetics and functionality.">Proyectos seleccionados que
+                combinan estética y funcionalidad.</p>
+        </div>
+        <div class="container portfolio-grid">
+            <div class="portfolio-item reveal-item">
+                <div class="item-visual visual-1"></div>
+                <div class="item-info">
+                    <h3>Aura E-commerce</h3>
+                    <p data-es="Diseño minimalista" data-en="Minimalist design">Diseño minimalista</p>
+                </div>
+            </div>
+            <div class="portfolio-item reveal-item" style="transition-delay: 100ms;">
+                <div class="item-visual visual-2"></div>
+                <div class="item-info">
+                    <h3>Zenith App</h3>
+                    <p data-es="Landing page interactiva" data-en="Interactive landing page">Landing page interactiva
+                    </p>
+                </div>
+            </div>
+            <div class="portfolio-item reveal-item" style="transition-delay: 200ms;">
+                <div class="item-visual visual-3"></div>
+                <div class="item-info">
+                    <h3>Oasis Studio</h3>
+                    <p data-es="Portafolio corporativo" data-en="Corporate portfolio">Portafolio corporativo</p>
+                </div>
+            </div>
+            <div class="portfolio-item reveal-item" style="transition-delay: 300ms;">
+                <div class="item-visual visual-4"></div>
+                <div class="item-info">
+                    <h3>Lumina Platform</h3>
+                    <p data-es="Plataforma SaaS" data-en="SaaS Platform">Plataforma SaaS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="about section-padding">
+        <div class="container about-container reveal">
+            <div class="about-text">
+                <h2 class="section-title" data-es="Sobre nosotros" data-en="About us">Sobre nosotros</h2>
+                <h3 class="about-headline" data-es="Artesanía digital con precisión."
+                    data-en="Digital craftsmanship with precision.">Artesanía digital con precisión.</h3>
+                <p data-es="Somos un equipo de diseñadores y desarrolladores apasionados por la innovación y la simplicidad. Creemos en la ausencia de lo innecesario para destacar lo verdaderamente importante."
+                    data-en="We are a team of designers and developers passionate about innovation and simplicity. We believe in the absence of the unnecessary to highlight what is truly important.">
+                    Somos un equipo de diseñadores y desarrolladores apasionados por la innovación y la simplicidad.
+                    Creemos en la ausencia de lo innecesario para destacar lo verdaderamente importante.</p>
+                <p data-es="Cada línea de código y cada píxel está diseñado con propósito, asegurando que tu negocio no solo se vea bien, sino que funcione de manera impecable."
+                    data-en="Every line of code and every pixel is designed with purpose, ensuring your business not only looks good, but functions flawlessly.">
+                    Cada línea de código y cada píxel está diseñado con propósito, asegurando que tu negocio no solo se
+                    vea bien, sino que funcione de manera impecable.</p>
+            </div>
+            <div class="about-stats reveal-delay">
+                <div class="stat-box">
+                    <span class="stat-num">50+</span>
+                    <span class="stat-text" data-es="Proyectos entregados" data-en="Projects delivered">Proyectos
+                        entregados</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-text" data-es="Clientes satisfechos" data-en="Satisfied clients">Clientes
+                        satisfechos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Quote Section -->
+    <section id="contacto" class="contact section-padding">
+        <div class="container contact-container">
+            <div class="contact-info reveal">
+                <h2 class="section-title" data-es="Manteamos el contacto" data-en="Let's stay in touch">Mantenemos el
+                    contacto</h2>
+                <p class="contact-desc"
+                    data-es="Estamos listos para transformar tu visión en una realidad digital. Hablemos sobre tu próximo gran proyecto."
+                    data-en="We are ready to transform your vision into a digital reality. Let's talk about your next big project.">
+                    Estamos listos para transformar tu visión en una realidad digital. Hablemos sobre tu próximo gran
+                    proyecto.</p>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span class="contact-label" data-es="Email" data-en="Email">Email</span>
+                        <a href="mailto:hello@svstudio.com" class="contact-link">hello@svstudio.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label" data-es="Ubicación" data-en="Location">Ubicación</span>
+                        <span class="contact-link" data-es="Global y Remoto" data-en="Global & Remote">Global y
+                            Remoto</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cotiza" class="quote-card reveal-delay">
+                <h3 data-es="Cotiza tu proyecto" data-en="Get a Quote">Cotiza tu proyecto</h3>
+                <form id="quote-form" class="quote-form" onsubmit="event.preventDefault(); alert('Form submitted!');">
+                    <div class="form-group">
+                        <label for="name" data-es="Nombre" data-en="Name">Nombre</label>
+                        <input type="text" id="name" required placeholder="Tu nombre" data-es="Tu nombre"
+                            data-en="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-es="Correo electrónico" data-en="Email Address">Correo
+                            electrónico</label>
+                        <input type="email" id="email" required placeholder="tu@email.com" data-es="tu@email.com"
+                            data-en="you@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="budget" data-es="Presupuesto aproximado" data-en="Approximate budget">Presupuesto
+                            aproximado</label>
+                        <select id="budget">
+                            <option value="small" data-es="Menos de $1k" data-en="Less than $1k">Menos de $1k</option>
+                            <option value="medium" data-es="$1k - $5k" data-en="$1k - $5k">$1k - $5k</option>
+                            <option value="large" data-es="Más de $5k" data-en="More than $5k">Más de $5k</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-es="Mensaje (Opcional)" data-en="Message (Optional)">Mensaje
+                            (Opcional)</label>
+                        <textarea id="message" rows="3" placeholder="Cuéntanos brevemente sobre tu proyecto"
+                            data-es="Cuéntanos brevemente sobre tu proyecto"
+                            data-en="Tell us briefly about your project"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit" data-es="Enviar solicitud"
+                        data-en="Send request">Enviar solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <span class="logo">SV <span class="accent">Studio</span></span>
+                <p data-es="Elevando estándares web." data-en="Elevating web standards.">Elevando estándares web.</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4 data-es="Navegación" data-en="Navigation">Navegación</h4>
+                    <a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a>
+                    <a href="#portafolio" data-es="Portafolio" data-en="Portfolio">Portafolio</a>
+                    <a href="#nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+                </div>
+                <div class="link-group">
+                    <h4 data-es="Legal" data-en="Legal">Legal</h4>
+                    <a href="#" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+                    <a href="#" data-es="Términos" data-en="Terms">Términos</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SV Studio. <span data-es="Todos los derechos reservados."
+                    data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
