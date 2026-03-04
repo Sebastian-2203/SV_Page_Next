@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
-import SVLogo from "./SVLogo";
 
 export default function Navbar() {
     const { t, language, toggleLanguage } = useLanguage();
@@ -29,7 +28,7 @@ export default function Navbar() {
             <nav className={`navbar ${scrolled ? "scrolled" : ""}`} id="navbar">
                 <div className="nav-container">
                     <a href="#inicio" className="logo" onClick={closeMenu} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                        <SVLogo style={{ width: '40px', height: 'auto' }} />
+                        <img src="/LogoPaginaWebNegativo.png" alt="S&V Solutions Logo" style={{ height: '40px', width: 'auto' }} />
                         <span className="accent">Solutions</span>
                     </a>
 

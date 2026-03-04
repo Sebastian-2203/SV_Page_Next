@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useLanguage } from "./LanguageProvider";
-import SVLogo from "./SVLogo";
 
 export default function Footer() {
     const { t } = useLanguage();
@@ -12,7 +11,7 @@ export default function Footer() {
             <div className="container footer-content">
                 <div className="footer-logo">
                     <a href="#inicio" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                        <SVLogo style={{ width: '40px', height: 'auto' }} />
+                        <img src="/LogoPaginaWebNegativo.png" alt="S&V Solutions Logo" style={{ height: '40px', width: 'auto' }} />
                         <span className="accent">Solutions</span>
                     </a>
                     <p>{t("Elevando estándares web.", "Elevating web standards.")}</p>
