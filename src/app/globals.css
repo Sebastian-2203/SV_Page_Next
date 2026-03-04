@@ -9,10 +9,10 @@
     --accent: #e2e2e2;
     --accent-glow: rgba(255, 255, 255, 0.1);
     --border: rgba(255, 255, 255, 0.1);
-    
+
     /* Typography */
     --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    
+
     /* Transitions */
     --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -40,7 +40,12 @@ body {
 }
 
 /* Typography Base */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 600;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -64,13 +69,17 @@ a {
 }
 
 /* Animations */
-.reveal, .reveal-item, .reveal-delay {
+.reveal,
+.reveal-item,
+.reveal-delay {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal.active, .reveal-item.active, .reveal-delay.active {
+.reveal.active,
+.reveal-item.active,
+.reveal-delay.active {
     opacity: 1;
     transform: translateY(0);
 }
@@ -165,7 +174,7 @@ a {
     color: var(--text-muted);
 }
 
-.nav-links a:hover, 
+.nav-links a:hover,
 .nav-links a.active {
     color: var(--text-main);
 }
@@ -310,7 +319,7 @@ a {
     transform: translate(-50%, -50%);
     width: 80%;
     height: 80%;
-    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
     z-index: -1;
     filter: blur(40px);
 }
@@ -320,7 +329,7 @@ a {
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     aspect-ratio: 16/9;
 }
 
@@ -342,7 +351,89 @@ a {
 .browser-content {
     height: 100%;
     background: linear-gradient(180deg, #111 0%, #050505 100%);
+    position: relative;
+    overflow: hidden;
+    /* Add inner shadow for depth */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
 }
+
+/* Carousel Styles */
+.carousel-track {
+    display: flex;
+    height: 100%;
+    width: max-content;
+    animation: scroll-carousel 30s linear infinite;
+    padding: 1.5rem 0;
+    gap: 2rem;
+}
+
+/* Pause animation on hover */
+.browser-content:hover .carousel-track {
+    animation-play-state: paused;
+}
+
+.carousel-slide {
+    height: 100%;
+    width: 300px;
+    /* Adjust based on desired aspect ratio */
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    /* 3D effect setup */
+    transform: perspective(1000px) rotateY(-15deg) scale(0.9);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.carousel-slide:hover {
+    transform: perspective(1000px) rotateY(0deg) scale(1.05);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+.slide-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 1rem 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+}
+
+.slide-overlay span {
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.carousel-slide:hover .slide-overlay {
+    transform: translateY(0);
+}
+
+@keyframes scroll-carousel {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        /* Move left by exactly half the total width of the inner content because we duplicated it */
+        transform: translateX(calc(-50% - 1rem));
+        /* Account for gap */
+    }
+}
+
 
 .scroll-indicator {
     position: absolute;
@@ -374,8 +465,15 @@ a {
 }
 
 @keyframes scroll {
-    0% { transform: translate(-50%, 0); opacity: 1; }
-    100% { transform: translate(-50%, 15px); opacity: 0; }
+    0% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, 15px);
+        opacity: 0;
+    }
 }
 
 /* Common Section Headers */
@@ -423,14 +521,14 @@ a {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
     opacity: 0;
     transition: var(--transition-smooth);
 }
 
 .portfolio-item:hover .item-visual {
     transform: scale(0.98);
-    border-color: rgba(255,255,255,0.2);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .portfolio-item:hover .item-visual::after {
@@ -438,10 +536,21 @@ a {
 }
 
 /* Simulated Image gradients */
-.visual-1 { background: linear-gradient(45deg, #1a1a2e, #16213e); }
-.visual-2 { background: linear-gradient(45deg, #000000, #434343); }
-.visual-3 { background: linear-gradient(45deg, #232526, #414345); }
-.visual-4 { background: linear-gradient(45deg, #0f2027, #203a43); }
+.visual-1 {
+    background: linear-gradient(45deg, #1a1a2e, #16213e);
+}
+
+.visual-2 {
+    background: linear-gradient(45deg, #000000, #434343);
+}
+
+.visual-3 {
+    background: linear-gradient(45deg, #232526, #414345);
+}
+
+.visual-4 {
+    background: linear-gradient(45deg, #0f2027, #203a43);
+}
 
 .item-info h3 {
     font-size: 1.25rem;
@@ -566,8 +675,8 @@ a {
     color: var(--text-muted);
 }
 
-.form-group input, 
-.form-group select, 
+.form-group input,
+.form-group select,
 .form-group textarea {
     width: 100%;
     padding: 1rem;
@@ -580,11 +689,11 @@ a {
     transition: var(--transition-smooth);
 }
 
-.form-group input:focus, 
-.form-group select:focus, 
+.form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: rgba(255,255,255,0.3);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-submit {
@@ -644,16 +753,18 @@ a {
 
 /* Media Queries */
 @media (max-width: 900px) {
-    .nav-links, .nav-actions {
+
+    .nav-links,
+    .nav-actions {
         display: none;
     }
-    
+
     .menu-toggle {
         display: flex;
     }
 
-    .portfolio-grid, 
-    .about-container, 
+    .portfolio-grid,
+    .about-container,
     .contact-container {
         grid-template-columns: 1fr;
     }

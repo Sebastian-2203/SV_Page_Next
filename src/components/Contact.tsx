@@ -30,14 +30,14 @@ export default function Contact() {
                     <div className="contact-details">
                         <div className="contact-item">
                             <span className="contact-label">{t("Email", "Email")}</span>
-                            <a href="mailto:hello@svstudio.com" className="contact-link">
-                                hello@svstudio.com
+                            <a href="mailto:contacto@syvsolutions.com" className="contact-link">
+                                contacto@syvsolutions.com
                             </a>
                         </div>
                         <div className="contact-item">
                             <span className="contact-label">{t("Ubicación", "Location")}</span>
                             <span className="contact-link">
-                                {t("Global y Remoto", "Global & Remote")}
+                                {t("Colombia y remoto", "Colombia and remote")}
                             </span>
                         </div>
                     </div>

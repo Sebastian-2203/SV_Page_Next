@@ -8,29 +8,30 @@ export default function Portfolio() {
     const { t } = useLanguage();
     const { setRef } = useIntersectionObserver();
 
+    // TODO: Agrega aquí los proyectos que ya realizaron / Add your completed projects here
     const projects = [
         {
-            title: "Aura E-commerce",
-            descEs: "Diseño minimalista",
-            descEn: "Minimalist design",
-            visual: "visual-1",
+            title: "Proyecto 1 / Project 1",
+            descEs: "Descripción de su primer proyecto",
+            descEn: "Description of your first project",
+            visual: "visual-1", // Clase CSS o ruta de imagen / CSS class or image path
         },
         {
-            title: "Zenith App",
-            descEs: "Landing page interactiva",
-            descEn: "Interactive landing page",
+            title: "Proyecto 2 / Project 2",
+            descEs: "Descripción de su segundo proyecto",
+            descEn: "Description of your second project",
             visual: "visual-2",
         },
         {
-            title: "Oasis Studio",
-            descEs: "Portafolio corporativo",
-            descEn: "Corporate portfolio",
+            title: "Proyecto 3 / Project 3",
+            descEs: "Descripción de su tercer proyecto",
+            descEn: "Description of your third project",
             visual: "visual-3",
         },
         {
-            title: "Lumina Platform",
-            descEs: "Plataforma SaaS",
-            descEn: "SaaS Platform",
+            title: "Proyecto 4 / Project 4",
+            descEs: "Descripción de su cuarto proyecto",
+            descEn: "Description of your fourth project",
             visual: "visual-4",
         },
     ];
