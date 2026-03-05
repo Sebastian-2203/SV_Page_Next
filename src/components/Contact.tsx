@@ -3,6 +3,7 @@
 import React from "react";
 import { useLanguage } from "./LanguageProvider";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import Cotizador from "./Cotizador";
 
 export default function Contact() {
     const { t } = useLanguage();
@@ -44,61 +45,7 @@ export default function Contact() {
                 </div>
 
                 <div id="cotiza" className="quote-card reveal-delay" ref={(el) => setRef(el, 1)}>
-                    <h3>{t("Cotiza tu proyecto", "Get a Quote")}</h3>
-                    <form id="quote-form" className="quote-form" onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="name">{t("Nombre", "Name")}</label>
-                            <input
-                                type="text"
-                                id="name"
-                                required
-                                placeholder={t("Tu nombre", "Your name")}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email">
-                                {t("Correo electrónico", "Email Address")}
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                required
-                                placeholder={t("tu@email.com", "you@email.com")}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="budget">
-                                {t("Presupuesto aproximado", "Approximate budget")}
-                            </label>
-                            <select id="budget">
-                                <option value="small">
-                                    {t("Menos de $1k", "Less than $1k")}
-                                </option>
-                                <option value="medium">
-                                    {t("$1k - $5k", "$1k - $5k")}
-                                </option>
-                                <option value="large">
-                                    {t("Más de $5k", "More than $5k")}
-                                </option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="message">
-                                {t("Mensaje (Opcional)", "Message (Optional)")}
-                            </label>
-                            <textarea
-                                id="message"
-                                rows={3}
-                                placeholder={t(
-                                    "Cuéntanos brevemente sobre tu proyecto",
-                                    "Tell us briefly about your project"
-                                )}
-                            ></textarea>
-                        </div>
-                        <button type="submit" className="btn btn-primary btn-submit">
-                            {t("Enviar solicitud", "Send request")}
-                        </button>
-                    </form>
+                    <Cotizador />
                 </div>
             </div>
         </section>

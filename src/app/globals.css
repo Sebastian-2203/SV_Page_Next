@@ -774,3 +774,394 @@ a {
         gap: 3rem;
     }
 }
+
+/* Cotizador Section */
+.cotizador-container {
+    width: 100%;
+}
+
+.cotizador-container h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.cotizador-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+@media (min-width: 900px) {
+    .cotizador-grid {
+        grid-template-columns: 1.5fr 1fr;
+    }
+}
+
+.cotizador-options {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.cotizador-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.cotizador-group .hint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+/* Radio Cards */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 600px) {
+    .radio-group {
+        flex-direction: row;
+    }
+}
+
+.radio-card {
+    flex: 1;
+    position: relative;
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    background-color: var(--bg-main);
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.radio-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.radio-card.active {
+    border-color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.radio-card input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio-card span {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.radio-card small {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* Number Input */
+.number-input {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--bg-main);
+    overflow: hidden;
+}
+
+.number-input button {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.number-input button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.number-input input {
+    width: 60px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    color: var(--text-main);
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    -moz-appearance: textfield;
+}
+
+.number-input input::-webkit-outer-spin-button,
+.number-input input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Checkboxes Premium Design */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 600px) {
+    .checkbox-group {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.checkbox-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background-color: var(--bg-main);
+    transition: var(--transition-smooth);
+    overflow: hidden;
+}
+
+.checkbox-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #fff, #888);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.checkbox-item:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.checkbox-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.checkbox-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+.checkbox-price {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+}
+
+/* Custom Checkmark Circle */
+.custom-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    margin-right: 0.8rem;
+    flex-shrink: 0;
+}
+
+.custom-check::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--text-main);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.checkbox-item.checked {
+    border-color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.checkbox-item.checked::before {
+    opacity: 1;
+}
+
+.checkbox-item.checked .checkbox-title {
+    color: var(--text-main);
+}
+
+.checkbox-item.checked .custom-check {
+    border-color: var(--text-main);
+}
+
+.checkbox-item.checked .custom-check::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Select Box */
+.cotizador-select {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem top 50%;
+    background-size: 0.65em auto;
+}
+
+.cotizador-select option {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+/* Summary Card */
+.summary-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    position: sticky;
+    top: 6rem;
+}
+
+.summary-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.summary-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.total-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.total-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.summary-disclaimer {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+}
+
+.summary-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    border: none;
+}
+
+.btn-action.primary {
+    background-color: var(--text-main);
+    color: var(--text-dark);
+}
+
+.btn-action.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.btn-action.whatsapp {
+    background-color: #25D366;
+    color: white;
+}
+
+.btn-action.whatsapp:hover {
+    background-color: #1ebe5d;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+}
+
+.btn-action.email {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border);
+}
+
+.btn-action.email:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
