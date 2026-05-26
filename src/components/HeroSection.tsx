@@ -109,7 +109,7 @@ export default function HeroSection({ onBookCall }: Props) {
                 </div>
 
                 {/* Right: CardSwap */}
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "400px", position: "relative", zIndex: 2, transform: "translateY(-30px)" }}>
+                <div className="hero-card-container">
                     <CardSwap en={language === "en"} />
                 </div>
             </div>
@@ -122,8 +122,32 @@ export default function HeroSection({ onBookCall }: Props) {
             }} aria-hidden />
 
             <style>{`
-        @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+        .hero-card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            position: relative;
+            z-index: 2;
+            transform: translateY(-30px);
+        }
+        @media (max-width: 1024px) {
+            .hero-card-container {
+                transform: translateY(-15px);
+                height: 330px;
+            }
+        }
+        @media (max-width: 960px) {
+            .hero-grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 2.5rem !important; 
+                margin: -4rem auto 0 !important;
+            }
+            .hero-card-container {
+                transform: translateY(0);
+                height: 300px;
+                margin-top: 1rem;
+            }
         }
       `}</style>
         </section>

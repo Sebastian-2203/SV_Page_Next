@@ -2,7 +2,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-30%, -20%);
+    transform: translate(-45%, -25%);
     transform-origin: center center;
     perspective: 900px;
     overflow: visible;
@@ -22,7 +22,7 @@
     will-change: transform, opacity;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    padding: 2rem;
+    padding: 1.75rem;
     box-sizing: border-box;
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
 }
@@ -37,21 +37,21 @@
 
 @media (max-width: 1024px) {
     .card-swap-container {
-        transform: scale(0.85) translate(-40%, -20%);
+        transform: translate(-48%, -22%);
+    }
+    .card {
+        padding: 1.4rem;
     }
 }
 
 @media (max-width: 768px) {
     .card-swap-container {
-        transform: scale(0.9) translate(-50%, -20%);
-        position: relative;
-        top: 5rem;
+        position: absolute;
+        top: 50%;
         left: 50%;
+        transform: translate(-50%, -25%);
     }
-}
-
-@media (max-width: 480px) {
-    .card-swap-container {
-        transform: scale(0.85) translate(-50%, -20%);
+    .card {
+        padding: 1.25rem;
     }
 }

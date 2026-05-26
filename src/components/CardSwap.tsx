@@ -1,6 +1,4 @@
-"use client";
-
-import React, { Children, cloneElement, forwardRef, isValidElement, useEffect, useMemo, useRef } from 'react';
+import React, { Children, cloneElement, forwardRef, isValidElement, useEffect, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
 import './CardSwap.css';
 
@@ -224,6 +222,45 @@ const CardSwapLayout = ({
 };
 
 export default function CardSwap({ en = false }: { en?: boolean }) {
+    const [dimensions, setDimensions] = useState({
+        width: 360,
+        height: 300,
+        cardDistance: 50,
+        verticalDistance: 55,
+    });
+
+    useEffect(() => {
+        const handleResize = () => {
+            const w = window.innerWidth;
+            if (w <= 480) { // Mobile
+                setDimensions({
+                    width: 290,
+                    height: 240,
+                    cardDistance: 32,
+                    verticalDistance: 36,
+                });
+            } else if (w <= 1024) { // Tablet / iPad
+                setDimensions({
+                    width: 320,
+                    height: 260,
+                    cardDistance: 40,
+                    verticalDistance: 45,
+                });
+            } else { // Desktop
+                setDimensions({
+                    width: 360,
+                    height: 300,
+                    cardDistance: 50,
+                    verticalDistance: 55,
+                });
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+        handleResize(); // Initial call
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     const cardData = [
         {
             tag: "01 / DESARROLLO",
@@ -248,7 +285,14 @@ export default function CardSwap({ en = false }: { en?: boolean }) {
     ];
 
     return (
-        <CardSwapLayout cardDistance={60} verticalDistance={70} delay={5000} pauseOnHover={false} width={380} height={320}>
+        <CardSwapLayout 
+            cardDistance={dimensions.cardDistance} 
+            verticalDistance={dimensions.verticalDistance} 
+            delay={5000} 
+            pauseOnHover={false} 
+            width={dimensions.width} 
+            height={dimensions.height}
+        >
             {cardData.map((card, idx) => (
                 <Card key={idx} className="syv-card">
                     <p style={{
