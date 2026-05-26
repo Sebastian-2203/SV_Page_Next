@@ -128,8 +128,6 @@ img {
   .nav-label { display: none; }
 }
 
-<<<<<<< HEAD
-
 .scroll-indicator {
     position: absolute;
     bottom: 2rem;
@@ -859,9 +857,9 @@ img {
 
 .btn-action.email:hover {
     background-color: rgba(255, 255, 255, 0.05);
-=======
+}
+
 /* Padding to prevent floating navbar from obscuring content */
 body {
   padding-bottom: 88px;
->>>>>>> 9278db4 (Actualizacion de diseno)
 }
