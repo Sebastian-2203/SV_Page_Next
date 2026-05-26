@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
 
 const CartIcon = () => (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--color-brand)", marginBottom: "10px" }}>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "#a1a1aa", marginBottom: "16px", marginTop: "8px" }}>
         <circle cx="8" cy="21" r="1"/>
         <circle cx="19" cy="21" r="1"/>
         <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
@@ -12,25 +12,46 @@ const CartIcon = () => (
 );
 
 const LightningIcon = () => (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--color-brand)", marginBottom: "10px" }}>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "#a1a1aa", marginBottom: "16px", marginTop: "8px" }}>
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
     </svg>
 );
 
 const BrainIcon = () => (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--color-brand)", marginBottom: "10px" }}>
-        <rect x="4" y="4" width="16" height="16" rx="2"/>
-        <rect x="9" y="9" width="6" height="6" rx="1"/>
-        <path d="M9 1v3"/>
-        <path d="M15 1v3"/>
-        <path d="M9 20v3"/>
-        <path d="M15 20v3"/>
-        <path d="M20 9h3"/>
-        <path d="M20 15h3"/>
-        <path d="M1 9h3"/>
-        <path d="M1 15h3"/>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "#a1a1aa", marginBottom: "16px", marginTop: "8px" }}>
+        <path d="M9.5 2c-1.4 0-2.5 1.1-2.5 2.5 0 .2.1.4.1.6C5.4 5.9 4 7.6 4 9.5c0 1.8 1 3.4 2.6 4.3-.2.4-.2.8-.2 1.2 0 2.2 1.8 4 4 4h3.1c2.2 0 4-1.8 4-4 0-.4-.1-.8-.2-1.2 1.6-.9 2.6-2.5 2.6-4.3 0-1.9-1.4-3.6-3.1-4.4.1-.2.1-.4.1-.6C16.9 3.1 15.8 2 14.4 2 13 2 12 3 12 3s-1-1-2.5-1z"/>
+        <path d="M12 3v16"/>
+        <path d="M8 9h8"/>
+        <path d="M9 14h6"/>
     </svg>
 );
+
+const IdeaPill = ({ color, text }: { color: 'blue' | 'purple' | 'green' | 'orange' | 'teal', text: string }) => {
+    const bgMap = {
+        blue: '#0F3B82',
+        purple: '#2E1963',
+        green: '#114D1C',
+        orange: '#754A0D',
+        teal: '#0C4A3A'
+    };
+    return (
+        <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            background: bgMap[color],
+            padding: '6px 14px',
+            borderRadius: '999px',
+            color: '#fff',
+            fontSize: '12px',
+            fontWeight: 500,
+            marginTop: 'auto',
+            width: 'fit-content',
+        }}>
+            <span style={{ fontSize: '14px' }}>💡</span> {text}
+        </div>
+    );
+};
 
 /* ───────────────────────────────────────────────
    Sub-components for individual card visuals
@@ -44,38 +65,32 @@ function BrowserMockup() {
             borderRadius: '10px',
             padding: '12px',
             marginTop: '16px',
+            marginBottom: '16px',
         }}>
             {/* Browser chrome bar */}
             <div style={{ display: 'flex', gap: '5px', marginBottom: '10px', alignItems: 'center' }}>
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.15)' }} />
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.15)' }} />
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.15)' }} />
-                <div style={{ flex: 1, height: 8, borderRadius: 4, background: 'rgba(255,255,255,0.08)', marginLeft: 8 }} />
+                <div style={{ flex: 1, height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.1)' }} />
             </div>
-            {/* Hero block */}
-            <div style={{
-                height: 60,
-                borderRadius: 8,
-                background: 'linear-gradient(135deg, rgba(74,144,217,0.15), rgba(74,144,217,0.05))',
-                marginBottom: 8,
-                animation: 'shimmer 2.5s ease-in-out infinite',
-            }} />
             {/* Text lines */}
             <div style={{
-                height: 8,
-                borderRadius: 4,
+                height: 6,
+                borderRadius: 3,
                 background: 'rgba(255,255,255,0.08)',
-                width: '80%',
-                marginBottom: 6,
-                animation: 'shimmer 2s ease-in-out infinite',
+                width: '100%',
+                marginBottom: 8,
             }} />
             <div style={{
-                height: 8,
-                borderRadius: 4,
+                height: 6,
+                borderRadius: 3,
                 background: 'rgba(255,255,255,0.05)',
-                width: '60%',
-                animation: 'shimmer 2s ease-in-out infinite',
-                animationDelay: '0.3s',
+                width: '80%',
+                marginBottom: 12,
+            }} />
+            {/* Hero block */}
+            <div style={{
+                height: 36,
+                borderRadius: 6,
+                background: 'rgba(74, 144, 217, 0.2)',
             }} />
         </div>
     );
@@ -84,7 +99,7 @@ function BrowserMockup() {
 // Stack pills row
 function StackPills({ items }: { items: string[] }) {
     return (
-        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '14px' }}>
+        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '16px', marginBottom: '16px' }}>
             {items.map((label) => (
                 <span key={label} style={{
                     fontSize: '11px',
@@ -108,7 +123,7 @@ function BrandingMetrics({ label1, label2 }: { label1: string; label2: string })
         padding: '10px 14px',
     };
     return (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '16px', marginBottom: '16px' }}>
             <div style={metricStyle}>
                 <div style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff' }}>12+</div>
                 <div style={{ fontSize: '11px', color: 'var(--color-text-muted)', marginTop: '2px' }}>{label1}</div>
@@ -121,68 +136,49 @@ function BrandingMetrics({ label1, label2 }: { label1: string; label2: string })
     );
 }
 
-// Automation timeline with staggered fade-in
-function AutomationTimeline({ steps }: { steps: { done: boolean; text: string }[] }) {
+// Automation timeline static display
+function AutomationTimeline({ steps }: { steps: { color: string; text: string }[] }) {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0px', marginTop: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '16px', marginBottom: '16px' }}>
             {steps.map((step, i) => (
-                <React.Fragment key={i}>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <div style={{
-                        display: 'flex',
-                        gap: '10px',
-                        alignItems: 'center',
-                        animation: 'fadeInLine 0.5s ease forwards',
-                        animationDelay: `${0.1 + i * 0.4}s`,
-                        opacity: 0,
-                    }}>
-                        <div style={{
-                            width: 6,
-                            height: 6,
-                            borderRadius: '50%',
-                            background: step.done ? '#1D9E75' : 'rgba(255,255,255,0.2)',
-                            flexShrink: 0,
-                        }} />
-                        <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.55)' }}>{step.text}</span>
-                    </div>
-                    {i < steps.length - 1 && (
-                        <div style={{
-                            height: 14,
-                            width: 1,
-                            background: 'rgba(255,255,255,0.1)',
-                            marginLeft: 2.5,
-                            animation: 'fadeInLine 0.5s ease forwards',
-                            animationDelay: `${0.3 + i * 0.4}s`,
-                            opacity: 0,
-                        }} />
-                    )}
-                </React.Fragment>
+                        width: 6,
+                        height: 6,
+                        borderRadius: '50%',
+                        background: step.color,
+                        flexShrink: 0,
+                    }} />
+                    <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>{step.text}</span>
+                </div>
             ))}
         </div>
     );
 }
 
-// IA terminal with line-by-line fade-in
+// IA terminal mockup
 function IATerminal({ line1, line2, line3 }: { line1: string; line2: string; line3: string }) {
     return (
         <div style={{
             background: 'rgba(255,255,255,0.04)',
             borderRadius: '8px',
             padding: '12px',
-            marginTop: '12px',
+            marginTop: '16px',
+            marginBottom: '16px',
             fontFamily: 'SFMono-Regular, Consolas, Menlo, monospace',
             fontSize: '12px',
             lineHeight: '1.8',
         }}>
-            <div style={{ animation: 'fadeInLine 0.5s ease forwards', animationDelay: '0.2s', opacity: 0 }}>
+            <div>
                 <span style={{ color: '#4a90d9' }}>→ </span>
-                <span style={{ color: 'rgba(255,255,255,0.5)' }}>{line1}</span>
+                <span style={{ color: 'rgba(255,255,255,0.7)' }}>{line1}</span>
             </div>
-            <div style={{ animation: 'fadeInLine 0.5s ease forwards', animationDelay: '0.6s', opacity: 0 }}>
-                <span style={{ color: '#1D9E75' }}>✓ </span>
-                <span style={{ color: 'rgba(255,255,255,0.5)' }}>{line2}</span>
+            <div>
+                <span style={{ color: '#4a90d9' }}>✓ </span>
+                <span style={{ color: 'rgba(255,255,255,0.7)' }}>{line2}</span>
             </div>
-            <div style={{ animation: 'fadeInLine 0.5s ease forwards', animationDelay: '1.0s', opacity: 0 }}>
-                <span style={{ color: 'rgba(255,255,255,0.25)' }}>{line3}</span>
+            <div>
+                <span style={{ color: 'rgba(255,255,255,0.4)' }}>{line3}</span>
             </div>
         </div>
     );
@@ -246,11 +242,10 @@ function AnimatedBentoCard({ children }: { children: React.ReactNode }) {
 export default function BentoGrid() {
     const { t } = useLanguage();
 
-    // Automation steps data
     const automationSteps = [
-        { done: true,  text: t('Formulario recibido', 'Form received') },
-        { done: true,  text: t('Notificación en Slack', 'Slack notification') },
-        { done: false, text: t('CRM actualizado', 'CRM updated') },
+        { color: '#1D9E75',  text: t('Recibe formulario', 'Receive form') },
+        { color: '#1D9E75',  text: t('Notifica en Slack', 'Slack notification') },
+        { color: '#4a90d9', text: t('CRM actualizado', 'CRM updated') },
     ];
 
     return (
@@ -296,7 +291,7 @@ export default function BentoGrid() {
                     gap: '14px',
                     marginBottom: '14px',
                 }}>
-                    {/* Card 1 — Web Design & Dev (highlighted) */}
+                    {/* Card 1 — Web Design & Dev */}
                     <AnimatedBentoCard>
                         <div className="bento-card" style={{
                             background: 'rgba(255,255,255,0.03)',
@@ -312,17 +307,17 @@ export default function BentoGrid() {
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● WEB DESIGN & DEV
                             </div>
-                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                            <h3 style={{ fontSize: '26px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Sitios Premium.", "Premium Sites.")}
                             </h3>
-                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
                                     "Landings, corporativos y portafolios construidos para impresionar.",
                                     "Landings, corporate, and portfolios built to impress."
                                 )}
                             </p>
                             <BrowserMockup />
-                            <StackPills items={["Next.js", "React", "Tailwind", "Framer Motion"]} />
+                            <IdeaPill color="blue" text={t("Idea: agrega un gif o video loop de uno de tus proyectos aquí", "Idea: add a gif or video loop of one of your projects here")} />
                         </div>
                     </AnimatedBentoCard>
 
@@ -342,19 +337,20 @@ export default function BentoGrid() {
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● BRANDING
                             </div>
-                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                            <h3 style={{ fontSize: '26px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Sistemas Visuales.", "Visual Systems.")}
                             </h3>
-                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
                                     "Identidad que comunica.",
                                     "Identity that communicates."
                                 )}
                             </p>
                             <BrandingMetrics
-                                label1={t("Marcas creadas", "Brands created")}
-                                label2={t("Diseño custom", "Custom design")}
+                                label1={t("Marcas", "Brands")}
+                                label2={t("Custom", "Custom")}
                             />
+                            <IdeaPill color="purple" text={t("Muestra tus logos reales o números reales", "Show your real logos or real numbers")} />
                         </div>
                     </AnimatedBentoCard>
                 </div>
@@ -378,10 +374,10 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <CartIcon />
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● E-COMMERCE
                             </div>
+                            <CartIcon />
                             <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Tiendas que escalan.", "Stores that scale.")}
                             </h3>
@@ -391,7 +387,8 @@ export default function BentoGrid() {
                                     "Architectures for maximum conversion."
                                 )}
                             </p>
-                            <StackPills items={["Stripe", "MercadoPago", "Next.js", "Custom"]} />
+                            <StackPills items={["Stripe", "Next.js", "Custom"]} />
+                            <IdeaPill color="green" text={t("Agrega el stack real que usas", "Add the real stack you use")} />
                         </div>
                     </AnimatedBentoCard>
 
@@ -408,14 +405,15 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <LightningIcon />
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● {t("AUTOMATIZACIÓN", "AUTOMATION")}
                             </div>
+                            <LightningIcon />
                             <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Menos clics.", "Fewer clicks.")}
                             </h3>
                             <AutomationTimeline steps={automationSteps} />
+                            <IdeaPill color="orange" text={t("Un mini-flow animado funciona muy bien aquí", "An animated mini-flow works great here")} />
                         </div>
                     </AnimatedBentoCard>
 
@@ -432,18 +430,19 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <BrainIcon />
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● IA
                             </div>
+                            <BrainIcon />
                             <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Software inteligente.", "Smart software.")}
                             </h3>
                             <IATerminal
                                 line1={t("Analizando consulta...", "Analyzing query...")}
                                 line2={t("Respuesta generada", "Response generated")}
-                                line3={t("// integrado en tu sitio", "// integrated into your site")}
+                                line3={t("// integrado en tu web", "// integrated into your web")}
                             />
+                            <IdeaPill color="teal" text={t("Un chat demo en vivo sería un wow", "A live demo chat would be a wow factor")} />
                         </div>
                     </AnimatedBentoCard>
                 </div>
