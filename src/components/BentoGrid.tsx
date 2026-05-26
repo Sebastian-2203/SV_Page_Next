@@ -160,6 +160,57 @@ function IATerminal({ line1, line2, line3 }: { line1: string; line2: string; lin
 }
 
 /* ───────────────────────────────────────────────
+   Animated Wrapper for Cards
+   ─────────────────────────────────────────────── */
+
+function AnimatedBentoCard({ children }: { children: React.ReactNode }) {
+    return (
+        <div 
+            style={{
+                position: "relative",
+                overflow: "visible", // Allows the glowing blur to expand outside card borders
+                height: "100%",
+                display: "flex",
+                flexDirection: "column"
+            }}
+            onMouseMove={e => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
+                e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
+            }}
+            onMouseEnter={e => {
+                const glow = e.currentTarget.querySelector('.bento-glow-overlay') as HTMLElement;
+                if (glow) glow.style.opacity = "0.22"; // Fade in soft brand glow
+            }}
+            onMouseLeave={e => {
+                const glow = e.currentTarget.querySelector('.bento-glow-overlay') as HTMLElement;
+                if (glow) glow.style.opacity = "0"; // Fade out soft brand glow
+            }}
+        >
+            {/* Ambient radial blur glow behind the card on the outside */}
+            <div className="bento-glow-overlay" style={{
+                position: "absolute",
+                inset: "-35px", // Bleeds outside the card boundaries by 35px
+                background: "radial-gradient(circle 180px at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--color-brand) 0%, transparent 80%)",
+                filter: "blur(40px)",
+                opacity: 0,
+                zIndex: 0,
+                pointerEvents: "none",
+                borderRadius: "var(--radius-lg, 16px)",
+                transition: "opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+            }} />
+            
+            {/* Inner card content wrapper */}
+            <div style={{ position: "relative", zIndex: 2, flex: 1, display: "flex", flexDirection: "column" }}>
+                {children}
+            </div>
+        </div>
+    );
+}
+
+/* ───────────────────────────────────────────────
    Main BentoGrid component
    ─────────────────────────────────────────────── */
 
@@ -217,58 +268,66 @@ export default function BentoGrid() {
                     marginBottom: '14px',
                 }}>
                     {/* Card 1 — Web Design & Dev (highlighted) */}
-                    <div className="bento-card" style={{
-                        background: 'rgba(255,255,255,0.03)',
-                        border: '0.5px solid #4a90d9',
-                        borderRadius: '16px',
-                        padding: '1.5rem',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        transition: 'border-color 0.2s',
-                    }}>
-                        <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
-                            ● WEB DESIGN & DEV
+                    <AnimatedBentoCard>
+                        <div className="bento-card" style={{
+                            background: 'rgba(255,255,255,0.03)',
+                            border: '0.5px solid #4a90d9',
+                            borderRadius: '16px',
+                            padding: '1.5rem',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}>
+                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                                ● WEB DESIGN & DEV
+                            </div>
+                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                                {t("Sitios Premium.", "Premium Sites.")}
+                            </h3>
+                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                                {t(
+                                    "Landings, corporativos y portafolios. Construidos para impresionar, optimizados para convertir.",
+                                    "Landings, corporate, and portfolios. Built to impress, optimized to convert."
+                                )}
+                            </p>
+                            <BrowserMockup />
+                            <StackPills items={["Next.js", "React", "Tailwind", "Framer Motion"]} />
                         </div>
-                        <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                            {t("Sitios Premium.", "Premium Sites.")}
-                        </h3>
-                        <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
-                            {t(
-                                "Landings, corporativos y portafolios. Construidos para impresionar, optimizados para convertir.",
-                                "Landings, corporate, and portfolios. Built to impress, optimized to convert."
-                            )}
-                        </p>
-                        <BrowserMockup />
-                        <StackPills items={["Next.js", "React", "Tailwind", "Framer Motion"]} />
-                    </div>
+                    </AnimatedBentoCard>
 
                     {/* Card 2 — Branding */}
-                    <div className="bento-card" style={{
-                        background: 'rgba(255,255,255,0.03)',
-                        border: '0.5px solid rgba(255,255,255,0.08)',
-                        borderRadius: '16px',
-                        padding: '1.5rem',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        transition: 'border-color 0.2s',
-                    }}>
-                        <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
-                            ● BRANDING
+                    <AnimatedBentoCard>
+                        <div className="bento-card" style={{
+                            background: 'rgba(255,255,255,0.03)',
+                            border: '0.5px solid rgba(255,255,255,0.08)',
+                            borderRadius: '16px',
+                            padding: '1.5rem',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}>
+                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                                ● BRANDING
+                            </div>
+                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                                {t("Sistemas Visuales.", "Visual Systems.")}
+                            </h3>
+                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                                {t(
+                                    "Identidad que comunica sin tener que explicarse.",
+                                    "Identity that communicates without having to be explained."
+                                )}
+                            </p>
+                            <BrandingMetrics
+                                label1={t("Marcas creadas", "Brands created")}
+                                label2={t("Diseño custom", "Custom design")}
+                            />
                         </div>
-                        <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                            {t("Sistemas Visuales.", "Visual Systems.")}
-                        </h3>
-                        <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
-                            {t(
-                                "Identidad que comunica sin tener que explicarse.",
-                                "Identity that communicates without having to be explained."
-                            )}
-                        </p>
-                        <BrandingMetrics
-                            label1={t("Marcas creadas", "Brands created")}
-                            label2={t("Diseño custom", "Custom design")}
-                        />
-                    </div>
+                    </AnimatedBentoCard>
                 </div>
 
                 {/* ── Row 2: E-commerce + Automatización + IA (1fr each) ── */}
@@ -278,94 +337,111 @@ export default function BentoGrid() {
                     gap: '14px',
                 }}>
                     {/* Card 3 — E-commerce */}
-                    <div className="bento-card" style={{
-                        background: 'rgba(255,255,255,0.03)',
-                        border: '0.5px solid rgba(255,255,255,0.08)',
-                        borderRadius: '16px',
-                        padding: '1.5rem',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        transition: 'border-color 0.2s',
-                    }}>
-                        <div style={{ fontSize: '28px', color: 'var(--color-brand)', marginBottom: '10px', lineHeight: 1 }}>◈</div>
-                        <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
-                            ● E-COMMERCE
+                    <AnimatedBentoCard>
+                        <div className="bento-card" style={{
+                            background: 'rgba(255,255,255,0.03)',
+                            border: '0.5px solid rgba(255,255,255,0.08)',
+                            borderRadius: '16px',
+                            padding: '1.5rem',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}>
+                            <div style={{ fontSize: '28px', color: 'var(--color-brand)', marginBottom: '10px', lineHeight: 1 }}>◈</div>
+                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                                ● E-COMMERCE
+                            </div>
+                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                                {t("Tiendas que escalan.", "Stores that scale.")}
+                            </h3>
+                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                                {t(
+                                    "Arquitecturas de comercio diseñadas para máxima conversión.",
+                                    "Commerce architectures designed for maximum conversion."
+                                )}
+                            </p>
+                            <StackPills items={["Stripe", "MercadoPago", "Next.js", "Custom"]} />
                         </div>
-                        <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                            {t("Tiendas que escalan.", "Stores that scale.")}
-                        </h3>
-                        <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
-                            {t(
-                                "Arquitecturas de comercio diseñadas para máxima conversión.",
-                                "Commerce architectures designed for maximum conversion."
-                            )}
-                        </p>
-                        <StackPills items={["Stripe", "MercadoPago", "Next.js", "Custom"]} />
-                    </div>
+                    </AnimatedBentoCard>
 
                     {/* Card 4 — Automatización */}
-                    <div className="bento-card" style={{
-                        background: 'rgba(255,255,255,0.03)',
-                        border: '0.5px solid rgba(255,255,255,0.08)',
-                        borderRadius: '16px',
-                        padding: '1.5rem',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        transition: 'border-color 0.2s',
-                    }}>
-                        <div style={{ fontSize: '28px', color: 'var(--color-brand)', marginBottom: '10px', lineHeight: 1 }}>⬢</div>
-                        <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
-                            ● {t("AUTOMATIZACIÓN", "AUTOMATION")}
+                    <AnimatedBentoCard>
+                        <div className="bento-card" style={{
+                            background: 'rgba(255,255,255,0.03)',
+                            border: '0.5px solid rgba(255,255,255,0.08)',
+                            borderRadius: '16px',
+                            padding: '1.5rem',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}>
+                            <div style={{ fontSize: '28px', color: 'var(--color-brand)', marginBottom: '10px', lineHeight: 1 }}>⬢</div>
+                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                                ● {t("AUTOMATIZACIÓN", "AUTOMATION")}
+                            </div>
+                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                                {t("Menos clics.", "Fewer clicks.")}
+                            </h3>
+                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                                {t(
+                                    "Zapier, Make, y APIs custom para workflows inteligentes.",
+                                    "Zapier, Make, and custom APIs for smart workflows."
+                                )}
+                            </p>
+                            <AutomationTimeline steps={automationSteps} />
                         </div>
-                        <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                            {t("Menos clics.", "Fewer clicks.")}
-                        </h3>
-                        <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
-                            {t(
-                                "Zapier, Make, y APIs custom para workflows inteligentes.",
-                                "Zapier, Make, and custom APIs for smart workflows."
-                            )}
-                        </p>
-                        <AutomationTimeline steps={automationSteps} />
-                    </div>
+                    </AnimatedBentoCard>
 
                     {/* Card 5 — IA */}
-                    <div className="bento-card" style={{
-                        background: 'rgba(255,255,255,0.03)',
-                        border: '0.5px solid rgba(255,255,255,0.08)',
-                        borderRadius: '16px',
-                        padding: '1.5rem',
-                        overflow: 'hidden',
-                        position: 'relative',
-                        transition: 'border-color 0.2s',
-                    }}>
-                        <div style={{ fontSize: '28px', color: 'var(--color-brand)', marginBottom: '10px', lineHeight: 1 }}>◭</div>
-                        <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
-                            ● IA
+                    <AnimatedBentoCard>
+                        <div className="bento-card" style={{
+                            background: 'rgba(255,255,255,0.03)',
+                            border: '0.5px solid rgba(255,255,255,0.08)',
+                            borderRadius: '16px',
+                            padding: '1.5rem',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}>
+                            <div style={{ fontSize: '28px', color: 'var(--color-brand)', marginBottom: '10px', lineHeight: 1 }}>◭</div>
+                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                                ● IA
+                            </div>
+                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                                {t("Software inteligente.", "Smart software.")}
+                            </h3>
+                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                                {t(
+                                    "LLMs, agentes e integraciones de IA en tu producto.",
+                                    "LLMs, agents, and AI integrations in your product."
+                                )}
+                            </p>
+                            <IATerminal
+                                line1={t("Analizando consulta...", "Analyzing query...")}
+                                line2={t("Respuesta generada", "Response generated")}
+                                line3={t("// integrado en tu sitio", "// integrated into your site")}
+                            />
                         </div>
-                        <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                            {t("Software inteligente.", "Smart software.")}
-                        </h3>
-                        <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
-                            {t(
-                                "LLMs, agentes e integraciones de IA en tu producto.",
-                                "LLMs, agents, and AI integrations in your product."
-                            )}
-                        </p>
-                        <IATerminal
-                            line1={t("Analizando consulta...", "Analyzing query...")}
-                            line2={t("Respuesta generada", "Response generated")}
-                            line3={t("// integrado en tu sitio", "// integrated into your site")}
-                        />
-                    </div>
+                    </AnimatedBentoCard>
                 </div>
 
             </div>
 
             {/* Hover + Responsive styles */}
             <style>{`
+                .bento-card {
+                    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+                }
                 .bento-card:hover {
-                    border-color: rgba(74,144,217,0.3) !important;
+                    border-color: rgba(74,144,217,0.4) !important;
+                    box-shadow: 0 10px 40px -10px rgba(74,144,217,0.08);
+                    transform: translateY(-2px);
                 }
                 @media (max-width: 768px) {
                     .bento-row1 {
