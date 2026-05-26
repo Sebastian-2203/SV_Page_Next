@@ -25,67 +25,66 @@ export default function Preloader() {
         });
 
         // 1. Initial State
-        gsap.set(logoRef.current, { scale: 0.75, opacity: 0 });
-        gsap.set(textRef.current, { y: 20, opacity: 0 });
+        gsap.set(logoRef.current, { scale: 0.8, opacity: 0 });
+        gsap.set(textRef.current, { y: 15, opacity: 0 });
         gsap.set(leftPanelRef.current, { xPercent: 0 });
         gsap.set(rightPanelRef.current, { xPercent: 0 });
         gsap.set(dividerRef.current, { scaleY: 0, opacity: 0 });
 
-        // 2. Entrance Animation
+        // 2. Entrance Animation (Fast & Crisp)
         tl.to(dividerRef.current, {
             scaleY: 1,
             opacity: 1,
-            duration: 0.6,
-            ease: "power3.out"
+            duration: 0.35,
+            ease: "power2.out"
         })
         .to(logoRef.current, {
             scale: 1,
             opacity: 1,
-            duration: 0.8,
-            ease: "back.out(1.7)"
-        }, "-=0.2")
+            duration: 0.45,
+            ease: "back.out(1.5)"
+        }, "-=0.15")
         .to(textRef.current, {
             y: 0,
             opacity: 1,
-            duration: 0.5,
+            duration: 0.35,
             ease: "power2.out"
-        }, "-=0.4")
+        }, "-=0.25")
         
-        // 3. Subtle pulsing/glow
+        // 3. Very brief resting beat (0.3s) for visual pacing
         .to(logoRef.current, {
-            scale: 1.04,
-            boxShadow: "0 0 50px var(--color-border-brand)",
-            duration: 0.7,
-            yoyo: true,
-            repeat: 1,
+            scale: 1.02,
+            boxShadow: "0 0 40px var(--color-border-brand)",
+            duration: 0.3,
             ease: "power1.inOut"
-        }, "+=0.1")
+        }, "+=0.15")
 
-        // 4. Logo Fading Out & Panels Sliding Open
+        // 4. Snappy Opening Transition (Slide & Fade Out)
         .to([logoRef.current, textRef.current], {
-            scale: 0.9,
+            scale: 0.92,
             opacity: 0,
-            duration: 0.45,
+            duration: 0.3,
             ease: "power2.in"
-        }, "+=0.1")
+        })
         .to(dividerRef.current, {
             opacity: 0,
             scaleY: 0,
+            duration: 0.4,
+            ease: "power3.inOut"
+        }, "-=0.1")
+        .to(leftPanelRef.current, {
+            xPercent: -100,
             duration: 0.6,
             ease: "power3.inOut"
         }, "-=0.2")
-        .to(leftPanelRef.current, {
-            xPercent: -100,
-            duration: 0.85,
-            ease: "power3.inOut"
-        }, "-=0.3")
         .to(rightPanelRef.current, {
             xPercent: 100,
-            duration: 0.85,
+            duration: 0.6,
             ease: "power3.inOut"
         }, "<");
 
         return () => {
+            tl.kill();
             document.body.style.overflow = "";
         };
     }, []);
