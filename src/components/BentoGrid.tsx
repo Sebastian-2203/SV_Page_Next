@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "./LanguageProvider";
+import ShapeBlur from './ShapeBlur';
 
 const items = [
     {
@@ -65,8 +66,8 @@ function BentoCard({ item, t }: { item: typeof items[0] & { image?: string }; t:
     return (
         <div
             style={{
-                gridColumn: item.col,
-                gridRow: item.row,
+                width: "100%",
+                height: "100%",
                 background: "var(--color-bg-glass)",
                 border: "0.5px solid var(--color-border)",
                 borderRadius: "var(--radius-lg)", // straight geometry mixed with soft curves
@@ -75,7 +76,7 @@ function BentoCard({ item, t }: { item: typeof items[0] & { image?: string }; t:
                 flexDirection: "column",
                 justifyContent: "space-between",
                 position: "relative",
-                overflow: "hidden",
+                overflow: "hidden", // Keeps inside image and overlay contained
                 cursor: "default",
                 transition: "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)",
                 minHeight: item.size === "large" ? 340 : 220,
@@ -167,32 +168,9 @@ function BentoCard({ item, t }: { item: typeof items[0] & { image?: string }; t:
                     }} />
                 </div>
             )}
-
-            {/* Technical line abstract background on all cards */}
-            <div style={{
-                position: "absolute",
-                inset: 0,
-                pointerEvents: "none",
-                zIndex: 0,
-                opacity: 0.15,
-                overflow: "hidden",
-                borderRadius: "var(--radius-lg)"
-            }}>
-                <ShapeBlur
-                    variation={item.size === "large" ? 0 : 2}
-                    pixelRatioProp={1}
-                    shapeSize={1}
-                    roundness={0.5}
-                    borderSize={0.05}
-                    circleSize={0.25}
-                    circleEdge={1}
-                />
-            </div>
         </div>
     );
 }
-
-import ShapeBlur from './ShapeBlur';
 
 export default function BentoGrid() {
     const { t } = useLanguage();
@@ -228,7 +206,34 @@ export default function BentoGrid() {
                     gap: "1.5rem",
                 }} className="bento-grid">
                     {items.map((item, i) => (
-                        <BentoCard key={i} item={item} t={t} />
+                        <div key={i} style={{
+                            gridColumn: item.col,
+                            gridRow: item.row,
+                            position: "relative",
+                            overflow: "visible", // Allows ShapeBlur glow to bleed elegantly outside the card
+                        }}>
+                            {/* ShapeBlur outline glow rendered behind the card on the outside */}
+                            <div style={{
+                                position: "absolute",
+                                inset: "-25px",
+                                pointerEvents: "none",
+                                zIndex: 0,
+                                opacity: 0.16, // Subtle, soft ambient glow
+                            }}>
+                                <ShapeBlur
+                                    variation={item.size === "large" ? 0 : 2}
+                                    pixelRatioProp={1}
+                                    shapeSize={1}
+                                    roundness={0.5}
+                                    borderSize={0.03}
+                                    circleSize={0.25}
+                                    circleEdge={0.8}
+                                />
+                            </div>
+                            
+                            {/* Card Content Component */}
+                            <BentoCard item={item} t={t} />
+                        </div>
                     ))}
                 </div>
             </div>
