@@ -22,7 +22,7 @@
     will-change: transform, opacity;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    padding: 1.75rem;
+    padding: 2rem;
     box-sizing: border-box;
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
 }
@@ -35,16 +35,70 @@
     will-change: filter;
 }
 
+/* Card Content Styling */
+.syv-card-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    color: var(--color-brand);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.syv-card-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.75rem;
+    line-height: 1.1;
+    color: var(--color-text-primary);
+}
+
+.syv-card-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.syv-card-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    background: var(--color-bg-glass);
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+}
+
+/* Tablet adjustments (iPad) */
 @media (max-width: 1024px) {
     .card-swap-container {
         transform: translate(-48%, -22%);
     }
     .card {
-        padding: 1.4rem;
+        padding: 1.25rem;
+    }
+    .syv-card-tag {
+        margin-bottom: 0.8rem;
+        font-size: 10px;
+    }
+    .syv-card-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    .syv-card-items {
+        gap: 0.4rem;
+    }
+    .syv-card-item {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.8rem;
     }
 }
 
-@media (max-width: 768px) {
+/* Mobile adjustments (iPhone) */
+@media (max-width: 480px) {
     .card-swap-container {
         position: absolute;
         top: 50%;
@@ -52,6 +106,22 @@
         transform: translate(-50%, -25%);
     }
     .card {
-        padding: 1.25rem;
+        padding: 1rem;
+    }
+    .syv-card-tag {
+        margin-bottom: 0.6rem;
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+    .syv-card-title {
+        font-size: 1.15rem;
+        margin-bottom: 0.8rem;
+    }
+    .syv-card-items {
+        gap: 0.3rem;
+    }
+    .syv-card-item {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.75rem;
     }
 }

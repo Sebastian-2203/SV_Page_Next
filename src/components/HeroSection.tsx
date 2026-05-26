@@ -37,7 +37,7 @@ export default function HeroSection({ onBookCall }: Props) {
             display: "flex",
             alignItems: "center",
             padding: "7rem 2rem 5rem",
-            overflow: "hidden",
+            overflowX: "hidden",
             background: "var(--color-bg-primary)",
         }}>
             {/* Particle background */}
@@ -138,6 +138,9 @@ export default function HeroSection({ onBookCall }: Props) {
             }
         }
         @media (max-width: 960px) {
+            #inicio {
+                padding-bottom: 8.5rem !important;
+            }
             .hero-grid { 
                 grid-template-columns: 1fr !important; 
                 gap: 2.5rem !important; 
@@ -145,7 +148,7 @@ export default function HeroSection({ onBookCall }: Props) {
             }
             .hero-card-container {
                 transform: translateY(0);
-                height: 300px;
+                height: 320px;
                 margin-top: 1rem;
             }
         }

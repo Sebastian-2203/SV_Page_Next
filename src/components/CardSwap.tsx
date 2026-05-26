@@ -295,39 +295,15 @@ export default function CardSwap({ en = false }: { en?: boolean }) {
         >
             {cardData.map((card, idx) => (
                 <Card key={idx} className="syv-card">
-                    <p style={{
-                        fontSize: "11px",
-                        fontWeight: 500,
-                        letterSpacing: "2.5px",
-                        color: "var(--color-brand)",
-                        marginBottom: "1.5rem",
-                        textTransform: "uppercase",
-                    }}>
+                    <p className="syv-card-tag">
                         {card.tag}
                     </p>
-                    <h3 style={{
-                        fontSize: "1.6rem",
-                        fontWeight: 700,
-                        letterSpacing: "-0.03em",
-                        marginBottom: "1.75rem",
-                        lineHeight: 1.1,
-                        color: "var(--color-text-primary)",
-                    }}>
+                    <h3 className="syv-card-title">
                         {card.title}
                     </h3>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+                    <div className="syv-card-items">
                         {card.items.map((item, i) => (
-                            <div key={i} style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.6rem",
-                                padding: "0.6rem 0.9rem",
-                                background: "var(--color-bg-glass)",
-                                border: "0.5px solid var(--color-border)",
-                                borderRadius: "var(--radius-sm)",
-                                fontSize: "0.88rem",
-                                color: "var(--color-text-secondary)",
-                            }}>
+                            <div key={i} className="syv-card-item">
                                 <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--color-brand)", flexShrink: 0 }} />
                                 {item}
                             </div>
