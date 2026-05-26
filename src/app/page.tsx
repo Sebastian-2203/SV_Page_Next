@@ -30,7 +30,7 @@ export default function Home() {
       <Navbar onBookCall={() => setModalOpen(true)} />
       <HeroSection onBookCall={() => setModalOpen(true)} />
 
-      <div style={{ height: '120px', position: 'relative', overflow: 'hidden', background: '#000', display: 'flex', alignItems: 'center' }}>
+      <div style={{ height: '120px', position: 'relative', overflow: 'hidden', background: 'var(--color-bg-primary)', display: 'flex', alignItems: 'center' }}>
         <LogoLoop
           logos={techLogos}
           speed={120}
@@ -40,7 +40,7 @@ export default function Home() {
           hoverSpeed={0}
           scaleOnHover
           fadeOut
-          fadeOutColor="#000000"
+          fadeOutColor="var(--color-bg-primary)"
           ariaLabel="Technology partners"
         />
       </div>

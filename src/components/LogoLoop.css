@@ -78,8 +78,8 @@
 .logoloop__node {
     display: inline-flex;
     align-items: center;
-    color: #fff;
-    opacity: 0.5;
+    color: var(--color-brand);
+    opacity: 0.75;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

@@ -67,7 +67,7 @@ export default function HeroSection({ onBookCall }: Props) {
 
             {/* Content */}
             <div ref={contentRef} style={{
-                maxWidth: 1200, margin: "-9rem auto 0", width: "100%",
+                maxWidth: 1040, margin: "-9rem auto 0", width: "100%",
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
                 gap: "1.5rem",
@@ -119,7 +119,7 @@ export default function HeroSection({ onBookCall }: Props) {
                 </div>
 
                 {/* Right: CardSwap */}
-                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "400px", position: "relative", zIndex: 2, transform: "translateY(-90px)" }}>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "400px", position: "relative", zIndex: 2, transform: "translateY(-30px)" }}>
                     <CardSwap en={language === "en"} />
                 </div>
             </div>

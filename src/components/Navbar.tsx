@@ -86,12 +86,14 @@ export default function Navbar({ onBookCall }: Props) {
             alignItems: "center",
             gap: "4px",
             padding: "6px 8px",
-            background: "rgba(10, 15, 30, 0.85)",
+            background: darkMode ? "rgba(10, 15, 30, 0.85)" : "rgba(240, 246, 255, 0.85)",
             backdropFilter: "blur(16px)",
             WebkitBackdropFilter: "blur(16px)",
-            border: "0.5px solid var(--color-border)",
+            border: darkMode ? "0.5px solid var(--color-border)" : "0.5px solid rgba(37, 99, 235, 0.15)",
             borderRadius: "999px",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.4), 0 0 0 0.5px rgba(74,144,217,0.1)",
+            boxShadow: darkMode 
+                ? "0 8px 32px rgba(0,0,0,0.4), 0 0 0 0.5px rgba(74,144,217,0.1)" 
+                : "0 8px 32px rgba(37, 99, 235, 0.08), 0 0 0 0.5px rgba(37, 99, 235, 0.15)",
             whiteSpace: "nowrap",
             animation: "slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         }}>
@@ -113,8 +115,8 @@ export default function Navbar({ onBookCall }: Props) {
                     }}
                     onMouseEnter={e => {
                         if (!isActive) {
-                            e.currentTarget.style.color = "var(--color-text-primary)";
-                            e.currentTarget.style.background = "var(--color-bg-glass)";
+                            e.currentTarget.style.color = "var(--color-brand)";
+                            e.currentTarget.style.background = "var(--color-brand-subtle)";
                         }
                     }}
                     onMouseLeave={e => {
@@ -149,8 +151,8 @@ export default function Navbar({ onBookCall }: Props) {
                     transition: "all 0.2s",
                 }}
                 onMouseEnter={e => {
-                    e.currentTarget.style.color = "var(--color-text-primary)";
-                    e.currentTarget.style.background = "var(--color-bg-glass)";
+                    e.currentTarget.style.color = "var(--color-brand)";
+                    e.currentTarget.style.background = "var(--color-brand-subtle)";
                 }}
                 onMouseLeave={e => {
                     e.currentTarget.style.color = "var(--color-text-secondary)";
