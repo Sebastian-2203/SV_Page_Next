@@ -1,64 +1,80 @@
 "use client";
 
-import React from "react";
 import { useLanguage } from "./LanguageProvider";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+
+const projects = [
+    {
+        label: "E-commerce",
+        labelEn: "E-commerce",
+        title: "Tienda online de moda",
+        titleEn: "Fashion online store",
+        type: "Shopify · Next.js",
+        emoji: "🛍️",
+        bg: "linear-gradient(135deg,#1a0533,#2d1b69)",
+    },
+    {
+        label: "Aplicación Web",
+        labelEn: "Web App",
+        title: "Plataforma SaaS de gestión",
+        titleEn: "SaaS management platform",
+        type: "React · Node.js",
+        emoji: "⚙️",
+        bg: "linear-gradient(135deg,#001529,#003566)",
+    },
+    {
+        label: "Landing Page",
+        labelEn: "Landing Page",
+        title: "Landing de producto tech",
+        titleEn: "Tech product landing",
+        type: "Next.js · Framer",
+        emoji: "🚀",
+        bg: "linear-gradient(135deg,#0d2137,#0a3d2e)",
+    },
+    {
+        label: "Portafolio",
+        labelEn: "Portfolio",
+        title: "Portafolio creativo premium",
+        titleEn: "Premium creative portfolio",
+        type: "Next.js · GSAP",
+        emoji: "✦",
+        bg: "linear-gradient(135deg,#1a1a2e,#16213e)",
+    },
+];
 
 export default function Portfolio() {
     const { t } = useLanguage();
     const { setRef } = useIntersectionObserver();
 
-    // TODO: Agrega aquí los proyectos que ya realizaron / Add your completed projects here
-    const projects = [
-        {
-            title: "Proyecto 1 / Project 1",
-            descEs: "Descripción de su primer proyecto",
-            descEn: "Description of your first project",
-            visual: "visual-1", // Clase CSS o ruta de imagen / CSS class or image path
-        },
-        {
-            title: "Proyecto 2 / Project 2",
-            descEs: "Descripción de su segundo proyecto",
-            descEn: "Description of your second project",
-            visual: "visual-2",
-        },
-        {
-            title: "Proyecto 3 / Project 3",
-            descEs: "Descripción de su tercer proyecto",
-            descEn: "Description of your third project",
-            visual: "visual-3",
-        },
-        {
-            title: "Proyecto 4 / Project 4",
-            descEs: "Descripción de su cuarto proyecto",
-            descEn: "Description of your fourth project",
-            visual: "visual-4",
-        },
-    ];
-
     return (
-        <section id="portafolio" className="portfolio section-padding">
-            <div className="container section-header reveal" ref={(el) => setRef(el, 0)}>
-                <h2 className="section-title">{t("Nuestro Portafolio", "Our Portfolio")}</h2>
-                <p className="section-desc">
-                    {t("Proyectos seleccionados que combinan estética y funcionalidad.", "Selected projects that combine aesthetics and functionality.")}
-                </p>
-            </div>
-            <div className="container portfolio-grid">
-                {projects.map((project, index) => (
-                    <div
-                        key={index}
-                        className="portfolio-item reveal-item"
-                        style={{ transitionDelay: `${index * 100}ms` }}
-                        ref={(el) => setRef(el, index + 1)}
-                    >
-                        <div className={`item-visual ${project.visual}`}></div>
-                        <div className="item-info">
-                            <h3>{project.title}</h3>
-                            <p>{t(project.descEs, project.descEn)}</p>
+        <section id="portafolio" className="portfolio">
+            <div className="container">
+                <div className="section-header reveal" ref={(el) => setRef(el, 20)}>
+                    <p className="section-eyebrow">{t("Nuestro trabajo", "Our work")}</p>
+                    <h2 className="section-title">
+                        {t("Proyectos que hablan.", "Projects that speak.")}</h2>
+                </div>
+                <div className="portfolio-grid">
+                    {projects.map((p, i) => (
+                        <div
+                            key={i}
+                            className="portfolio-card reveal-item"
+                            ref={(el) => setRef(el, 21 + i)}
+                            style={{ transitionDelay: `${i * 0.08}s`, background: p.bg }}
+                        >
+                            <div className="portfolio-placeholder">{p.emoji}</div>
+                            <div className="portfolio-card-overlay">
+                                <div className="portfolio-card-bottom">
+                                    <div className="portfolio-card-meta">
+                                        <span className="portfolio-card-label">{t(p.label, p.labelEn)}</span>
+                                        <span className="portfolio-card-title">{t(p.title, p.titleEn)}</span>
+                                    </div>
+                                    <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)" }}>{p.type}</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </section>
     );

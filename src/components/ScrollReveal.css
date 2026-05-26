@@ -1,0 +1,8 @@
+.scroll-reveal {
+    display: inline-block;
+}
+
+.word {
+    display: inline-block;
+    will-change: transform, opacity, filter;
+}

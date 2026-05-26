@@ -1,27 +1,24 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/components/LanguageProvider";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "SV Web Studio - Premium Web Design",
-  description: "Servicios de creación de páginas web modernas y sofisticadas.",
+  title: "S&V Solutions — Design & Development Studio",
+  description: "We design and build. Both, actually.",
 };
 
-import { LanguageProvider } from "@/components/LanguageProvider";
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className="scroll-smooth">
-      <body className={`${inter.variable} antialiased`}>
+    <html lang="es" className={inter.variable}>
+      <body>
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
