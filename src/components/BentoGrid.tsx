@@ -3,6 +3,35 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
 
+const CartIcon = () => (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--color-brand)", marginBottom: "10px" }}>
+        <circle cx="8" cy="21" r="1"/>
+        <circle cx="19" cy="21" r="1"/>
+        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+    </svg>
+);
+
+const LightningIcon = () => (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--color-brand)", marginBottom: "10px" }}>
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+    </svg>
+);
+
+const BrainIcon = () => (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--color-brand)", marginBottom: "10px" }}>
+        <rect x="4" y="4" width="16" height="16" rx="2"/>
+        <rect x="9" y="9" width="6" height="6" rx="1"/>
+        <path d="M9 1v3"/>
+        <path d="M15 1v3"/>
+        <path d="M9 20v3"/>
+        <path d="M15 20v3"/>
+        <path d="M20 9h3"/>
+        <path d="M20 15h3"/>
+        <path d="M1 9h3"/>
+        <path d="M1 15h3"/>
+    </svg>
+);
+
 /* ───────────────────────────────────────────────
    Sub-components for individual card visuals
    ─────────────────────────────────────────────── */
@@ -271,7 +300,7 @@ export default function BentoGrid() {
                     <AnimatedBentoCard>
                         <div className="bento-card" style={{
                             background: 'rgba(255,255,255,0.03)',
-                            border: '0.5px solid #4a90d9',
+                            border: '0.5px solid rgba(255,255,255,0.08)',
                             borderRadius: '16px',
                             padding: '1.5rem',
                             overflow: 'hidden',
@@ -288,8 +317,8 @@ export default function BentoGrid() {
                             </h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
-                                    "Landings, corporativos y portafolios. Construidos para impresionar, optimizados para convertir.",
-                                    "Landings, corporate, and portfolios. Built to impress, optimized to convert."
+                                    "Landings, corporativos y portafolios construidos para impresionar.",
+                                    "Landings, corporate, and portfolios built to impress."
                                 )}
                             </p>
                             <BrowserMockup />
@@ -318,8 +347,8 @@ export default function BentoGrid() {
                             </h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
-                                    "Identidad que comunica sin tener que explicarse.",
-                                    "Identity that communicates without having to be explained."
+                                    "Identidad que comunica.",
+                                    "Identity that communicates."
                                 )}
                             </p>
                             <BrandingMetrics
@@ -349,7 +378,7 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <div style={{ fontSize: '28px', color: 'var(--color-brand)', marginBottom: '10px', lineHeight: 1 }}>◈</div>
+                            <CartIcon />
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● E-COMMERCE
                             </div>
@@ -358,8 +387,8 @@ export default function BentoGrid() {
                             </h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
-                                    "Arquitecturas de comercio diseñadas para máxima conversión.",
-                                    "Commerce architectures designed for maximum conversion."
+                                    "Arquitecturas para máxima conversión.",
+                                    "Architectures for maximum conversion."
                                 )}
                             </p>
                             <StackPills items={["Stripe", "MercadoPago", "Next.js", "Custom"]} />
@@ -379,19 +408,13 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <div style={{ fontSize: '28px', color: 'var(--color-brand)', marginBottom: '10px', lineHeight: 1 }}>⬢</div>
+                            <LightningIcon />
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● {t("AUTOMATIZACIÓN", "AUTOMATION")}
                             </div>
                             <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Menos clics.", "Fewer clicks.")}
                             </h3>
-                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
-                                {t(
-                                    "Zapier, Make, y APIs custom para workflows inteligentes.",
-                                    "Zapier, Make, and custom APIs for smart workflows."
-                                )}
-                            </p>
                             <AutomationTimeline steps={automationSteps} />
                         </div>
                     </AnimatedBentoCard>
@@ -409,19 +432,13 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <div style={{ fontSize: '28px', color: 'var(--color-brand)', marginBottom: '10px', lineHeight: 1 }}>◭</div>
+                            <BrainIcon />
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● IA
                             </div>
                             <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Software inteligente.", "Smart software.")}
                             </h3>
-                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
-                                {t(
-                                    "LLMs, agentes e integraciones de IA en tu producto.",
-                                    "LLMs, agents, and AI integrations in your product."
-                                )}
-                            </p>
                             <IATerminal
                                 line1={t("Analizando consulta...", "Analyzing query...")}
                                 line2={t("Respuesta generada", "Response generated")}
