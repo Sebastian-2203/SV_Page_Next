@@ -53,17 +53,7 @@ export default function HeroSection({ onBookCall }: Props) {
                 particleColors={isLightTheme ? ["#4a90d9", "#1a2035", "#3a7fc9"] : ["#ffffff", "#4a90d9", "rgba(255,255,255,0.7)"]}
             />
 
-            {/* Subtle grid overlay */}
-            <div style={{
-                position: "absolute", inset: 0, zIndex: 0,
-                backgroundImage: `
-                  linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)
-                `,
-                backgroundSize: "80px 80px",
-                maskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent)",
-                pointerEvents: "none"
-            }} aria-hidden />
+
 
             {/* Content */}
             <div ref={contentRef} style={{
