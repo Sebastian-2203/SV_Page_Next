@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import MeetingModal from "@/components/MeetingModal";
 import LogoLoop from "@/components/LogoLoop";
 import ScrollReveal from "@/components/ScrollReveal";
+import Preloader from "@/components/Preloader";
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiNodedotjs, SiFigma } from 'react-icons/si';
 
 const techLogos = [
@@ -27,6 +28,7 @@ export default function Home() {
 
   return (
     <>
+      <Preloader />
       <Navbar onBookCall={() => setModalOpen(true)} />
       <HeroSection onBookCall={() => setModalOpen(true)} />
 
