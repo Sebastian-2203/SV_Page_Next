@@ -1,7 +1,6 @@
 "use client";
 
 import { useLanguage } from "./LanguageProvider";
-import ShapeBlur from './ShapeBlur';
 
 const items = [
     {
@@ -80,6 +79,7 @@ function BentoCard({ item, t }: { item: typeof items[0] & { image?: string }; t:
                 cursor: "default",
                 transition: "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)",
                 minHeight: item.size === "large" ? 340 : 220,
+                zIndex: 2,
             }}
             onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement;
@@ -206,32 +206,44 @@ export default function BentoGrid() {
                     gap: "1.5rem",
                 }} className="bento-grid">
                     {items.map((item, i) => (
-                        <div key={i} style={{
-                            gridColumn: item.col,
-                            gridRow: item.row,
-                            position: "relative",
-                            overflow: "visible", // Allows ShapeBlur glow to bleed elegantly outside the card
-                        }}>
-                            {/* ShapeBlur outline glow rendered behind the card on the outside */}
-                            <div style={{
+                        <div 
+                            key={i} 
+                            style={{
+                                gridColumn: item.col,
+                                gridRow: item.row,
+                                position: "relative",
+                                overflow: "visible", // Allows the glowing blur to expand outside card borders
+                            }}
+                            onMouseMove={e => {
+                                const rect = e.currentTarget.getBoundingClientRect();
+                                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                                e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
+                                e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
+                            }}
+                            onMouseEnter={e => {
+                                const glow = e.currentTarget.querySelector('.bento-glow-overlay') as HTMLElement;
+                                if (glow) glow.style.opacity = "0.22"; // Fade in soft brand glow
+                            }}
+                            onMouseLeave={e => {
+                                const glow = e.currentTarget.querySelector('.bento-glow-overlay') as HTMLElement;
+                                if (glow) glow.style.opacity = "0"; // Fade out soft brand glow
+                            }}
+                        >
+                            {/* Ambient radial blur glow behind the card on the outside */}
+                            <div className="bento-glow-overlay" style={{
                                 position: "absolute",
-                                inset: "-25px",
-                                pointerEvents: "none",
+                                inset: "-35px", // Bleeds outside the card boundaries by 35px
+                                background: "radial-gradient(circle 180px at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--color-brand) 0%, transparent 80%)",
+                                filter: "blur(40px)",
+                                opacity: 0,
                                 zIndex: 0,
-                                opacity: 0.16, // Subtle, soft ambient glow
-                            }}>
-                                <ShapeBlur
-                                    variation={item.size === "large" ? 0 : 2}
-                                    pixelRatioProp={1}
-                                    shapeSize={1}
-                                    roundness={0.5}
-                                    borderSize={0.03}
-                                    circleSize={0.25}
-                                    circleEdge={0.8}
-                                />
-                            </div>
+                                pointerEvents: "none",
+                                borderRadius: "var(--radius-lg)",
+                                transition: "opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                            }} />
                             
-                            {/* Card Content Component */}
+                            {/* Card Component */}
                             <BentoCard item={item} t={t} />
                         </div>
                     ))}
