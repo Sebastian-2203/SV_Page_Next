@@ -224,7 +224,7 @@ const CardSwapLayout = ({
 export default function CardSwap({ en = false }: { en?: boolean }) {
     const [dimensions, setDimensions] = useState({
         width: 360,
-        height: 300,
+        height: 330,
         cardDistance: 50,
         verticalDistance: 55,
     });
@@ -235,21 +235,21 @@ export default function CardSwap({ en = false }: { en?: boolean }) {
             if (w <= 480) { // Mobile
                 setDimensions({
                     width: 290,
-                    height: 240,
+                    height: 260,
                     cardDistance: 32,
                     verticalDistance: 36,
                 });
             } else if (w <= 1024) { // Tablet / iPad
                 setDimensions({
                     width: 320,
-                    height: 260,
+                    height: 290,
                     cardDistance: 40,
                     verticalDistance: 45,
                 });
             } else { // Desktop
                 setDimensions({
                     width: 360,
-                    height: 300,
+                    height: 330,
                     cardDistance: 50,
                     verticalDistance: 55,
                 });
