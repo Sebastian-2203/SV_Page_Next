@@ -7,22 +7,22 @@ export default function ValueBlocksSection() {
 
     const values = [
         {
-            title: "Diseño y código, juntos",
-            titleEn: "Design and code, together",
-            desc: "Cortamos la fricción entre equipos. Lo que se diseña, se puede construir. Lo que se construye, se ve increíble.",
-            descEn: "No friction between teams. What is designed, can be built. What is built, looks incredible.",
+            title: "Diseño + Desarrollo integrado",
+            titleEn: "Integrated Design + Development",
+            desc: "No trabajamos en silos. Lo que diseñamos se puede construir perfectamente. Sin handoffs lentos, sin discrepancias entre wireframes y código.",
+            descEn: "We don't work in silos. What we design can be built perfectly. No slow handoffs, no discrepancies between wireframes and code.",
         },
         {
-            title: "Ejecución estratégica",
-            titleEn: "Strategic execution",
-            desc: "No somos solo hacedores. Entendemos las reglas del negocio, la conversión y cómo la tecnología habilita el crecimiento.",
-            descEn: "We aren't just order-takers. We understand business metrics, conversion, and how technology enables growth.",
+            title: "Enfoque en resultados",
+            titleEn: "Focus on results",
+            desc: "Entendemos tu modelo de negocio, tus métricas, tus competidores. Cada decisión de diseño y desarrollo tiene un objetivo: más leads, más ventas, más usuarios.",
+            descEn: "We understand your business model, metrics, and competitors. Every design and development decision has a goal: more leads, more sales, more users.",
         },
         {
-            title: "Herramientas modernas",
-            titleEn: "Modern tooling",
-            desc: "Usamos el stack correcto. Next.js, React, arquitecturas sin servidor. Nada de templates pesados. Solo código rápido y limpio.",
-            descEn: "We use the right stack. Next.js, React, serverless architectures. No bloated templates. Just fast, clean code.",
+            title: "Stack moderno y sin deuda técnica",
+            titleEn: "Modern stack & no technical debt",
+            desc: "Next.js, React, Typescript, Node.js, APIs serverless. Nada de templates pesados. Código limpio, mantenible, escalable. Tu proyecto crece contigo.",
+            descEn: "Next.js, React, TypeScript, Node.js, serverless APIs. No heavy templates. Clean, maintainable, scalable code. Your project grows with you.",
         },
     ];
 
@@ -44,7 +44,7 @@ export default function ValueBlocksSection() {
                         maxWidth: 600,
                         color: "var(--color-text-primary)"
                     }}>
-                        {t("Por qué los fundadores nos eligen.", "Why founders choose us.")}
+                        {t("Por qué empresas eligen SyV Solutions", "Why companies choose SyV Solutions")}
                     </h2>
                 </div>
 

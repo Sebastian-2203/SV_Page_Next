@@ -86,9 +86,9 @@ export default function HeroSection({ onBookCall }: Props) {
                             marginBottom: "1.75rem",
                         }}>
                             {language === "en" ? (
-                                <>Most agencies<br />can design.<br /><span style={{ color: "var(--color-text-secondary)" }}>Few actually build.</span></>
+                                <>Web Design & AI<br />Development Agency<br /><span style={{ color: "var(--color-text-secondary)" }}>in Bogotá.</span></>
                             ) : (
-                                <>Muchas agencias<br />diseñan.<br /><span style={{ color: "var(--color-text-secondary)" }}>Pocas construyen.</span></>
+                                <>Agencia de Diseño Web<br />y Desarrollo con IA<br /><span style={{ color: "var(--color-text-secondary)" }}>en Bogotá.</span></>
                             )}
                         </h1>
                     </ScrollReveal>
@@ -102,8 +102,8 @@ export default function HeroSection({ onBookCall }: Props) {
                         minHeight: "90px",
                     }}>
                         {t(
-                            "Ayudamos a marcas y empresas con sitios web, branding y plataformas digitales combinando diseño premium con ingeniería técnica.",
-                            "We help brands and businesses with websites, branding, and digital platforms mixing premium design with technical engineering."
+                            "Creamos sitios web modernos, identidades de marca memorables y soluciones con IA para empresas y emprendedores en Bogotá. Combinamos diseño estratégico con desarrollo de alto desempeño usando Next.js, React y APIs inteligentes.",
+                            "We build modern websites, memorable brand identities, and AI solutions for businesses and entrepreneurs in Bogotá. We combine strategic design with high-performance development using Next.js, React, and smart APIs."
                         )}
                     </p>
                 </div>

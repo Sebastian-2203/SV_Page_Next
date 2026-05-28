@@ -264,23 +264,23 @@ export default function CardSwap({ en = false }: { en?: boolean }) {
     const cardData = [
         {
             tag: "01 / DESARROLLO",
-            title: "Web Development",
-            items: en ? ["Next.js", "React", "Node.js", "Scalable APIs"] : ["Next.js", "React", "Node.js", "APIs escalables"],
+            title: "Diseño y Desarrollo Web Profesional",
+            items: en ? ["Fast sites with Next.js & React", "Optimized for conversion & SEO", "Scalable APIs & backends", "Serverless hosting with guaranteed performance"] : ["Sitios rápidos y modernos con Next.js y React", "Optimizados para conversión y SEO", "APIs y backends escalables", "Hosting serverless con rendimiento garantizado"],
         },
         {
             tag: "02 / IDENTIDAD",
-            title: "Brand Identity",
-            items: en ? ["Logos", "Visual systems", "Creative direction", "Digital presence"] : ["Logotipos", "Sistemas visuales", "Dirección creativa", "Presencia digital"],
+            title: "Identidad Visual y Branding Empresarial",
+            items: en ? ["Memorable logo design", "Coherent visual systems", "Color palettes & brand guides", "Creative direction"] : ["Diseño de logotipos memorables", "Sistemas visuales coherentes", "Paletas de color y guías de marca", "Dirección creativa"],
         },
         {
             tag: "03 / COMERCIO",
-            title: "E-commerce",
-            items: en ? ["Custom stores", "Product flow", "Checkout logic", "Conversion focus"] : ["Tiendas custom", "Flujo de compra", "Checkout optimizado", "Conversión"],
+            title: "Tiendas Online y Plataformas de Venta",
+            items: en ? ["Custom online stores", "Secure payment integrations", "Conversion-optimized flows", "Real-time analytics"] : ["Desarrollo de tiendas online personalizadas", "Integración de pagos seguros", "Flujos de compra optimizados", "Analytics y reportes de ventas"],
         },
         {
             tag: "04 / SISTEMAS",
-            title: "Automation",
-            items: en ? ["Smart workflows", "API integrations", "Dashboards", "Efficiency"] : ["Workflows", "Integraciones API", "Dashboards", "Eficiencia operativa"],
+            title: "Automatización de Procesos e Integraciones API",
+            items: en ? ["Zapier & Make automations", "Custom API integrations", "Real-time monitoring dashboards", "Reduce operational time by 70%+"] : ["Automatización con Zapier y Make", "Integraciones API personalizadas", "Dashboards de monitoreo", "Reduce tiempos operativos en 70%+"],
         },
     ];
 

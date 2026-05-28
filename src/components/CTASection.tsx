@@ -1,23 +1,22 @@
 "use client";
 
 import { useLanguage } from "./LanguageProvider";
-
-interface Props { onBookCall: () => void; }
-
 import ScrollReveal from "./ScrollReveal";
+import React from "react";
+
+interface Props { onBookCall?: () => void; }
 
 export default function CTASection({ onBookCall }: Props) {
-    const { t, language } = useLanguage();
+    const { t } = useLanguage();
 
     return (
         <section style={{
-            padding: "4rem 2rem",
+            padding: "6rem 2rem",
             background: "var(--color-bg-primary)",
             borderTop: "0.5px solid var(--color-border)",
             position: "relative",
             overflow: "hidden"
         }}>
-
             {/* Subtle background glow */}
             <div style={{
                 position: "absolute",
@@ -32,12 +31,15 @@ export default function CTASection({ onBookCall }: Props) {
             }} />
 
             <div style={{
-                maxWidth: 900, margin: "0 auto",
+                maxWidth: 600, margin: "0 auto",
                 textAlign: "center",
                 position: "relative",
-                zIndex: 1
+                zIndex: 1,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
             }}>
-                <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginBottom: "2rem" }}>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
                     <span style={{ width: 6, height: 6, background: "var(--color-brand)", borderRadius: "50%" }} />
                     <p style={{
                         fontSize: "11px", fontWeight: 500, letterSpacing: "2.5px",
@@ -48,17 +50,14 @@ export default function CTASection({ onBookCall }: Props) {
                 </div>
 
                 <ScrollReveal as="h2" baseOpacity={0} blurStrength={3} baseRotation={1} textClassName="cta-title">
-                    {language === "en" ? (
-                        <>Your next project<br />starts with a <span style={{ color: "var(--color-text-secondary)" }}>conversation.</span></>
-                    ) : (
-                        <>Tu próximo proyecto<br />empieza con una <span style={{ color: "var(--color-text-secondary)" }}>conversación.</span></>
-                    )}
+                    {t("Empieza tu siguiente proyecto hoy", "Start your next project today")}
                 </ScrollReveal>
+                
                 <style>{`
                     .cta-title {
-                        font-size: clamp(3rem, 6vw, 5.5rem) !important;
-                        font-weight: 600 !important;
-                        letter-spacing: -0.04em !important;
+                        font-size: clamp(2.5rem, 4vw, 3.5rem) !important;
+                        font-weight: 700 !important;
+                        letter-spacing: -0.03em !important;
                         line-height: 1.2 !important;
                         margin-bottom: 1.5rem !important;
                         color: var(--color-text-primary) !important;
@@ -66,61 +65,66 @@ export default function CTASection({ onBookCall }: Props) {
                 `}</style>
 
                 <p style={{
-                    fontSize: "1rem", color: "var(--color-text-secondary)",
-                    lineHeight: 1.7, maxWidth: 480, margin: "0 auto 3.5rem",
+                    fontSize: "1.1rem",
+                    color: "var(--color-text-secondary)",
+                    lineHeight: 1.6,
+                    marginBottom: "1.5rem",
+                    maxWidth: 500
                 }}>
                     {t(
-                        "Sin formularios eternos. Solo una llamada de 30 minutos para ver si somos el equipo correcto para lo que necesitás.",
-                        "No endless forms. Just a 30-minute call to see if we're the right team for what you need."
+                        "Hablemos de tu idea. En 30 minutos sabremos si somos el equipo indicado.",
+                        "Let's talk about your idea. In 30 minutes we'll know if we're the right team."
                     )}
                 </p>
 
-                <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", position: "relative", zIndex: 10 }}>
-                    <button
-                        onClick={onBookCall}
-                        style={{
-                            padding: "0.9rem 2.5rem",
-                            background: "var(--color-brand)", color: "#fff",
-                            border: "none", borderRadius: "var(--radius-md)",
-                            fontSize: "0.95rem", fontWeight: 700,
-                            cursor: "pointer", fontFamily: "inherit",
-                            transition: "all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)",
-                        }}
-                        onMouseEnter={e => {
-                            (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                            (e.currentTarget as HTMLElement).style.background = "var(--color-brand-hover)";
-                            (e.currentTarget as HTMLElement).style.boxShadow = "0 15px 35px -10px rgba(74,144,217,0.3)";
-                        }}
-                        onMouseLeave={e => {
-                            (e.currentTarget as HTMLElement).style.transform = "none";
-                            (e.currentTarget as HTMLElement).style.background = "var(--color-brand)";
-                            (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                        }}
-                    >
-                        {t("Agendar reunión gratuita", "Book a free call")}
-                    </button>
-                    <a href="mailto:hola@svsolutions.com" style={{
-                        padding: "0.9rem 2.5rem",
-                        background: "transparent", color: "var(--color-text-primary)",
-                        border: "0.5px solid var(--color-border)", borderRadius: "var(--radius-md)",
-                        fontSize: "0.95rem", fontWeight: 600,
-                        cursor: "pointer", fontFamily: "inherit",
-                        display: "inline-flex", alignItems: "center",
-                        transition: "all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)",
-                    }}
-                        onMouseEnter={e => {
-                            (e.currentTarget as HTMLElement).style.borderColor = "var(--color-brand)";
-                            (e.currentTarget as HTMLElement).style.color = "var(--color-text-primary)";
-                            (e.currentTarget as HTMLElement).style.background = "var(--color-brand-subtle)";
-                        }}
-                        onMouseLeave={e => {
-                            (e.currentTarget as HTMLElement).style.borderColor = "var(--color-border)";
-                            (e.currentTarget as HTMLElement).style.color = "var(--color-text-primary)";
-                            (e.currentTarget as HTMLElement).style.background = "transparent";
-                        }}>
-                        hola@svsolutions.com
-                    </a>
-                </div>
+                <ul style={{ 
+                    listStyle: 'none', 
+                    margin: '0 0 2.5rem', 
+                    padding: 0, 
+                    display: "flex", 
+                    flexDirection: "column", 
+                    gap: "0.8rem", 
+                    textAlign: "left" 
+                }}>
+                    <li style={{ color: "var(--color-text-primary)", display: "flex", alignItems: "center", gap: "8px" }}>
+                        <span style={{ color: "var(--color-brand)" }}>✓</span> {t("Sin formularios largos", "No long forms")}
+                    </li>
+                    <li style={{ color: "var(--color-text-primary)", display: "flex", alignItems: "center", gap: "8px" }}>
+                        <span style={{ color: "var(--color-brand)" }}>✓</span> {t("Consulta 100% gratuita", "100% free consultation")}
+                    </li>
+                    <li style={{ color: "var(--color-text-primary)", display: "flex", alignItems: "center", gap: "8px" }}>
+                        <span style={{ color: "var(--color-brand)" }}>✓</span> {t("Propuesta en menos de 48 horas", "Proposal in less than 48 hours")}
+                    </li>
+                </ul>
+
+                <button style={{ 
+                    padding: "1.2rem 2.5rem", 
+                    background: "var(--color-brand)", 
+                    color: "#fff", 
+                    border: "none", 
+                    borderRadius: "12px", 
+                    fontSize: "1rem", 
+                    fontWeight: 700, 
+                    cursor: "pointer", 
+                    transition: "all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)", 
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem"
+                }}
+                onClick={onBookCall}
+                onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.background = "var(--color-brand-hover)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 10px 25px -5px rgba(74,144,217,0.4)";
+                }}
+                onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.background = "var(--color-brand)";
+                    (e.currentTarget as HTMLElement).style.transform = "none";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+                >
+                    {t("Agendar llamada gratuita", "Schedule free call")}
+                </button>
             </div>
         </section>
     );

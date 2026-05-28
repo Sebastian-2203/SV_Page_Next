@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import BentoGrid from "@/components/BentoGrid";
 import ProcessSection from "@/components/ProcessSection";
-import ValueBlocksSection from "@/components/ValueBlocksSection";
+import PortfolioSection from "@/components/PortfolioSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import MeetingModal from "@/components/MeetingModal";
@@ -60,7 +60,7 @@ export default function Home() {
       `}</style>
 
       <ProcessSection />
-      <ValueBlocksSection />
+      <PortfolioSection />
       <CTASection onBookCall={() => setModalOpen(true)} />
       <Footer />
       {modalOpen && <MeetingModal onClose={() => setModalOpen(false)} />}

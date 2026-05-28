@@ -5,27 +5,27 @@ import { useLanguage } from "./LanguageProvider";
 const steps = [
     {
         num: "01",
-        title: "Estrategia", titleEn: "Strategy",
-        desc: "Entendemos métricas y modelos de negocio. Planificamos qué crear antes de tocar código.",
-        descEn: "We understand metrics and business models. We plan before we code.",
+        title: "Estrategia y Análisis", titleEn: "Strategy & Analysis",
+        desc: "Entendemos tu negocio. Analizamos competencia, target, comportamiento de usuario. Planificamos objetivos medibles antes de diseñar o desarrollar.",
+        descEn: "We understand your business. We analyze competition, target, user behavior. We plan measurable goals before designing or developing.",
     },
     {
         num: "02",
-        title: "Diseño", titleEn: "Design",
-        desc: "Sistemas visuales claros, interfaces precisas y tipografía editorial. Cero fricción.",
-        descEn: "Clear visual systems, crisp interfaces, and editorial typography. Zero friction.",
+        title: "Diseño Estratégico", titleEn: "Strategic Design",
+        desc: "Diseñamos interfaces que funcionan. Sistemas visuales coherentes, flujos intuitivos, accesibilidad. Todo pensado en conversión y experiencia del usuario.",
+        descEn: "We design interfaces that work. Coherent visual systems, intuitive flows, accessibility. All designed for conversion and user experience.",
     },
     {
         num: "03",
-        title: "Desarrollo", titleEn: "Build",
-        desc: "Stack moderno. Arquitectura serverless, React, animaciones fluidas y excelente rendimiento.",
-        descEn: "Modern stack. Serverless, React, fluid motion, and flawless performance.",
+        title: "Desarrollo Técnico", titleEn: "Technical Development",
+        desc: "Código escalable y rápido. Next.js, React, Node.js. Optimizamos rendimiento, seguridad y SEO integrado desde el desarrollo.",
+        descEn: "Scalable and fast code. Next.js, React, Node.js. We optimize performance, security, and SEO integrated from development.",
     },
     {
         num: "04",
-        title: "Lanzamiento", titleEn: "Launch",
-        desc: "Optimizamos SEO, analíticas y conversiones. Mantener el estándar alto incluso en vivo.",
-        descEn: "We optimize SEO, analytics, and conversions. Keeping the standard high post-launch.",
+        title: "Lanzamiento y Optimización", titleEn: "Launch & Optimization",
+        desc: "Lanzamiento sin sorpresas. Optimización SEO, Google Analytics, pruebas A/B. Monitoreo continuo y ajustes para maximizar ROI.",
+        descEn: "Launch without surprises. SEO optimization, Google Analytics, A/B testing. Continuous monitoring and adjustments to maximize ROI.",
     },
 ];
 
@@ -48,7 +48,7 @@ export default function ProcessSection() {
                         {t("Metodología", "Methodology")}
                     </p>
                     <ScrollReveal as="h2" baseOpacity={0} blurStrength={3} baseRotation={1} textClassName="process-title">
-                        {t("Sistema, no caos.", "System, not chaos.")}
+                        {t("Proceso probado. De la estrategia al éxito.", "Proven process. From strategy to success.")}
                     </ScrollReveal>
                     <style>{`
                         .process-title {

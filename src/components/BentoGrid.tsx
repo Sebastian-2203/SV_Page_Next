@@ -280,7 +280,7 @@ export default function BentoGrid() {
                         maxWidth: 600,
                         color: 'var(--color-text-primary)',
                     }}>
-                        {t("Ingeniería y diseño para productos premium.", "Engineering and design for premium products.")}
+                        {t("Soluciones especializadas para cada desafío", "Specialized solutions for every challenge")}
                     </h2>
                 </div>
 
@@ -308,12 +308,12 @@ export default function BentoGrid() {
                                 ● WEB DESIGN & DEV
                             </div>
                             <h3 style={{ fontSize: '26px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                                {t("Sitios Premium.", "Premium Sites.")}
+                                {t("Sitios Web que Convierten", "Websites that Convert")}
                             </h3>
                             <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
-                                    "Landings, corporativos y portafolios construidos para impresionar.",
-                                    "Landings, corporate, and portfolios built to impress."
+                                    "Landings de alto rendimiento, portafolios profesionales y aplicaciones web. Diseñadas para SEO, optimizadas para vender.",
+                                    "High-performance landings, professional portfolios, and web applications. Designed for SEO, optimized to sell."
                                 )}
                             </p>
                             <BrowserMockup />
@@ -338,12 +338,12 @@ export default function BentoGrid() {
                                 ● BRANDING
                             </div>
                             <h3 style={{ fontSize: '26px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                                {t("Sistemas Visuales.", "Visual Systems.")}
+                                {t("Marca Visual Completa", "Complete Visual Brand")}
                             </h3>
                             <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
-                                    "Identidad que comunica.",
-                                    "Identity that communicates."
+                                    "Logotipos, color, tipografía y guías que comunican sin explicarse. Coherencia en todas las plataformas.",
+                                    "Logos, color, typography, and guidelines that communicate without explanation. Consistency across all platforms."
                                 )}
                             </p>
                             <BrandingMetrics
@@ -379,12 +379,12 @@ export default function BentoGrid() {
                             </div>
                             <CartIcon />
                             <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                                {t("Tiendas que escalan.", "Stores that scale.")}
+                                {t("Tiendas Online Rentables", "Profitable Online Stores")}
                             </h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
-                                    "Arquitecturas para máxima conversión.",
-                                    "Architectures for maximum conversion."
+                                    "Integración de pagos, checkout optimizado y reportes de venta. Construidas para cerrar transacciones.",
+                                    "Payment integration, optimized checkout, and sales reports. Built to close transactions."
                                 )}
                             </p>
                             <StackPills items={["Stripe", "Next.js", "Custom"]} />
@@ -410,8 +410,14 @@ export default function BentoGrid() {
                             </div>
                             <LightningIcon />
                             <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                                {t("Menos clics.", "Fewer clicks.")}
+                                {t("Procesos sin fricción", "Frictionless processes")}
                             </h3>
+                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                                {t(
+                                    "Automatiza formularios, email, CRM y pagos. Reduce trabajo manual, aumenta eficiencia.",
+                                    "Automate forms, email, CRM, and payments. Reduce manual work, increase efficiency."
+                                )}
+                            </p>
                             <AutomationTimeline steps={automationSteps} />
                             <IdeaPill color="orange" text={t("Un mini-flow animado funciona muy bien aquí", "An animated mini-flow works great here")} />
                         </div>
@@ -435,8 +441,14 @@ export default function BentoGrid() {
                             </div>
                             <BrainIcon />
                             <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
-                                {t("Software inteligente.", "Smart software.")}
+                                {t("Potencia tu producto con IA", "Power your product with AI")}
                             </h3>
+                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                                {t(
+                                    "Chatbots inteligentes, análisis automático y atención al cliente 24/7. Integración OpenAI, Claude o modelos custom.",
+                                    "Smart chatbots, automatic analysis, and 24/7 customer support. OpenAI, Claude, or custom model integration."
+                                )}
+                            </p>
                             <IATerminal
                                 line1={t("Analizando consulta...", "Analyzing query...")}
                                 line2={t("Respuesta generada", "Response generated")}
