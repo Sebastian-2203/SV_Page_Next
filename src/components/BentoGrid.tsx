@@ -61,7 +61,7 @@ const IdeaPill = ({ color, text }: { color: 'blue' | 'purple' | 'green' | 'orang
 function BrowserMockup() {
     return (
         <div style={{
-            background: 'rgba(255,255,255,0.04)',
+            background: 'var(--color-bg-secondary)',
             borderRadius: '10px',
             padding: '12px',
             marginTop: '16px',
@@ -69,20 +69,20 @@ function BrowserMockup() {
         }}>
             {/* Browser chrome bar */}
             <div style={{ display: 'flex', gap: '5px', marginBottom: '10px', alignItems: 'center' }}>
-                <div style={{ flex: 1, height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.1)' }} />
+                <div style={{ flex: 1, height: 6, borderRadius: 3, background: 'var(--color-border)' }} />
             </div>
             {/* Text lines */}
             <div style={{
                 height: 6,
                 borderRadius: 3,
-                background: 'rgba(255,255,255,0.08)',
+                background: 'var(--color-border)',
                 width: '100%',
                 marginBottom: 8,
             }} />
             <div style={{
                 height: 6,
                 borderRadius: 3,
-                background: 'rgba(255,255,255,0.05)',
+                background: 'var(--color-border-brand)',
                 width: '80%',
                 marginBottom: 12,
             }} />
@@ -90,7 +90,7 @@ function BrowserMockup() {
             <div style={{
                 height: 36,
                 borderRadius: 6,
-                background: 'rgba(74, 144, 217, 0.2)',
+                background: 'var(--color-brand-subtle)',
             }} />
         </div>
     );
@@ -104,8 +104,8 @@ function StackPills({ items }: { items: string[] }) {
                 <span key={label} style={{
                     fontSize: '11px',
                     padding: '4px 10px',
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '0.5px solid rgba(255,255,255,0.1)',
+                    background: 'var(--color-bg-glass)',
+                    border: '0.5px solid var(--color-border)',
                     borderRadius: '999px',
                     color: 'var(--color-text-secondary)',
                     fontWeight: 500,
@@ -118,18 +118,18 @@ function StackPills({ items }: { items: string[] }) {
 // Branding metrics grid
 function BrandingMetrics({ label1, label2 }: { label1: string; label2: string }) {
     const metricStyle: React.CSSProperties = {
-        background: 'rgba(255,255,255,0.04)',
+        background: 'var(--color-bg-secondary)',
         borderRadius: '10px',
         padding: '10px 14px',
     };
     return (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '16px', marginBottom: '16px' }}>
             <div style={metricStyle}>
-                <div style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff' }}>12+</div>
+                <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--color-text-primary)' }}>12+</div>
                 <div style={{ fontSize: '11px', color: 'var(--color-text-muted)', marginTop: '2px' }}>{label1}</div>
             </div>
             <div style={metricStyle}>
-                <div style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff' }}>100%</div>
+                <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--color-text-primary)' }}>100%</div>
                 <div style={{ fontSize: '11px', color: 'var(--color-text-muted)', marginTop: '2px' }}>{label2}</div>
             </div>
         </div>
@@ -149,7 +149,7 @@ function AutomationTimeline({ steps }: { steps: { color: string; text: string }[
                         background: step.color,
                         flexShrink: 0,
                     }} />
-                    <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>{step.text}</span>
+                    <span style={{ fontSize: '14px', color: 'var(--color-text-secondary)' }}>{step.text}</span>
                 </div>
             ))}
         </div>
@@ -160,7 +160,7 @@ function AutomationTimeline({ steps }: { steps: { color: string; text: string }[
 function IATerminal({ line1, line2, line3 }: { line1: string; line2: string; line3: string }) {
     return (
         <div style={{
-            background: 'rgba(255,255,255,0.04)',
+            background: 'var(--color-bg-secondary)',
             borderRadius: '8px',
             padding: '12px',
             marginTop: '16px',
@@ -170,15 +170,15 @@ function IATerminal({ line1, line2, line3 }: { line1: string; line2: string; lin
             lineHeight: '1.8',
         }}>
             <div>
-                <span style={{ color: '#4a90d9' }}>→ </span>
-                <span style={{ color: 'rgba(255,255,255,0.7)' }}>{line1}</span>
+                <span style={{ color: 'var(--color-brand)' }}>→ </span>
+                <span style={{ color: 'var(--color-text-secondary)' }}>{line1}</span>
             </div>
             <div>
-                <span style={{ color: '#4a90d9' }}>✓ </span>
-                <span style={{ color: 'rgba(255,255,255,0.7)' }}>{line2}</span>
+                <span style={{ color: 'var(--color-brand)' }}>✓ </span>
+                <span style={{ color: 'var(--color-text-secondary)' }}>{line2}</span>
             </div>
             <div>
-                <span style={{ color: 'rgba(255,255,255,0.4)' }}>{line3}</span>
+                <span style={{ color: 'var(--color-text-muted)' }}>{line3}</span>
             </div>
         </div>
     );
@@ -294,8 +294,8 @@ export default function BentoGrid() {
                     {/* Card 1 — Web Design & Dev */}
                     <AnimatedBentoCard>
                         <div className="bento-card" style={{
-                            background: 'rgba(255,255,255,0.03)',
-                            border: '0.5px solid rgba(255,255,255,0.08)',
+                            background: 'var(--color-bg-glass)',
+                            border: '0.5px solid var(--color-border)',
                             borderRadius: '16px',
                             padding: '1.5rem',
                             overflow: 'hidden',
@@ -304,13 +304,13 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● WEB DESIGN & DEV
                             </div>
-                            <h3 style={{ fontSize: '26px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                            <h3 style={{ fontSize: '26px', fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Sitios Web que Convierten", "Websites that Convert")}
                             </h3>
-                            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                            <p style={{ fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
                                     "Landings de alto rendimiento, portafolios profesionales y aplicaciones web. Diseñadas para SEO, optimizadas para vender.",
                                     "High-performance landings, professional portfolios, and web applications. Designed for SEO, optimized to sell."
@@ -324,8 +324,8 @@ export default function BentoGrid() {
                     {/* Card 2 — Branding */}
                     <AnimatedBentoCard>
                         <div className="bento-card" style={{
-                            background: 'rgba(255,255,255,0.03)',
-                            border: '0.5px solid rgba(255,255,255,0.08)',
+                            background: 'var(--color-bg-glass)',
+                            border: '0.5px solid var(--color-border)',
                             borderRadius: '16px',
                             padding: '1.5rem',
                             overflow: 'hidden',
@@ -334,13 +334,13 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● BRANDING
                             </div>
-                            <h3 style={{ fontSize: '26px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                            <h3 style={{ fontSize: '26px', fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Marca Visual Completa", "Complete Visual Brand")}
                             </h3>
-                            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                            <p style={{ fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
                                     "Logotipos, color, tipografía y guías que comunican sin explicarse. Coherencia en todas las plataformas.",
                                     "Logos, color, typography, and guidelines that communicate without explanation. Consistency across all platforms."
@@ -364,8 +364,8 @@ export default function BentoGrid() {
                     {/* Card 3 — E-commerce */}
                     <AnimatedBentoCard>
                         <div className="bento-card" style={{
-                            background: 'rgba(255,255,255,0.03)',
-                            border: '0.5px solid rgba(255,255,255,0.08)',
+                            background: 'var(--color-bg-glass)',
+                            border: '0.5px solid var(--color-border)',
                             borderRadius: '16px',
                             padding: '1.5rem',
                             overflow: 'hidden',
@@ -374,14 +374,14 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● E-COMMERCE
                             </div>
                             <CartIcon />
-                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Tiendas Online Rentables", "Profitable Online Stores")}
                             </h3>
-                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                            <p style={{ fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
                                     "Integración de pagos, checkout optimizado y reportes de venta. Construidas para cerrar transacciones.",
                                     "Payment integration, optimized checkout, and sales reports. Built to close transactions."
@@ -395,8 +395,8 @@ export default function BentoGrid() {
                     {/* Card 4 — Automatización */}
                     <AnimatedBentoCard>
                         <div className="bento-card" style={{
-                            background: 'rgba(255,255,255,0.03)',
-                            border: '0.5px solid rgba(255,255,255,0.08)',
+                            background: 'var(--color-bg-glass)',
+                            border: '0.5px solid var(--color-border)',
                             borderRadius: '16px',
                             padding: '1.5rem',
                             overflow: 'hidden',
@@ -405,14 +405,14 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● {t("AUTOMATIZACIÓN", "AUTOMATION")}
                             </div>
                             <LightningIcon />
-                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Procesos sin fricción", "Frictionless processes")}
                             </h3>
-                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                            <p style={{ fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
                                     "Automatiza formularios, email, CRM y pagos. Reduce trabajo manual, aumenta eficiencia.",
                                     "Automate forms, email, CRM, and payments. Reduce manual work, increase efficiency."
@@ -426,8 +426,8 @@ export default function BentoGrid() {
                     {/* Card 5 — IA */}
                     <AnimatedBentoCard>
                         <div className="bento-card" style={{
-                            background: 'rgba(255,255,255,0.03)',
-                            border: '0.5px solid rgba(255,255,255,0.08)',
+                            background: 'var(--color-bg-glass)',
+                            border: '0.5px solid var(--color-border)',
                             borderRadius: '16px',
                             padding: '1.5rem',
                             overflow: 'hidden',
@@ -436,14 +436,14 @@ export default function BentoGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                            <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● IA
                             </div>
                             <BrainIcon />
-                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                            <h3 style={{ fontSize: '22px', fontWeight: 700, color: 'var(--color-text-primary)', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                                 {t("Potencia tu producto con IA", "Power your product with AI")}
                             </h3>
-                            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, margin: 0 }}>
+                            <p style={{ fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: 1.6, margin: 0 }}>
                                 {t(
                                     "Chatbots inteligentes, análisis automático y atención al cliente 24/7. Integración OpenAI, Claude o modelos custom.",
                                     "Smart chatbots, automatic analysis, and 24/7 customer support. OpenAI, Claude, or custom model integration."

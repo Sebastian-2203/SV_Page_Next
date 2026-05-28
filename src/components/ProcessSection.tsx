@@ -89,7 +89,7 @@ export default function ProcessSection() {
                                 background: "var(--color-bg-secondary)",
                                 display: "flex", alignItems: "center", justifyContent: "center",
                                 marginBottom: "2.5rem",
-                                boxShadow: "0 0 10px rgba(0,0,0,0.5)"
+                                boxShadow: "0 0 10px var(--color-brand-subtle)"
                             }}>
                                 <div style={{ width: 6, height: 6, background: "var(--color-brand)", borderRadius: "50%" }} />
                             </div>
@@ -107,7 +107,7 @@ export default function ProcessSection() {
                                 fontSize: "1.2rem", fontWeight: 700,
                                 letterSpacing: "-0.02em",
                                 marginBottom: "1rem",
-                                color: "#fff"
+                                color: "var(--color-text-primary)"
                             }}>
                                 {t(step.title, step.titleEn)}
                             </h3>

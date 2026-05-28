@@ -223,8 +223,8 @@ const CardSwapLayout = ({
 
 export default function CardSwap({ en = false }: { en?: boolean }) {
     const [dimensions, setDimensions] = useState({
-        width: 360,
-        height: 330,
+        width: 380,
+        height: 380,
         cardDistance: 50,
         verticalDistance: 55,
     });
@@ -234,22 +234,22 @@ export default function CardSwap({ en = false }: { en?: boolean }) {
             const w = window.innerWidth;
             if (w <= 480) { // Mobile
                 setDimensions({
-                    width: 290,
-                    height: 260,
+                    width: 310,
+                    height: 310,
                     cardDistance: 32,
                     verticalDistance: 36,
                 });
             } else if (w <= 1024) { // Tablet / iPad
                 setDimensions({
-                    width: 320,
-                    height: 290,
+                    width: 340,
+                    height: 340,
                     cardDistance: 40,
                     verticalDistance: 45,
                 });
             } else { // Desktop
                 setDimensions({
-                    width: 360,
-                    height: 330,
+                    width: 380,
+                    height: 380,
                     cardDistance: 50,
                     verticalDistance: 55,
                 });

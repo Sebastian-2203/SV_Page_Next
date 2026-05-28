@@ -53,7 +53,7 @@ function PageMockup() {
         <div style={{
             width: "100%",
             height: "100%",
-            background: "rgba(0,0,0,0.3)",
+            background: "var(--color-bg-glass)",
             borderRadius: "12px",
             display: "flex",
             flexDirection: "column",
@@ -68,21 +68,21 @@ function PageMockup() {
                 borderBottom: "1px solid rgba(255,255,255,0.04)",
                 flexShrink: 0,
             }}>
-                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
-                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
-                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
-                <div style={{ flex: 1, height: 8, borderRadius: 4, background: "rgba(255,255,255,0.05)", marginLeft: 12, maxWidth: 200 }} />
+                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-border)" }} />
+                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-border)" }} />
+                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-border)" }} />
+                <div style={{ flex: 1, height: 8, borderRadius: 4, background: "var(--color-border)", marginLeft: 12, maxWidth: 200 }} />
             </div>
 
             {/* Page content */}
             <div style={{ flex: 1, padding: "20px", display: "flex", flexDirection: "column", gap: "14px" }}>
                 {/* Nav */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div style={{ width: 30, height: 8, borderRadius: 4, background: "rgba(255,255,255,0.12)" }} />
+                    <div style={{ width: 30, height: 8, borderRadius: 4, background: "var(--color-border)" }} />
                     <div style={{ display: "flex", gap: "14px" }}>
-                        <div style={{ width: 28, height: 5, borderRadius: 3, background: "rgba(255,255,255,0.06)" }} />
-                        <div style={{ width: 28, height: 5, borderRadius: 3, background: "rgba(255,255,255,0.06)" }} />
-                        <div style={{ width: 28, height: 5, borderRadius: 3, background: "rgba(255,255,255,0.06)" }} />
+                        <div style={{ width: 28, height: 5, borderRadius: 3, background: "var(--color-border)" }} />
+                        <div style={{ width: 28, height: 5, borderRadius: 3, background: "var(--color-border)" }} />
+                        <div style={{ width: 28, height: 5, borderRadius: 3, background: "var(--color-border)" }} />
                     </div>
                 </div>
 
@@ -99,16 +99,16 @@ function PageMockup() {
                     padding: "24px",
                     minHeight: 120,
                 }}>
-                    <div style={{ height: 10, width: "45%", borderRadius: 5, background: "rgba(255,255,255,0.14)" }} />
-                    <div style={{ height: 7, width: "60%", borderRadius: 4, background: "rgba(255,255,255,0.07)" }} />
-                    <div style={{ height: 7, width: "35%", borderRadius: 4, background: "rgba(255,255,255,0.05)" }} />
+                    <div style={{ height: 10, width: "45%", borderRadius: 5, background: "var(--color-border)" }} />
+                    <div style={{ height: 7, width: "60%", borderRadius: 4, background: "var(--color-border)" }} />
+                    <div style={{ height: 7, width: "35%", borderRadius: 4, background: "var(--color-border)" }} />
                     <div style={{
                         marginTop: 10,
                         width: 70,
                         height: 22,
                         borderRadius: 6,
-                        background: `rgba(74,144,217,0.25)`,
-                        border: `0.5px solid rgba(74,144,217,0.40)`,
+                        background: `var(--color-brand-subtle)`,
+                        border: `0.5px solid var(--color-border-brand)`,
                     }} />
                 </div>
 
@@ -119,26 +119,26 @@ function PageMockup() {
                             flex: 1,
                             height: 55,
                             borderRadius: 8,
-                            background: "rgba(255,255,255,0.03)",
-                            border: "0.5px solid rgba(255,255,255,0.05)",
+                            background: "var(--color-bg-glass)",
+                            border: "0.5px solid var(--color-border)",
                             padding: "10px",
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "flex-end",
                             gap: "4px",
                         }}>
-                            <div style={{ height: 4, width: "70%", borderRadius: 2, background: "rgba(255,255,255,0.08)" }} />
-                            <div style={{ height: 4, width: "45%", borderRadius: 2, background: "rgba(255,255,255,0.04)" }} />
+                            <div style={{ height: 4, width: "70%", borderRadius: 2, background: "var(--color-border)" }} />
+                            <div style={{ height: 4, width: "45%", borderRadius: 2, background: "var(--color-border)" }} />
                         </div>
                     ))}
                 </div>
 
                 {/* Footer lines */}
                 <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 6 }}>
-                    <div style={{ height: 4, width: 50, borderRadius: 2, background: "rgba(255,255,255,0.04)" }} />
+                    <div style={{ height: 4, width: 50, borderRadius: 2, background: "var(--color-border)" }} />
                     <div style={{ display: "flex", gap: 8 }}>
-                        <div style={{ height: 4, width: 20, borderRadius: 2, background: "rgba(255,255,255,0.04)" }} />
-                        <div style={{ height: 4, width: 20, borderRadius: 2, background: "rgba(255,255,255,0.04)" }} />
+                        <div style={{ height: 4, width: 20, borderRadius: 2, background: "var(--color-border)" }} />
+                        <div style={{ height: 4, width: 20, borderRadius: 2, background: "var(--color-border)" }} />
                     </div>
                 </div>
             </div>
@@ -178,8 +178,8 @@ function StickyProjectCard({
                 borderRadius: "20px",
                 overflow: "hidden",
                 background: "var(--color-bg-secondary)",
-                border: `0.5px solid rgba(255,255,255,0.08)`,
-                boxShadow: `0 20px 60px rgba(0,0,0,0.4), 0 0 0 0.5px rgba(74,144,217,0.15)`,
+                border: `0.5px solid var(--color-border)`,
+                boxShadow: `0 30px 60px -15px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)`,
                 display: "grid",
                 gridTemplateColumns: "1fr",
                 transition: "box-shadow 0.4s ease",
@@ -199,7 +199,7 @@ function StickyProjectCard({
                         display: "flex",
                         flexDirection: "column",
                         zIndex: 2,
-                        borderRight: "0.5px solid rgba(255,255,255,0.05)",
+                        borderRight: "0.5px solid var(--color-border)",
                     }}>
                         {/* Counter + Tag */}
                         <div style={{
@@ -222,7 +222,7 @@ function StickyProjectCard({
                         <h3 style={{
                             fontSize: "clamp(2rem, 2.5vw, 2.5rem)",
                             fontWeight: 700,
-                            color: "#fff",
+                            color: "var(--color-text-primary)",
                             letterSpacing: "-0.02em",
                             lineHeight: 1.1,
                             margin: "0 0 2rem",
@@ -238,8 +238,8 @@ function StickyProjectCard({
                                     alignItems: "center",
                                     gap: "12px",
                                     padding: "14px 16px",
-                                    background: "rgba(255,255,255,0.03)",
-                                    border: "1px solid rgba(255,255,255,0.06)",
+                                    background: "var(--color-bg-glass)",
+                                    border: "1px solid var(--color-border)",
                                     borderRadius: "12px",
                                 }}>
                                     <div style={{
@@ -250,7 +250,7 @@ function StickyProjectCard({
                                         boxShadow: `0 0 8px ${accentColor}`,
                                     }} />
                                     <span style={{
-                                        color: "rgba(255,255,255,0.7)",
+                                        color: "var(--color-text-secondary)",
                                         fontSize: "15px",
                                         fontWeight: 500,
                                     }}>
@@ -355,7 +355,7 @@ export default function PortfolioSection() {
             {/* Responsive */}
             <style>{`
                 .sticky-project-card:hover {
-                    box-shadow: 0 25px 70px rgba(0,0,0,0.5) !important;
+                    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.05) !important;
                 }
                 @media (max-width: 768px) {
                     .sticky-card-layout {
