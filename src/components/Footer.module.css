@@ -1,0 +1,48 @@
+.navLink {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    transition: color 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+}
+
+.navLink:hover, .navLink:focus-visible {
+    color: var(--color-brand);
+}
+
+.socialLink {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    transition: all 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.6rem;
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    text-decoration: none;
+}
+
+.socialLink:hover, .socialLink:focus-visible {
+    color: #000;
+    background: #fff;
+}
+
+/* For light mode */
+:global(.light-theme) .socialLink:hover, :global(.light-theme) .socialLink:focus-visible {
+    color: #fff;
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+}
+
+.grid {
+    grid-template-columns: 1fr auto auto;
+}
+
+@media (max-width: 900px) {
+    .grid { 
+        grid-template-columns: 1fr;
+        gap: 3.5rem; 
+    }
+}

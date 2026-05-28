@@ -63,12 +63,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               },
               "contact": {
                 "@type": "ContactPoint",
-                "telephone": "+57-1-XXXXXXX",
+                "telephone": "+57 3102163947",
                 "contactType": "Customer Service",
-                "email": "hola@svsolutions.com"
+                "email": "contacto@syvsolutions.com"
               },
               "sameAs": [
-                "https://instagram.com/svsolutions",
+                "https://instagram.com/syv.solutions",
                 "https://linkedin.com/company/syvsolutions"
               ],
               "service": [

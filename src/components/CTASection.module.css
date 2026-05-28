@@ -1,0 +1,111 @@
+.section {
+    padding: 6rem 2rem;
+    background: var(--color-bg-primary);
+    border-top: 0.5px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, var(--color-brand-subtle) 0%, rgba(0,0,0,0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.taglineWrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.taglineDot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-brand);
+    border-radius: 50%;
+}
+
+.taglineText {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--color-brand);
+}
+
+.ctaTitle {
+    font-size: clamp(2.5rem, 4vw, 3.5rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1.5rem !important;
+    color: var(--color-text-primary) !important;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+}
+
+.featureList {
+    list-style: none;
+    margin: 0 0 2.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: left;
+}
+
+.featureItem {
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.featureCheck {
+    color: var(--color-brand);
+}
+
+.ctaButton {
+    padding: 1.2rem 2.5rem;
+    background: var(--color-brand);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ctaButton:hover {
+    background: var(--color-brand-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(74,144,217,0.4);
+}

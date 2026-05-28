@@ -1,0 +1,124 @@
+@keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+}
+
+@keyframes slideUp { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: fadeIn 0.2s ease;
+}
+
+.modalCard {
+    background: var(--color-bg-secondary);
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    animation: slideUp 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+
+.closeBtn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: 0.5px solid var(--color-border);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.closeBtn:hover {
+    background: var(--color-bg-glass);
+}
+
+.tagline {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--color-brand);
+    margin-bottom: 0.75rem;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--color-bg-glass);
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-primary);
+    font-size: 0.88rem;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.dateTimeGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.textarea {
+    resize: none;
+}
+
+.submitBtn {
+    margin-top: 0.25rem;
+    padding: 0.9rem;
+    background: var(--color-brand);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+
+.submitBtn:hover {
+    background: var(--color-brand-hover);
+}

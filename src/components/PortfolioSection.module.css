@@ -1,0 +1,171 @@
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(24px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 12px)); }
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 2rem;
+    animation: modalFadeIn 0.3s ease;
+}
+
+.modalCard {
+    width: 100%;
+    max-width: 1000px;
+    max-height: 90vh;
+    background: var(--color-bg-secondary);
+    border: 0.5px solid var(--color-border);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.5);
+    animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.closeButton {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 0.5px solid var(--color-border);
+    background: var(--color-bg-glass);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+    background: var(--color-brand);
+    color: #fff;
+    border-color: var(--color-brand);
+}
+
+.marqueeArea {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    padding: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.marqueeTrack {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    padding: 0 24px;
+    animation: marqueeScroll 25s linear infinite;
+}
+
+.marqueeTrackPaused {
+    animation-play-state: paused;
+}
+
+.marqueeItem {
+    width: 650px;
+    height: 420px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+@media (max-width: 768px) {
+    .marqueeItem {
+        width: 80vw !important;
+        height: 320px !important;
+    }
+}
+
+.stickyProjectCard {
+    position: sticky;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--color-bg-secondary);
+    border: 0.5px solid var(--color-border);
+    box-shadow: 0 30px 60px -15px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+    display: grid;
+    grid-template-columns: 1fr;
+    cursor: pointer;
+    transition: box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stickyProjectCard:hover {
+    box-shadow: 0 50px 100px -20px rgba(0,0,0,0.22), 0 0 0 1px var(--color-border-brand), 0 20px 40px -10px rgba(0,0,0,0.1) !important;
+    transform: translateY(-8px) scale(1.005);
+    border-color: var(--color-border-brand) !important;
+}
+
+.stickyProjectCard:hover .viewHint {
+    opacity: 1 !important;
+}
+
+.stickyProjectCard:hover .viewArrow {
+    transform: translateX(6px);
+}
+
+.stickyProjectCard:active {
+    transform: translateY(-2px) scale(0.995);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stickyCardLayout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    height: 100%;
+    position: relative;
+}
+
+.leftProjectInfo {
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    border-right: 0.5px solid var(--color-border);
+}
+
+.rightPageMockup {
+    padding: 1.5rem;
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .stickyCardLayout {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto 1fr !important;
+    }
+    .leftProjectInfo {
+        padding: 1.5rem !important;
+        border-right: none !important;
+        border-bottom: 0.5px solid var(--color-border);
+    }
+    .rightPageMockup {
+        padding: 1rem !important;
+    }
+}

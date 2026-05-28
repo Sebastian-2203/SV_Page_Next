@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useLanguage } from "./LanguageProvider";
+import styles from "./BentoGrid.module.css";
 
 const CartIcon = () => (
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "#a1a1aa", marginBottom: "16px", marginTop: "8px" }}>
@@ -25,33 +26,6 @@ const BrainIcon = () => (
         <path d="M9 14h6"/>
     </svg>
 );
-
-const IdeaPill = ({ color, text }: { color: 'blue' | 'purple' | 'green' | 'orange' | 'teal', text: string }) => {
-    const bgMap = {
-        blue: '#0F3B82',
-        purple: '#2E1963',
-        green: '#114D1C',
-        orange: '#754A0D',
-        teal: '#0C4A3A'
-    };
-    return (
-        <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            background: bgMap[color],
-            padding: '6px 14px',
-            borderRadius: '999px',
-            color: '#fff',
-            fontSize: '12px',
-            fontWeight: 500,
-            marginTop: 'auto',
-            width: 'fit-content',
-        }}>
-            <span style={{ fontSize: '14px' }}>💡</span> {text}
-        </div>
-    );
-};
 
 /* ───────────────────────────────────────────────
    Sub-components for individual card visuals
@@ -191,13 +165,7 @@ function IATerminal({ line1, line2, line3 }: { line1: string; line2: string; lin
 function AnimatedBentoCard({ children }: { children: React.ReactNode }) {
     return (
         <div 
-            style={{
-                position: "relative",
-                overflow: "visible", // Allows the glowing blur to expand outside card borders
-                height: "100%",
-                display: "flex",
-                flexDirection: "column"
-            }}
+            className={styles.bentoCardWrapper}
             onMouseMove={e => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -205,27 +173,9 @@ function AnimatedBentoCard({ children }: { children: React.ReactNode }) {
                 e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
                 e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
             }}
-            onMouseEnter={e => {
-                const glow = e.currentTarget.querySelector('.bento-glow-overlay') as HTMLElement;
-                if (glow) glow.style.opacity = "0.22"; // Fade in soft brand glow
-            }}
-            onMouseLeave={e => {
-                const glow = e.currentTarget.querySelector('.bento-glow-overlay') as HTMLElement;
-                if (glow) glow.style.opacity = "0"; // Fade out soft brand glow
-            }}
         >
             {/* Ambient radial blur glow behind the card on the outside */}
-            <div className="bento-glow-overlay" style={{
-                position: "absolute",
-                inset: "-35px", // Bleeds outside the card boundaries by 35px
-                background: "radial-gradient(circle 180px at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--color-brand) 0%, transparent 80%)",
-                filter: "blur(40px)",
-                opacity: 0,
-                zIndex: 0,
-                pointerEvents: "none",
-                borderRadius: "var(--radius-lg, 16px)",
-                transition: "opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-            }} />
+            <div className={styles.glowOverlay} />
             
             {/* Inner card content wrapper */}
             <div style={{ position: "relative", zIndex: 2, flex: 1, display: "flex", flexDirection: "column" }}>
@@ -285,25 +235,10 @@ export default function BentoGrid() {
                 </div>
 
                 {/* ── Row 1: Web Design (2fr) + Branding (1fr) ── */}
-                <div className="bento-row1" style={{
-                    display: 'grid',
-                    gridTemplateColumns: '2fr 1fr',
-                    gap: '14px',
-                    marginBottom: '14px',
-                }}>
+                <div className={styles.bentoRow1}>
                     {/* Card 1 — Web Design & Dev */}
                     <AnimatedBentoCard>
-                        <div className="bento-card" style={{
-                            background: 'var(--color-bg-glass)',
-                            border: '0.5px solid var(--color-border)',
-                            borderRadius: '16px',
-                            padding: '1.5rem',
-                            overflow: 'hidden',
-                            position: 'relative',
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                        }}>
+                        <div className={styles.bentoCard}>
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● WEB DESIGN & DEV
                             </div>
@@ -317,23 +252,12 @@ export default function BentoGrid() {
                                 )}
                             </p>
                             <BrowserMockup />
-                            <IdeaPill color="blue" text={t("Idea: agrega un gif o video loop de uno de tus proyectos aquí", "Idea: add a gif or video loop of one of your projects here")} />
                         </div>
                     </AnimatedBentoCard>
 
                     {/* Card 2 — Branding */}
                     <AnimatedBentoCard>
-                        <div className="bento-card" style={{
-                            background: 'var(--color-bg-glass)',
-                            border: '0.5px solid var(--color-border)',
-                            borderRadius: '16px',
-                            padding: '1.5rem',
-                            overflow: 'hidden',
-                            position: 'relative',
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                        }}>
+                        <div className={styles.bentoCard}>
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● BRANDING
                             </div>
@@ -350,30 +274,15 @@ export default function BentoGrid() {
                                 label1={t("Marcas", "Brands")}
                                 label2={t("Custom", "Custom")}
                             />
-                            <IdeaPill color="purple" text={t("Muestra tus logos reales o números reales", "Show your real logos or real numbers")} />
                         </div>
                     </AnimatedBentoCard>
                 </div>
 
                 {/* ── Row 2: E-commerce + Automatización + IA (1fr each) ── */}
-                <div className="bento-row2" style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr 1fr',
-                    gap: '14px',
-                }}>
+                <div className={styles.bentoRow2}>
                     {/* Card 3 — E-commerce */}
                     <AnimatedBentoCard>
-                        <div className="bento-card" style={{
-                            background: 'var(--color-bg-glass)',
-                            border: '0.5px solid var(--color-border)',
-                            borderRadius: '16px',
-                            padding: '1.5rem',
-                            overflow: 'hidden',
-                            position: 'relative',
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                        }}>
+                        <div className={styles.bentoCard}>
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● E-COMMERCE
                             </div>
@@ -388,23 +297,12 @@ export default function BentoGrid() {
                                 )}
                             </p>
                             <StackPills items={["Stripe", "Next.js", "Custom"]} />
-                            <IdeaPill color="green" text={t("Agrega el stack real que usas", "Add the real stack you use")} />
                         </div>
                     </AnimatedBentoCard>
 
                     {/* Card 4 — Automatización */}
                     <AnimatedBentoCard>
-                        <div className="bento-card" style={{
-                            background: 'var(--color-bg-glass)',
-                            border: '0.5px solid var(--color-border)',
-                            borderRadius: '16px',
-                            padding: '1.5rem',
-                            overflow: 'hidden',
-                            position: 'relative',
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                        }}>
+                        <div className={styles.bentoCard}>
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● {t("AUTOMATIZACIÓN", "AUTOMATION")}
                             </div>
@@ -419,23 +317,12 @@ export default function BentoGrid() {
                                 )}
                             </p>
                             <AutomationTimeline steps={automationSteps} />
-                            <IdeaPill color="orange" text={t("Un mini-flow animado funciona muy bien aquí", "An animated mini-flow works great here")} />
                         </div>
                     </AnimatedBentoCard>
 
                     {/* Card 5 — IA */}
                     <AnimatedBentoCard>
-                        <div className="bento-card" style={{
-                            background: 'var(--color-bg-glass)',
-                            border: '0.5px solid var(--color-border)',
-                            borderRadius: '16px',
-                            padding: '1.5rem',
-                            overflow: 'hidden',
-                            position: 'relative',
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                        }}>
+                        <div className={styles.bentoCard}>
                             <div style={{ fontSize: '10px', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 500 }}>
                                 ● IA
                             </div>
@@ -454,32 +341,10 @@ export default function BentoGrid() {
                                 line2={t("Respuesta generada", "Response generated")}
                                 line3={t("// integrado en tu web", "// integrated into your web")}
                             />
-                            <IdeaPill color="teal" text={t("Un chat demo en vivo sería un wow", "A live demo chat would be a wow factor")} />
                         </div>
                     </AnimatedBentoCard>
                 </div>
-
             </div>
-
-            {/* Hover + Responsive styles */}
-            <style>{`
-                .bento-card {
-                    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-                }
-                .bento-card:hover {
-                    border-color: rgba(74,144,217,0.4) !important;
-                    box-shadow: 0 10px 40px -10px rgba(74,144,217,0.08);
-                    transform: translateY(-2px);
-                }
-                @media (max-width: 768px) {
-                    .bento-row1 {
-                        grid-template-columns: 1fr !important;
-                    }
-                    .bento-row2 {
-                        grid-template-columns: 1fr !important;
-                    }
-                }
-            `}</style>
         </section>
     );
 }

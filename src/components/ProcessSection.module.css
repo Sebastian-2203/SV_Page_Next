@@ -1,0 +1,123 @@
+.section {
+    padding: 4rem 2rem;
+    background: var(--color-bg-primary);
+    border-top: 0.5px solid var(--color-border);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 6rem;
+    max-width: 600px;
+}
+
+.tagline {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--color-brand);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.taglineLine {
+    width: 20px;
+    height: 1px;
+    background: var(--color-border-brand);
+    display: inline-block;
+}
+
+.processTitle {
+    font-size: clamp(2.5rem, 5vw, 4rem) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.04em !important;
+    line-height: 1.2 !important;
+}
+
+.processGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    position: relative;
+}
+
+.processLine {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(74,144,217,0.02) 0%, rgba(74,144,217,0.3) 50%, rgba(74,144,217,0.02) 100%);
+    z-index: 0;
+}
+
+.stepContainer {
+    position: relative;
+    z-index: 1;
+}
+
+.technicalNode {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--color-border-brand);
+    background: var(--color-bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 0 10px var(--color-brand-subtle);
+}
+
+.nodeCenter {
+    width: 6px;
+    height: 6px;
+    background: var(--color-brand);
+    border-radius: 50%;
+}
+
+.stepNum {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--color-brand);
+    margin-bottom: 0.8rem;
+}
+
+.stepTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    color: var(--color-text-primary);
+}
+
+.stepDesc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .processGrid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .processLine { 
+        width: 1px;
+        height: 100%;
+        top: 0;
+        left: 16px;
+        background: linear-gradient(180deg, rgba(74,144,217,0.02) 0%, rgba(74,144,217,0.3) 50%, rgba(74,144,217,0.02) 100%);
+    }
+    .stepContainer {
+        padding-left: 2rem;
+    }
+}

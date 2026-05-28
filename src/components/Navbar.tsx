@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
+import styles from "./Navbar.module.css";
 
 interface Props {
     onBookCall: () => void;
@@ -64,7 +65,7 @@ export default function Navbar({ onBookCall }: Props) {
 
     useEffect(() => {
         // Track the active section on scroll
-        const sections = ["inicio", "servicios", "proceso"];
+        const sections = ["inicio", "servicios", "proceso", "portafolio"];
         const handleScroll = () => {
             const scrollPosition = window.scrollY + window.innerHeight / 3;
             for (const section of sections) {
@@ -92,59 +93,18 @@ export default function Navbar({ onBookCall }: Props) {
     const links = [
         { href: "#inicio", label: t("Inicio", "Home"), icon: <HomeIcon />, section: "inicio" },
         { href: "#servicios", label: t("Servicios", "Services"), icon: <ServicesIcon />, section: "servicios" },
-        { href: "#proceso", label: t("Portafolio", "Portfolio"), icon: <PortfolioIcon />, section: "proceso" },
+        { href: "#portafolio", label: t("Portafolio", "Portfolio"), icon: <PortfolioIcon />, section: "portafolio" },
     ];
 
     return (
-        <nav style={{
-            position: "fixed",
-            bottom: "24px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 1000,
-            display: "flex",
-            alignItems: "center",
-            gap: "4px",
-            padding: "6px 8px",
-            background: darkMode ? "rgba(10, 15, 30, 0.85)" : "rgba(240, 246, 255, 0.85)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            border: darkMode ? "0.5px solid var(--color-border)" : "0.5px solid rgba(37, 99, 235, 0.15)",
-            borderRadius: "999px",
-            boxShadow: darkMode 
-                ? "0 8px 32px rgba(0,0,0,0.4), 0 0 0 0.5px rgba(74,144,217,0.1)" 
-                : "0 8px 32px rgba(37, 99, 235, 0.08), 0 0 0 0.5px rgba(37, 99, 235, 0.15)",
-            whiteSpace: "nowrap",
-            animation: "slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        }}>
+        <nav className={`${styles.navbar} ${darkMode ? styles.navbarDark : styles.navbarLight}`}>
             {links.map(({ href, label, icon, section }) => {
                 const isActive = activeSection === section;
                 return (
-                    <a key={href} href={href} style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "6px",
-                        padding: isActive ? "8px 16px" : "8px 14px",
-                        borderRadius: "999px",
-                        fontSize: "14px",
-                        fontWeight: isActive ? 600 : 500,
-                        color: isActive ? "#ffffff" : "var(--color-text-secondary)",
-                        background: isActive ? "var(--color-brand)" : "transparent",
-                        textDecoration: "none",
-                        transition: "all 0.2s ease-in-out",
-                    }}
-                    onMouseEnter={e => {
-                        if (!isActive) {
-                            e.currentTarget.style.color = "var(--color-brand)";
-                            e.currentTarget.style.background = "var(--color-brand-subtle)";
-                        }
-                    }}
-                    onMouseLeave={e => {
-                        if (!isActive) {
-                            e.currentTarget.style.color = "var(--color-text-secondary)";
-                            e.currentTarget.style.background = "transparent";
-                        }
-                    }}
+                    <a 
+                        key={href} 
+                        href={href} 
+                        className={`${styles.navItem} ${isActive ? styles.navItemActive : styles.navItemInactive}`}
                     >
                         {icon}
                         <span className="nav-label">{label}</span>
@@ -155,66 +115,19 @@ export default function Navbar({ onBookCall }: Props) {
             {/* Action buttons mapping to Contacto modal triggers */}
             <button
                 onClick={onBookCall}
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    padding: "8px 14px",
-                    borderRadius: "999px",
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    color: "var(--color-text-secondary)",
-                    background: "transparent",
-                    border: "none",
-                    cursor: "pointer",
-                    fontFamily: "inherit",
-                    transition: "all 0.2s",
-                }}
-                onMouseEnter={e => {
-                    e.currentTarget.style.color = "var(--color-brand)";
-                    e.currentTarget.style.background = "var(--color-brand-subtle)";
-                }}
-                onMouseLeave={e => {
-                    e.currentTarget.style.color = "var(--color-text-secondary)";
-                    e.currentTarget.style.background = "transparent";
-                }}
+                className={`${styles.navItem} ${styles.navItemInactive}`}
             >
                 <ContactIcon />
                 <span className="nav-label">{t("Contacto", "Contact")}</span>
             </button>
 
             {/* Separator line */}
-            <div style={{ width: "1px", height: "20px", background: "var(--color-border)", margin: "0 6px" }} />
+            <div className={styles.separator} />
 
             {/* Language Selector */}
             <button 
                 onClick={toggleLanguage} 
-                style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "50%",
-                    background: "var(--color-bg-glass)",
-                    border: "0.5px solid var(--color-border)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "var(--color-text-secondary)",
-                    cursor: "pointer",
-                    fontSize: "11px",
-                    fontWeight: 600,
-                    transition: "all 0.2s",
-                    fontFamily: "inherit",
-                }}
-                onMouseEnter={e => {
-                    e.currentTarget.style.color = "var(--color-text-primary)";
-                    e.currentTarget.style.background = "var(--color-brand-subtle)";
-                    e.currentTarget.style.borderColor = "var(--color-border-brand)";
-                }}
-                onMouseLeave={e => {
-                    e.currentTarget.style.color = "var(--color-text-secondary)";
-                    e.currentTarget.style.background = "var(--color-bg-glass)";
-                    e.currentTarget.style.borderColor = "var(--color-border)";
-                }}
+                className={styles.iconButton}
                 aria-label="Cambiar idioma"
             >
                 {language === "es" ? "EN" : "ES"}
@@ -223,29 +136,7 @@ export default function Navbar({ onBookCall }: Props) {
             {/* Toggle tema */}
             <button
                 onClick={toggleTheme}
-                style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "50%",
-                    background: "var(--color-bg-glass)",
-                    border: "0.5px solid var(--color-border)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "var(--color-text-secondary)",
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                }}
-                onMouseEnter={e => {
-                    e.currentTarget.style.color = "var(--color-brand)";
-                    e.currentTarget.style.background = "var(--color-brand-subtle)";
-                    e.currentTarget.style.borderColor = "var(--color-border-brand)";
-                }}
-                onMouseLeave={e => {
-                    e.currentTarget.style.color = "var(--color-text-secondary)";
-                    e.currentTarget.style.background = "var(--color-bg-glass)";
-                    e.currentTarget.style.borderColor = "var(--color-border)";
-                }}
+                className={styles.iconButton}
                 aria-label="Cambiar tema"
             >
                 {darkMode ? <SunIcon /> : <MoonIcon />}

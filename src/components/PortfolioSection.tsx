@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback, useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
+import styles from "./PortfolioSection.module.css";
 
 /* ─── Project data with gallery screens ─── */
 
@@ -208,38 +209,11 @@ function ProjectModal({
     }, []);
 
     return (
-        <div
-            onClick={onClose}
-            style={{
-                position: "fixed",
-                inset: 0,
-                zIndex: 9999,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: "rgba(0,0,0,0.6)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-                padding: "2rem",
-                animation: "modalFadeIn 0.3s ease",
-            }}
-        >
+        <div onClick={onClose} className={styles.modalOverlay}>
             {/* Modal card */}
             <div
                 onClick={(e) => e.stopPropagation()}
-                style={{
-                    width: "100%",
-                    maxWidth: 1000,
-                    maxHeight: "90vh",
-                    background: "var(--color-bg-secondary)",
-                    border: "0.5px solid var(--color-border)",
-                    borderRadius: "24px",
-                    overflow: "hidden",
-                    display: "flex",
-                    flexDirection: "column",
-                    boxShadow: "0 40px 100px -20px rgba(0,0,0,0.5)",
-                    animation: "modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-                }}
+                className={styles.modalCard}
             >
                 {/* Header */}
                 <div style={{
@@ -273,30 +247,7 @@ function ProjectModal({
                     {/* Close button */}
                     <button
                         onClick={onClose}
-                        style={{
-                            width: 36,
-                            height: 36,
-                            borderRadius: "50%",
-                            border: "0.5px solid var(--color-border)",
-                            background: "var(--color-bg-glass)",
-                            color: "var(--color-text-secondary)",
-                            cursor: "pointer",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: "18px",
-                            transition: "all 0.2s ease",
-                        }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.background = "var(--color-brand)";
-                            e.currentTarget.style.color = "#fff";
-                            e.currentTarget.style.borderColor = "var(--color-brand)";
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.background = "var(--color-bg-glass)";
-                            e.currentTarget.style.color = "var(--color-text-secondary)";
-                            e.currentTarget.style.borderColor = "var(--color-border)";
-                        }}
+                        className={styles.closeButton}
                     >
                         ✕
                     </button>
@@ -306,15 +257,7 @@ function ProjectModal({
                 <div
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
-                    style={{
-                        position: "relative",
-                        flex: 1,
-                        minHeight: 0,
-                        padding: "1.5rem 0",
-                        display: "flex",
-                        alignItems: "center",
-                        overflow: "hidden",
-                    }}
+                    className={styles.marqueeArea}
                 >
                     {/* Shadow overlays for smooth fade edges */}
                     <div style={{
@@ -333,23 +276,9 @@ function ProjectModal({
                     }} />
 
                     {/* Slide track */}
-                    <div style={{
-                        display: "flex",
-                        gap: "24px",
-                        width: "max-content",
-                        padding: "0 24px",
-                        animation: "marqueeScroll 25s linear infinite",
-                        animationPlayState: isPaused ? "paused" : "running",
-                    }}>
+                    <div className={`${styles.marqueeTrack} ${isPaused ? styles.marqueeTrackPaused : ""}`}>
                         {marqueeItems.map((g, i) => (
-                            <div key={i} style={{ 
-                                width: "650px", 
-                                height: "420px", 
-                                flexShrink: 0,
-                                borderRadius: "16px",
-                                overflow: "hidden",
-                                border: "1px solid rgba(255,255,255,0.05)"
-                            }}>
+                            <div key={i} className={styles.marqueeItem}>
                                 <GalleryMockupScreen
                                     gradient={g.gradient}
                                     label={language === "en" ? g.labelEn : g.label}
@@ -379,28 +308,6 @@ function ProjectModal({
                     </span>
                 </div>
             </div>
-
-            {/* Modal animations */}
-            <style>{`
-                @keyframes modalFadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-                @keyframes modalSlideUp {
-                    from { opacity: 0; transform: translateY(24px) scale(0.97); }
-                    to { opacity: 1; transform: translateY(0) scale(1); }
-                }
-                @keyframes marqueeScroll {
-                    from { transform: translateX(0); }
-                    to { transform: translateX(calc(-50% - 12px)); }
-                }
-                @media (max-width: 768px) {
-                    .marquee-item {
-                        width: 80vw !important;
-                        height: 320px !important;
-                    }
-                }
-            `}</style>
         </div>
     );
 }
@@ -533,39 +440,18 @@ function StickyProjectCard({
             <div
                 onClick={onOpen}
                 style={{
-                    position: "sticky",
                     top: stickyTop,
                     height: `calc(100vh - ${stickyTop + 40}px)`,
                     maxHeight: "600px",
-                    borderRadius: "20px",
-                    overflow: "hidden",
-                    background: "var(--color-bg-secondary)",
-                    border: `0.5px solid var(--color-border)`,
-                    boxShadow: `0 30px 60px -15px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)`,
-                    display: "grid",
-                    gridTemplateColumns: "1fr",
-                    cursor: "pointer",
-                    transition: "box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease",
                 }}
-                className="sticky-project-card"
+                className={styles.stickyProjectCard}
             >
 
                 {/* Full card layout */}
-                <div style={{
-                    display: "grid",
-                    gridTemplateColumns: "380px 1fr",
-                    height: "100%",
-                    position: "relative",
-                }} className="sticky-card-layout">
+                <div className={styles.stickyCardLayout}>
 
                     {/* Left: Project Info */}
-                    <div style={{
-                        padding: "3rem 2.5rem",
-                        display: "flex",
-                        flexDirection: "column",
-                        zIndex: 2,
-                        borderRight: "0.5px solid var(--color-border)",
-                    }}>
+                    <div className={styles.leftProjectInfo}>
                         {/* Counter + Tag */}
                         <div style={{
                             display: "flex",
@@ -637,20 +523,14 @@ function StickyProjectCard({
                             color: "var(--color-brand)",
                             opacity: 0.7,
                             transition: "opacity 0.3s ease",
-                        }} className="view-hint">
+                        }} className={styles.viewHint}>
                             <span>{t("Ver proyecto", "View project")}</span>
-                            <span style={{ fontSize: "16px", transition: "transform 0.3s ease" }} className="view-arrow">→</span>
+                            <span style={{ fontSize: "16px", transition: "transform 0.3s ease" }} className={styles.viewArrow}>→</span>
                         </div>
                     </div>
 
                     {/* Right: Page Mockup */}
-                    <div style={{
-                        padding: "1.5rem",
-                        display: "flex",
-                        alignItems: "stretch",
-                        position: "relative",
-                        zIndex: 1,
-                    }}>
+                    <div className={styles.rightPageMockup}>
                         <PageMockup />
                     </div>
                 </div>
@@ -745,41 +625,6 @@ export default function PortfolioSection() {
                     onClose={() => setOpenProject(null)}
                 />
             )}
-
-            {/* Hover + Responsive styles */}
-            <style>{`
-                .sticky-project-card {
-                    transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
-                }
-                .sticky-project-card:hover {
-                    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.25), 0 0 0 1px var(--color-border-brand) !important;
-                    transform: translateY(-4px);
-                    border-color: var(--color-border-brand) !important;
-                }
-                .sticky-project-card:hover .view-hint {
-                    opacity: 1 !important;
-                }
-                .sticky-project-card:hover .view-arrow {
-                    transform: translateX(4px);
-                }
-                .sticky-project-card:active {
-                    transform: translateY(-2px) scale(0.995);
-                }
-                @media (max-width: 768px) {
-                    .sticky-card-layout {
-                        grid-template-columns: 1fr !important;
-                        grid-template-rows: auto 1fr !important;
-                    }
-                    .sticky-card-layout > div:first-child {
-                        padding: 1.5rem !important;
-                        border-right: none !important;
-                        border-bottom: 0.5px solid var(--color-border);
-                    }
-                    .sticky-card-layout > div:last-child {
-                        padding: 1rem !important;
-                    }
-                }
-            `}</style>
         </section>
     );
 }

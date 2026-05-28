@@ -2,6 +2,7 @@
 
 import { useLanguage } from "./LanguageProvider";
 import SVLogo from "./SVLogo";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
     const { t } = useLanguage();
@@ -56,10 +57,9 @@ export default function Footer() {
             <div style={{
                 maxWidth: 1200, margin: "0 auto", width: "100%",
                 display: "grid",
-                gridTemplateColumns: "1fr auto auto",
                 gap: "5rem",
                 position: "relative", zIndex: 1,
-            }} className="footer-grid">
+            }} className={styles.grid}>
 
                 {/* Brand */}
                 <div>
@@ -91,12 +91,11 @@ export default function Footer() {
                             { href: "#portafolio", label: t("Trabajo", "WORK") },
                             { href: "#contacto", label: t("Contacto", "CONTACT") },
                         ].map(l => (
-                            <a key={l.href} href={l.href} style={{
-                                fontSize: "0.8rem", color: "var(--color-text-secondary)",
-                                transition: "color 0.2s", fontWeight: 600, letterSpacing: "0.05em"
-                            }}
-                                onMouseEnter={e => (e.currentTarget.style.color = "var(--color-brand)")}
-                                onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-secondary)")}>
+                            <a 
+                                key={l.href} 
+                                href={l.href} 
+                                className={styles.navLink}
+                            >
                                 {l.label}
                             </a>
                         ))}
@@ -110,27 +109,17 @@ export default function Footer() {
                     </p>
                     <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", maxWidth: 220 }}>
                         {[
-                            { href: "mailto:hola@svsolutions.com", label: "EMAIL" },
-                            { href: "https://wa.me/+1234567890", label: "WHATSAPP" },
-                            { href: "https://instagram.com/svsolutions", label: "INSTAGRAM" },
-                            { href: "#", label: "LINKEDIN" }
+                            { href: "mailto:contacto@syvsolutions.com", label: "EMAIL" },
+                            { href: "https://wa.me/573102163947", label: "WHATSAPP" },
+                            { href: "https://instagram.com/syv.solutions", label: "INSTAGRAM" },
                         ].map(l => (
-                            <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
-                                style={{
-                                    fontSize: "0.7rem", color: "var(--color-text-secondary)",
-                                    transition: "all 0.2s", fontWeight: 600, letterSpacing: "0.05em",
-                                    padding: "0.3rem 0.6rem", border: "0.5px solid var(--color-border)",
-                                    borderRadius: "var(--radius-sm)",
-                                    background: "transparent"
-                                }}
-                                onMouseEnter={e => {
-                                    e.currentTarget.style.color = "#000";
-                                    e.currentTarget.style.background = "#fff";
-                                }}
-                                onMouseLeave={e => {
-                                    e.currentTarget.style.color = "var(--color-text-secondary)";
-                                    e.currentTarget.style.background = "transparent";
-                                }}>
+                            <a 
+                                key={l.href} 
+                                href={l.href} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className={styles.socialLink}
+                            >
                                 {l.label}
                             </a>
                         ))}
@@ -152,12 +141,6 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-
-            <style>{`
-        @media (max-width: 900px) {
-          .footer-grid { grid-template-columns: 1fr !important; gap: 3.5rem !important; }
-        }
-      `}</style>
         </footer>
     );
 }
