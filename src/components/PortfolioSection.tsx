@@ -610,36 +610,81 @@ function PageMockup({ image, label }: { image?: string; label?: string }) {
     );
 }
 
-/* ─── Sticky Card ─── */
+/* ─── Sticky Card with stacking effect ─── */
 
 function StickyProjectCard({
     project,
     index,
+    total,
     t,
     language,
     onOpen,
 }: {
     project: Project;
     index: number;
+    total: number;
     t: (es: string, en: string) => string;
     language: string;
     onOpen: () => void;
 }) {
-    const stickyTop = 80 + index * 16;
+    const cardRef = React.useRef<HTMLDivElement>(null);
+    const innerRef = React.useRef<HTMLDivElement>(null);
+    const stickyTop = 80 + index * 20;
     const accentColor = "var(--color-brand)";
+
+    React.useEffect(() => {
+        const card = cardRef.current;
+        const inner = innerRef.current;
+        if (!card || !inner) return;
+
+        let rafId: number;
+        const handleScroll = () => {
+            rafId = requestAnimationFrame(() => {
+                const rect = card.getBoundingClientRect();
+                const cardHeight = rect.height;
+                // How much the card has been scrolled past the sticky point
+                const scrolledPast = stickyTop - rect.top;
+                const progress = Math.max(0, Math.min(1, scrolledPast / (cardHeight * 0.6)));
+
+                // Scale down from 1 to 0.92, darken overlay
+                const scale = 1 - progress * 0.08;
+                const brightness = 1 - progress * 0.4;
+                const borderRadius = 20 + progress * 12;
+
+                inner.style.transform = `scale(${scale})`;
+                inner.style.filter = `brightness(${brightness})`;
+                inner.style.borderRadius = `${borderRadius}px`;
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // initial
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(rafId);
+        };
+    }, [stickyTop]);
 
 
     return (
-        <div style={{
-            height: "100vh",
-            position: "relative",
-        }}>
+        <div
+            ref={cardRef}
+            style={{
+                height: index < total - 1 ? "100vh" : "auto",
+                position: "relative",
+                marginBottom: index < total - 1 ? 0 : "4rem",
+            }}
+        >
             <div
+                ref={innerRef}
                 onClick={onOpen}
                 style={{
                     top: stickyTop,
                     height: `calc(100vh - ${stickyTop + 40}px)`,
                     maxHeight: "600px",
+                    willChange: "transform, filter",
+                    transformOrigin: "center top",
                 }}
                 className={styles.stickyProjectCard}
             >
@@ -827,6 +872,7 @@ export default function PortfolioSection() {
                         key={project.id}
                         project={project}
                         index={i}
+                        total={projects.length}
                         t={t}
                         language={language}
                         onOpen={() => setOpenProject(project)}

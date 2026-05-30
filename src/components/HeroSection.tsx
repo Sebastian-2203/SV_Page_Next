@@ -19,7 +19,8 @@ export default function HeroSection({ onBookCall }: Props) {
     useEffect(() => {
         const el = contentRef.current;
         if (!el) return;
-        setTimeout(() => el.querySelectorAll(".reveal").forEach(c => c.classList.add("visible")), 100);
+        const timer = setTimeout(() => el.querySelectorAll(".reveal").forEach(c => c.classList.add("visible")), 100);
+        return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {

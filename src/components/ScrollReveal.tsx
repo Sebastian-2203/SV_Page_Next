@@ -72,10 +72,11 @@ const ScrollReveal = ({
         if (!el) return;
 
         const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
+        let timeoutId: ReturnType<typeof setTimeout>;
 
         const ctx = gsap.context(() => {
             // Give GSAP time to ensure the DOM has painted all nested React nodes
-            setTimeout(() => {
+            timeoutId = setTimeout(() => {
                 const wordElements = el.querySelectorAll('.word');
                 if (!wordElements.length) return;
 
@@ -115,7 +116,10 @@ const ScrollReveal = ({
 
         }, containerRef);
 
-        return () => ctx.revert();
+        return () => {
+            clearTimeout(timeoutId);
+            ctx.revert();
+        };
     }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength]);
 
     return (
