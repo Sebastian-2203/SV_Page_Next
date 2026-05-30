@@ -90,7 +90,7 @@ function StackPills({ items }: { items: string[] }) {
 }
 
 // Branding metrics grid
-function BrandingMetrics({ label1, label2 }: { label1: string; label2: string }) {
+function BrandingMetrics({ value1, label1, value2, label2 }: { value1: string; label1: string; value2: string; label2: string }) {
     const metricStyle: React.CSSProperties = {
         background: 'var(--color-bg-secondary)',
         borderRadius: '10px',
@@ -99,31 +99,30 @@ function BrandingMetrics({ label1, label2 }: { label1: string; label2: string })
     return (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '16px', marginBottom: '16px' }}>
             <div style={metricStyle}>
-                <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--color-text-primary)' }}>12+</div>
+                <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--color-text-primary)' }}>{value1}</div>
                 <div style={{ fontSize: '11px', color: 'var(--color-text-muted)', marginTop: '2px' }}>{label1}</div>
             </div>
             <div style={metricStyle}>
-                <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--color-text-primary)' }}>100%</div>
+                <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--color-text-primary)' }}>{value2}</div>
                 <div style={{ fontSize: '11px', color: 'var(--color-text-muted)', marginTop: '2px' }}>{label2}</div>
             </div>
         </div>
     );
 }
 
-// Automation timeline static display
+// Automation timeline animated display
 function AutomationTimeline({ steps }: { steps: { color: string; text: string }[] }) {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '16px', marginBottom: '16px' }}>
+        <div className={styles.automationTimeline}>
+            <div className={styles.automationTrack}>
+                <div className={styles.automationProgress} />
+            </div>
             {steps.map((step, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <div style={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: '50%',
-                        background: step.color,
-                        flexShrink: 0,
-                    }} />
-                    <span style={{ fontSize: '14px', color: 'var(--color-text-secondary)' }}>{step.text}</span>
+                <div key={i} className={styles.automationStep} style={{ "--step-index": i } as React.CSSProperties}>
+                    <div className={styles.automationDot} style={{ "--step-color": step.color } as React.CSSProperties}>
+                        <div className={styles.automationPulse} />
+                    </div>
+                    <span className={styles.automationText}>{step.text}</span>
                 </div>
             ))}
         </div>
@@ -271,8 +270,10 @@ export default function BentoGrid() {
                                 )}
                             </p>
                             <BrandingMetrics
-                                label1={t("Marcas", "Brands")}
-                                label2={t("Custom", "Custom")}
+                                value1="360°"
+                                label1={t("Identidad", "Identity")}
+                                value2="100%"
+                                label2={t("A medida", "Custom")}
                             />
                         </div>
                     </AnimatedBentoCard>
@@ -296,7 +297,7 @@ export default function BentoGrid() {
                                     "Payment integration, optimized checkout, and sales reports. Built to close transactions."
                                 )}
                             </p>
-                            <StackPills items={["Stripe", "Next.js", "Custom"]} />
+                            <StackPills items={["Shopify", "WooCommerce", "Stripe", "Mercado Pago", "Next.js", "Custom API"]} />
                         </div>
                     </AnimatedBentoCard>
 
@@ -337,9 +338,9 @@ export default function BentoGrid() {
                                 )}
                             </p>
                             <IATerminal
-                                line1={t("Analizando consulta...", "Analyzing query...")}
-                                line2={t("Respuesta generada", "Response generated")}
-                                line3={t("// integrado en tu web", "// integrated into your web")}
+                                line1={t("> Entrenando asistente de ventas con tu catálogo...", "> Training sales assistant with your catalog...")}
+                                line2={t("✔ Modelo listo. Tasa de conversión proyectada: +35%", "✔ Model ready. Projected conversion rate: +35%")}
+                                line3={t("// Despliegue de IA completado", "// AI deployment completed")}
                             />
                         </div>
                     </AnimatedBentoCard>

@@ -61,3 +61,106 @@
         grid-template-columns: 1fr !important;
     }
 }
+
+/* ───────────────────────────────────────────────
+   Automation Timeline Animation
+   ─────────────────────────────────────────────── */
+
+.automationTimeline {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    padding-left: 6px;
+}
+
+.automationTrack {
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 9.5px;
+    width: 1px;
+    background: var(--color-border);
+    z-index: 0;
+}
+
+.automationProgress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-brand);
+    animation: flowDown 3s linear infinite;
+    transform-origin: top;
+    box-shadow: 0 0 8px var(--color-brand);
+}
+
+@keyframes flowDown {
+    0% { transform: scaleY(0); opacity: 1; }
+    33.33% { transform: scaleY(0.5); opacity: 1; }
+    66.66% { transform: scaleY(1); opacity: 1; }
+    85% { transform: scaleY(1); opacity: 0; }
+    100% { transform: scaleY(0); opacity: 0; }
+}
+
+.automationStep {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+}
+
+.automationDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--step-color);
+    position: relative;
+    box-shadow: 0 0 0 4px var(--color-bg-glass);
+    flex-shrink: 0;
+    animation: dotPop 3s infinite;
+    animation-delay: calc(var(--step-index) * 1s);
+}
+
+.automationPulse {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    background: var(--step-color);
+    opacity: 0;
+    animation: pulseGlow 3s infinite;
+    animation-delay: calc(var(--step-index) * 1s);
+}
+
+.automationText {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    transition: color 0.3s;
+    animation: textHighlight 3s infinite;
+    animation-delay: calc(var(--step-index) * 1s);
+}
+
+@keyframes dotPop {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    5% { transform: scale(1.4); filter: brightness(1.5); }
+    20% { transform: scale(1); filter: brightness(1); }
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.5); opacity: 0.8; }
+    20% { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes textHighlight {
+    0%, 100% { color: var(--color-text-secondary); }
+    5% { color: var(--color-text-primary); text-shadow: 0 0 8px rgba(255,255,255,0.2); }
+    20% { color: var(--color-text-secondary); }
+}

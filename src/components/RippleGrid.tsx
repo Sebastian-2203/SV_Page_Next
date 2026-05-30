@@ -223,6 +223,7 @@ void main() {
         }
         resize();
 
+        let rafId: number;
         const render = (t: number) => {
             uniforms.iTime.value = t * 0.001;
 
@@ -242,10 +243,10 @@ void main() {
             ];
 
             renderer.render({ scene: mesh });
-            requestAnimationFrame(render);
+            rafId = requestAnimationFrame(render);
         };
 
-        requestAnimationFrame(render);
+        rafId = requestAnimationFrame(render);
 
         const container = containerRef.current;
         return () => {
@@ -255,8 +256,11 @@ void main() {
                 container.removeEventListener("mouseenter", handleMouseEnter);
                 container.removeEventListener("mouseleave", handleMouseLeave);
             }
+            cancelAnimationFrame(rafId);
             renderer.gl.getExtension("WEBGL_lose_context")?.loseContext();
-            container?.removeChild(gl.canvas);
+            if (container && container.contains(gl.canvas)) {
+                container.removeChild(gl.canvas);
+            }
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
