@@ -20,7 +20,7 @@ export default function MeetingModal({ onClose }: Props) {
         e.preventDefault();
         const fd = new FormData(e.currentTarget);
         const text = `Hola! Quiero agendar una reunión.\n\nNombre: ${fd.get("name")}\nEmpresa: ${fd.get("company") || "—"}\nEmail: ${fd.get("email")}\nFecha preferida: ${fd.get("date")}\nHorario: ${fd.get("time")}\nNota: ${fd.get("message") || "—"}`;
-        window.open(`https://wa.me/+1234567890?text=${encodeURIComponent(text)}`, "_blank");
+        window.open(`https://wa.me/573102163947?text=${encodeURIComponent(text)}`, "_blank");
         onClose();
     };
 

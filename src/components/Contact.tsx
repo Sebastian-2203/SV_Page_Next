@@ -33,8 +33,8 @@ export default function Contact() {
                             </div>
                             <div className="contact-item">
                                 <label>WhatsApp</label>
-                                <a href="https://wa.me/+1234567890" target="_blank" rel="noopener noreferrer">
-                                    +1 (234) 567‑890
+                                <a href="https://wa.me/573102163947" target="_blank" rel="noopener noreferrer">
+                                    +57 310 216 3947
                                 </a>
                             </div>
                             <div className="contact-item">
