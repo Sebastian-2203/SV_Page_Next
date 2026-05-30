@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
 import styles from "./PortfolioSection.module.css";
-import { DashboardOverview, DashboardAnalytics, DashboardReports } from "./portfolio-mockups/DashboardMockup";
-import { AssistantChat, AssistantInsights, AssistantAutomation } from "./portfolio-mockups/AIAssistantMockup";
+
 
 type Lang = "es" | "en";
 
@@ -43,62 +42,6 @@ interface Project {
 }
 
 const projects: Project[] = [
-    {
-        id: "dashboard-financiero",
-        tag: "APLICACIONES WEB",
-        tagEn: "WEB APPLICATIONS",
-        title: "Dashboard Financiero",
-        titleEn: "Financial Dashboard",
-        features: [
-            "Gráficas en tiempo real",
-            "Análisis de ingresos y gastos",
-            "Reportes automáticos exportables",
-            "APIs escalables y multi-cuenta",
-        ],
-        featuresEn: [
-            "Real-time charts",
-            "Revenue & expense analytics",
-            "Automated exportable reports",
-            "Scalable multi-account APIs",
-        ],
-        tech: ["Next.js", "React", "TypeScript", "Charts.js", "D3", "Tailwind CSS", "PostgreSQL", "Prisma", "API REST"],
-        link: "#",
-        interactive: true,
-        screens: [
-            { id: "overview", label: "Resumen", labelEn: "Overview", render: (lang) => <DashboardOverview lang={lang} /> },
-            { id: "analytics", label: "Análisis", labelEn: "Analytics", render: (lang) => <DashboardAnalytics lang={lang} /> },
-            { id: "reports", label: "Reportes", labelEn: "Reports", render: (lang) => <DashboardReports lang={lang} /> },
-        ],
-        gallery: [],
-    },
-    {
-        id: "asistente-ia",
-        tag: "INTELIGENCIA ARTIFICIAL",
-        tagEn: "ARTIFICIAL INTELLIGENCE",
-        title: "Asistente IA",
-        titleEn: "AI Assistant",
-        features: [
-            "IA conversacional con LLMs",
-            "Consultas en lenguaje natural",
-            "Insights accionables al instante",
-            "Automatización de flujos",
-        ],
-        featuresEn: [
-            "Conversational AI with LLMs",
-            "Natural language queries",
-            "Instant actionable insights",
-            "Workflow automation",
-        ],
-        tech: ["Next.js", "React", "Claude API", "WebSockets", "Tailwind CSS", "Node.js"],
-        link: "#",
-        interactive: true,
-        screens: [
-            { id: "chat", label: "Chat", labelEn: "Chat", render: (lang) => <AssistantChat lang={lang} /> },
-            { id: "insights", label: "Insights", labelEn: "Insights", render: (lang) => <AssistantInsights lang={lang} /> },
-            { id: "automation", label: "Automatización", labelEn: "Automation", render: (lang) => <AssistantAutomation lang={lang} /> },
-        ],
-        gallery: [],
-    },
     {
         id: "overflod",
         tag: "DISEÑO Y PRODUCCIÓN",
@@ -182,65 +125,55 @@ const projects: Project[] = [
         ],
     },
     {
-        id: "ecommerce",
-        tag: "COMERCIO",
-        tagEn: "COMMERCE",
-        title: "E-commerce",
-        titleEn: "E-commerce",
-        features: ["Tiendas custom", "Flujo de compra", "Checkout optimizado", "Conversión"],
-        featuresEn: ["Custom stores", "Purchase flow", "Optimized checkout", "Conversion"],
+        id: "dashboard-financiero",
+        tag: "APLICACIONES WEB",
+        tagEn: "WEB APPLICATIONS",
+        title: "Dashboard Financiero",
+        titleEn: "Financial Dashboard",
+        features: [
+            "Gráficas en tiempo real",
+            "Análisis de ingresos y gastos",
+            "Reportes automáticos exportables",
+            "APIs escalables y multi-cuenta",
+        ],
+        featuresEn: [
+            "Real-time charts",
+            "Revenue & expense analytics",
+            "Automated exportable reports",
+            "Scalable multi-account APIs",
+        ],
+        thumbnail: "/images/dashboard-1.png",
         gallery: [
-            { label: "Hero & Catálogo", labelEn: "Hero & Catalog", gradient: "linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0ea5e9 100%)" },
-            { label: "Productos", labelEn: "Products", gradient: "linear-gradient(135deg, #1e293b 0%, #334155 50%, #3b82f6 100%)" },
-            { label: "Checkout", labelEn: "Checkout", gradient: "linear-gradient(135deg, #0c1222 0%, #1a365d 50%, #2563eb 100%)" },
-            { label: "Dashboard", labelEn: "Dashboard", gradient: "linear-gradient(135deg, #020617 0%, #0f172a 50%, #1d4ed8 100%)" },
+            { label: "Resumen", labelEn: "Overview", image: "/images/dashboard-1.png" },
+            { label: "Análisis", labelEn: "Analytics", image: "/images/dashboard-2.png" },
+            { label: "Reportes", labelEn: "Reports", image: "/images/dashboard-3.png" },
         ],
     },
     {
-        id: "saas",
-        tag: "APLICACIONES",
-        tagEn: "APPLICATIONS",
-        title: "SaaS & Web Apps",
-        titleEn: "SaaS & Web Apps",
-        features: ["Dashboards a medida", "Integraciones API", "Roles y permisos", "Arquitectura escalable"],
-        featuresEn: ["Custom dashboards", "API integrations", "Roles and permissions", "Scalable architecture"],
-        gallery: [
-            { label: "Dashboard Principal", labelEn: "Main Dashboard", gradient: "linear-gradient(135deg, #0f172a 0%, #312e81 50%, #7c3aed 100%)" },
-            { label: "Analytics", labelEn: "Analytics", gradient: "linear-gradient(135deg, #1e1b4b 0%, #4338ca 50%, #818cf8 100%)" },
-            { label: "Configuración", labelEn: "Settings", gradient: "linear-gradient(135deg, #0f0a2e 0%, #3730a3 50%, #6366f1 100%)" },
-            { label: "Integraciones", labelEn: "Integrations", gradient: "linear-gradient(135deg, #020420 0%, #1e1b4b 50%, #4f46e5 100%)" },
+        id: "asistente-ia",
+        tag: "INTELIGENCIA ARTIFICIAL",
+        tagEn: "ARTIFICIAL INTELLIGENCE",
+        title: "Asistente IA",
+        titleEn: "AI Assistant",
+        features: [
+            "IA conversacional con LLMs",
+            "Consultas en lenguaje natural",
+            "Insights accionables al instante",
+            "Automatización de flujos",
         ],
-    },
-    {
-        id: "landing",
-        tag: "CONVERSIÓN",
-        tagEn: "CONVERSION",
-        title: "Landing Pages",
-        titleEn: "Landing Pages",
-        features: ["Diseño de alto impacto", "Animaciones fluidas", "Optimización SEO", "Velocidad extrema"],
-        featuresEn: ["High-impact design", "Fluid animations", "SEO optimization", "Extreme speed"],
-        gallery: [
-            { label: "Hero Section", labelEn: "Hero Section", gradient: "linear-gradient(135deg, #064e3b 0%, #047857 50%, #10b981 100%)" },
-            { label: "Beneficios", labelEn: "Benefits", gradient: "linear-gradient(135deg, #022c22 0%, #065f46 50%, #059669 100%)" },
-            { label: "Testimonios", labelEn: "Testimonials", gradient: "linear-gradient(135deg, #0a3d2f 0%, #0d9488 50%, #14b8a6 100%)" },
-            { label: "CTA Final", labelEn: "Final CTA", gradient: "linear-gradient(135deg, #021a14 0%, #064e3b 50%, #34d399 100%)" },
+        featuresEn: [
+            "Conversational AI with LLMs",
+            "Natural language queries",
+            "Instant actionable insights",
+            "Workflow automation",
         ],
-    },
-    {
-        id: "portfolio",
-        tag: "CREATIVIDAD",
-        tagEn: "CREATIVITY",
-        title: "Sitios Premium",
-        titleEn: "Premium Sites",
-        features: ["Identidad visual", "Experiencias inmersivas", "WebGL & 3D", "Interacciones únicas"],
-        featuresEn: ["Visual identity", "Immersive experiences", "WebGL & 3D", "Unique interactions"],
+        thumbnail: "/images/ai-1.png",
         gallery: [
-            { label: "Presentación", labelEn: "Showcase", gradient: "linear-gradient(135deg, #18181b 0%, #3f3f46 50%, #f59e0b 100%)" },
-            { label: "Galería", labelEn: "Gallery", gradient: "linear-gradient(135deg, #1c1917 0%, #44403c 50%, #d97706 100%)" },
-            { label: "About", labelEn: "About", gradient: "linear-gradient(135deg, #0f0e0d 0%, #292524 50%, #ea580c 100%)" },
-            { label: "Contacto", labelEn: "Contact", gradient: "linear-gradient(135deg, #171412 0%, #3b3028 50%, #f97316 100%)" },
+            { label: "Chat", labelEn: "Chat", image: "/images/ai-1.png" },
+            { label: "Insights", labelEn: "Insights", image: "/images/ai-2.png" },
+            { label: "Automatización", labelEn: "Automation", image: "/images/ai-3.png" },
         ],
-    },
+    }
 ];
 
 /* ─── Mockup screen for gallery slides ─── */
