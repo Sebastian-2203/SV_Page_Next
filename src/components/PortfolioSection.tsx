@@ -3,6 +3,10 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
 import styles from "./PortfolioSection.module.css";
+import { DashboardOverview, DashboardAnalytics, DashboardReports } from "./portfolio-mockups/DashboardMockup";
+import { AssistantChat, AssistantInsights, AssistantAutomation } from "./portfolio-mockups/AIAssistantMockup";
+
+type Lang = "es" | "en";
 
 /* ─── Project data with gallery screens ─── */
 
@@ -11,6 +15,13 @@ interface GalleryItem {
     labelEn: string;
     gradient?: string;
     image?: string;
+}
+
+interface Screen {
+    id: string;
+    label: string;
+    labelEn: string;
+    render: (lang: Lang) => React.ReactNode;
 }
 
 interface Project {
@@ -23,9 +34,71 @@ interface Project {
     featuresEn: string[];
     thumbnail?: string;
     gallery: GalleryItem[];
+    /* Optional: interactive multi-screen mockups (live React components) */
+    interactive?: boolean;
+    screens?: Screen[];
+    /* Optional: tech stack chips + external link */
+    tech?: string[];
+    link?: string;
 }
 
 const projects: Project[] = [
+    {
+        id: "dashboard-financiero",
+        tag: "APLICACIONES WEB",
+        tagEn: "WEB APPLICATIONS",
+        title: "Dashboard Financiero",
+        titleEn: "Financial Dashboard",
+        features: [
+            "Gráficas en tiempo real",
+            "Análisis de ingresos y gastos",
+            "Reportes automáticos exportables",
+            "APIs escalables y multi-cuenta",
+        ],
+        featuresEn: [
+            "Real-time charts",
+            "Revenue & expense analytics",
+            "Automated exportable reports",
+            "Scalable multi-account APIs",
+        ],
+        tech: ["Next.js", "React", "TypeScript", "Charts.js", "D3", "Tailwind CSS", "PostgreSQL", "Prisma", "API REST"],
+        link: "#",
+        interactive: true,
+        screens: [
+            { id: "overview", label: "Resumen", labelEn: "Overview", render: (lang) => <DashboardOverview lang={lang} /> },
+            { id: "analytics", label: "Análisis", labelEn: "Analytics", render: (lang) => <DashboardAnalytics lang={lang} /> },
+            { id: "reports", label: "Reportes", labelEn: "Reports", render: (lang) => <DashboardReports lang={lang} /> },
+        ],
+        gallery: [],
+    },
+    {
+        id: "asistente-ia",
+        tag: "INTELIGENCIA ARTIFICIAL",
+        tagEn: "ARTIFICIAL INTELLIGENCE",
+        title: "Asistente IA",
+        titleEn: "AI Assistant",
+        features: [
+            "IA conversacional con LLMs",
+            "Consultas en lenguaje natural",
+            "Insights accionables al instante",
+            "Automatización de flujos",
+        ],
+        featuresEn: [
+            "Conversational AI with LLMs",
+            "Natural language queries",
+            "Instant actionable insights",
+            "Workflow automation",
+        ],
+        tech: ["Next.js", "React", "Claude API", "WebSockets", "Tailwind CSS", "Node.js"],
+        link: "#",
+        interactive: true,
+        screens: [
+            { id: "chat", label: "Chat", labelEn: "Chat", render: (lang) => <AssistantChat lang={lang} /> },
+            { id: "insights", label: "Insights", labelEn: "Insights", render: (lang) => <AssistantInsights lang={lang} /> },
+            { id: "automation", label: "Automatización", labelEn: "Automation", render: (lang) => <AssistantAutomation lang={lang} /> },
+        ],
+        gallery: [],
+    },
     {
         id: "overflod",
         tag: "DISEÑO Y PRODUCCIÓN",
@@ -313,7 +386,8 @@ function ProjectModal({
     onClose: () => void;
 }) {
     const [isPaused, setIsPaused] = useState(false);
-    
+    const [activeScreen, setActiveScreen] = useState(0);
+
     // Duplicate for seamless infinite marquee
     const marqueeItems = [...project.gallery, ...project.gallery];
 
@@ -377,6 +451,52 @@ function ProjectModal({
                     </button>
                 </div>
 
+                {/* Interactive multi-screen viewer */}
+                {project.interactive && project.screens ? (
+                    <>
+                        <div className={styles.viewerTabs}>
+                            {project.screens.map((sc, i) => (
+                                <button
+                                    key={sc.id}
+                                    onClick={() => setActiveScreen(i)}
+                                    className={`${styles.viewerTab} ${activeScreen === i ? styles.viewerTabActive : ""}`}
+                                >
+                                    {language === "en" ? sc.labelEn : sc.label}
+                                </button>
+                            ))}
+                        </div>
+                        <div className={styles.viewerStage}>
+                            <div key={activeScreen} className={styles.viewerScreen}>
+                                {project.screens[activeScreen].render(language as Lang)}
+                            </div>
+                        </div>
+                        <div style={{
+                            padding: "0 1.5rem 1.25rem",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "1rem",
+                            flexWrap: "wrap",
+                            flexShrink: 0,
+                        }}>
+                            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                                {project.tech?.map((tech) => (
+                                    <span key={tech} className={styles.techTag}>{tech}</span>
+                                ))}
+                            </div>
+                            <span style={{
+                                fontSize: "12px",
+                                fontWeight: 500,
+                                color: "var(--color-text-muted)",
+                                textTransform: "uppercase",
+                                letterSpacing: "1px",
+                            }}>
+                                {t("Cambia de pantalla con las pestañas", "Switch screens with the tabs")}
+                            </span>
+                        </div>
+                    </>
+                ) : (
+                <>
                 {/* Marquee area */}
                 <div
                     onMouseEnter={() => setIsPaused(true)}
@@ -432,6 +552,8 @@ function ProjectModal({
                         {t("Pasa el cursor para pausar", "Hover to pause")}
                     </span>
                 </div>
+                </>
+                )}
             </div>
         </div>
     );
@@ -653,6 +775,15 @@ function StickyProjectCard({
                             ))}
                         </div>
 
+                        {/* Tech stack chips */}
+                        {project.tech && (
+                            <div className={styles.techRow}>
+                                {project.tech.map((tech) => (
+                                    <span key={tech} className={styles.techTag}>{tech}</span>
+                                ))}
+                            </div>
+                        )}
+
                         {/* "View project" hint */}
                         <div style={{
                             marginTop: "auto",
@@ -671,9 +802,22 @@ function StickyProjectCard({
                         </div>
                     </div>
 
-                    {/* Right: Page Mockup */}
+                    {/* Right: Page Mockup (live screen for interactive projects) */}
                     <div className={styles.rightPageMockup}>
-                        <PageMockup image={project.thumbnail} label={t(project.title, project.titleEn)} />
+                        {project.interactive && project.screens ? (
+                            <div style={{
+                                width: "100%",
+                                height: "100%",
+                                borderRadius: "12px",
+                                overflow: "hidden",
+                                border: "1px solid var(--color-border)",
+                                boxShadow: "0 20px 50px -20px rgba(0,0,0,0.5)",
+                            }}>
+                                {project.screens[0].render(language as Lang)}
+                            </div>
+                        ) : (
+                            <PageMockup image={project.thumbnail} label={t(project.title, project.titleEn)} />
+                        )}
                     </div>
                 </div>
 

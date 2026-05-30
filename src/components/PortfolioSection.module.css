@@ -100,6 +100,81 @@
     }
 }
 
+/* ── Interactive multi-screen viewer (modal) ── */
+.viewerTabs {
+    display: flex;
+    gap: 8px;
+    padding: 1rem 1.5rem 0;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.viewerTab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-glass);
+    border: 0.5px solid var(--color-border);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.viewerTab:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-border-brand);
+}
+
+.viewerTabActive {
+    background: var(--color-brand-subtle);
+    color: var(--color-brand);
+    border-color: var(--color-border-brand);
+}
+
+.viewerStage {
+    flex: 1;
+    min-height: 0;
+    margin: 1.25rem 1.5rem;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: #0b0f1a;
+    position: relative;
+}
+
+.viewerScreen {
+    position: absolute;
+    inset: 0;
+    animation: viewerScreenIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes viewerScreenIn {
+    from { opacity: 0; transform: scale(0.99); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ── Tech stack chips ── */
+.techRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 1.25rem;
+}
+
+.techTag {
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--color-brand-subtle);
+    color: #7ab8f0;
+    border-radius: 20px;
+    border: 0.5px solid var(--color-border-brand);
+    white-space: nowrap;
+}
+
 .stickyProjectCard {
     position: sticky;
     border-radius: 20px;

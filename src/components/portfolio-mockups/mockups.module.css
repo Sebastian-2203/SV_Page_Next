@@ -1,0 +1,658 @@
+/* ── Shared styles for interactive portfolio mockups ── */
+
+.mockupRoot {
+    width: 100%;
+    height: 100%;
+    background: #0b0f1a;
+    color: #fff;
+    display: flex;
+    overflow: hidden;
+    font-family: var(--font-sans, system-ui, sans-serif);
+    font-size: 13px;
+    position: relative;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 210px;
+    flex-shrink: 0;
+    background: #0e1320;
+    border-right: 0.5px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    flex-direction: column;
+    padding: 18px 14px;
+    gap: 4px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 8px 18px;
+    margin-bottom: 6px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.07);
+}
+
+.brandMark {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #4a90d9, #7ab8f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.brandName {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.brandSub {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.5px;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 9px 11px;
+    border-radius: 9px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+    border: 0.5px solid transparent;
+}
+
+.navItem:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.navItemActive {
+    background: rgba(74, 144, 217, 0.14);
+    color: #7ab8f0;
+    border-color: rgba(74, 144, 217, 0.25);
+}
+
+.navSpacer {
+    flex: 1;
+}
+
+/* Main column */
+.main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.topbar {
+    height: 56px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 22px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.07);
+}
+
+.searchBox {
+    flex: 1;
+    max-width: 360px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 13px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12.5px;
+}
+
+.iconBtn {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.5px solid rgba(255, 255, 255, 0.07);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.18s ease;
+}
+
+.iconBtn:hover {
+    color: #7ab8f0;
+    border-color: rgba(74, 144, 217, 0.3);
+}
+
+.dot {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4a90d9;
+    box-shadow: 0 0 6px #4a90d9;
+}
+
+.avatarSm {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4a90d9, #7ab8f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.content {
+    flex: 1;
+    overflow: hidden;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.pageTitle {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.pageSub {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 3px 0 0;
+}
+
+/* KPI cards */
+.kpiGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 13px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.025);
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 16px;
+}
+
+.kpiHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.kpiIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: rgba(74, 144, 217, 0.14);
+    color: #7ab8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kpiLabel {
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 5px;
+}
+
+.kpiValue {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.trendUp {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #34d399;
+}
+
+.trendDown {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #f87171;
+}
+
+/* Chart row */
+.chartRow {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 13px;
+    flex: 1;
+    min-height: 0;
+}
+
+.cardHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.cardTitle {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pill {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(74, 144, 217, 0.12);
+    color: #7ab8f0;
+    border: 0.5px solid rgba(74, 144, 217, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Table */
+.table {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.tableRow {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 0.9fr 0.7fr;
+    align-items: center;
+    padding: 10px 6px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+    font-size: 12.5px;
+}
+
+.tableRowHead {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.35);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.txName {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.txAvatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+.badgeOk {
+    background: rgba(52, 211, 153, 0.14);
+    color: #34d399;
+}
+
+.badgePend {
+    background: rgba(251, 191, 36, 0.14);
+    color: #fbbf24;
+}
+
+/* ── AI Assistant ── */
+.chatLayout {
+    flex: 1;
+    display: flex;
+    min-width: 0;
+}
+
+.chatMain {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatScroll {
+    flex: 1;
+    overflow: hidden;
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.msgRow {
+    display: flex;
+    gap: 12px;
+    max-width: 88%;
+}
+
+.msgRowUser {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.msgAvatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.msgAvatarAi {
+    background: linear-gradient(135deg, #4a90d9, #7ab8f0);
+    color: #fff;
+}
+
+.msgAvatarUser {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.7);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.bubble {
+    padding: 12px 15px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.bubbleAi {
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+    border-top-left-radius: 4px;
+}
+
+.bubbleUser {
+    background: rgba(74, 144, 217, 0.18);
+    border: 0.5px solid rgba(74, 144, 217, 0.3);
+    border-top-right-radius: 4px;
+    color: #fff;
+}
+
+.insightCard {
+    margin-top: 10px;
+    background: rgba(74, 144, 217, 0.06);
+    border: 0.5px solid rgba(74, 144, 217, 0.2);
+    border-radius: 12px;
+    padding: 13px 15px;
+}
+
+.miniStat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.suggestRow {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    padding: 0 26px 14px;
+}
+
+.suggestItem {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 13px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 0.5px solid rgba(255, 255, 255, 0.09);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.suggestItem:hover {
+    border-color: rgba(74, 144, 217, 0.4);
+    color: #7ab8f0;
+    background: rgba(74, 144, 217, 0.08);
+}
+
+.composer {
+    margin: 0 26px 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 11px 11px 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.composerInput {
+    flex: 1;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+}
+
+.sendBtn {
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #4a90d9, #7ab8f0);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.newChatBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #4a90d9, #7ab8f0);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 14px;
+    border: none;
+    width: 100%;
+}
+
+.convItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 11px;
+    border-radius: 9px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.convItem:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.convItemActive {
+    background: rgba(74, 144, 217, 0.12);
+    color: #7ab8f0;
+}
+
+.convLabel {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sectionLabel {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.3);
+    padding: 6px 11px;
+    margin-top: 6px;
+}
+
+/* Bars / donut */
+.barWrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    flex: 1;
+    padding-top: 10px;
+}
+
+.barCol {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.bar {
+    width: 100%;
+    max-width: 34px;
+    border-radius: 7px 7px 3px 3px;
+    background: linear-gradient(180deg, #4a90d9, rgba(74, 144, 217, 0.25));
+}
+
+.barLabel {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.legendRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 9px;
+}
+
+.legendDot {
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+/* Reports / automation list */
+.listRow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.listIcon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(74, 144, 217, 0.14);
+    color: #7ab8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ghostBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #7ab8f0;
+    background: rgba(74, 144, 217, 0.1);
+    border: 0.5px solid rgba(74, 144, 217, 0.22);
+    cursor: pointer;
+}
+
+.toggle {
+    width: 38px;
+    height: 22px;
+    border-radius: 20px;
+    background: rgba(74, 144, 217, 0.4);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.toggle::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.toggleOff {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.toggleOff::after {
+    right: auto;
+    left: 3px;
+}
+
+/* hide sidebar on small mockup widths handled by parent scaling */
