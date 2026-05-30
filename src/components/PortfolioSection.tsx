@@ -1,12 +1,59 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useLanguage } from "./LanguageProvider";
 import styles from "./PortfolioSection.module.css";
 
 /* ─── Project data with gallery screens ─── */
 
-const projects = [
+interface GalleryItem {
+    label: string;
+    labelEn: string;
+    gradient?: string;
+    image?: string;
+}
+
+interface Project {
+    id: string;
+    tag: string;
+    tagEn: string;
+    title: string;
+    titleEn: string;
+    features: string[];
+    featuresEn: string[];
+    thumbnail?: string;
+    gallery: GalleryItem[];
+}
+
+const projects: Project[] = [
+    {
+        id: "overflod",
+        tag: "DISEÑO Y PRODUCCIÓN",
+        tagEn: "DESIGN & PRINT",
+        title: "Overflod Design",
+        titleEn: "Overflod Design",
+        features: [
+            "Plataforma e-commerce",
+            "Catálogo digital vibrante",
+            "Seguimiento de pedidos",
+            "Branding corporativo"
+        ],
+        featuresEn: [
+            "E-commerce platform",
+            "Vibrant digital catalog",
+            "Order tracking system",
+            "Corporate branding"
+        ],
+        thumbnail: "/images/overflod-1.png",
+        gallery: [
+            { label: "Página de Inicio", labelEn: "Home Page", image: "/images/overflod-1.png" },
+            { label: "Catálogo de Productos", labelEn: "Product Catalog", image: "/images/overflod-2.png" },
+            { label: "Detalle de Producto", labelEn: "Product Detail", image: "/images/overflod-3.png" },
+            { label: "Diseño & Señalización", labelEn: "Design & Signage", image: "/images/overflod-4.png" },
+            { label: "Carrito & Checkout", labelEn: "Cart & Checkout", image: "/images/overflod-5.png" },
+            { label: "Portal de Pedidos", labelEn: "Order Portal", image: "/images/overflod-6.png" },
+        ],
+    },
     {
         id: "ecommerce",
         tag: "COMERCIO",
@@ -71,17 +118,18 @@ const projects = [
 
 /* ─── Mockup screen for gallery slides ─── */
 
-function GalleryMockupScreen({ gradient, label }: { gradient: string; label: string }) {
+function GalleryMockupScreen({ gradient, label, image }: { gradient?: string; label: string; image?: string }) {
     return (
         <div style={{
             width: "100%",
             height: "100%",
-            background: gradient,
+            background: image ? "var(--color-bg-secondary)" : gradient,
             borderRadius: "12px",
             display: "flex",
             flexDirection: "column",
             overflow: "hidden",
             position: "relative",
+            border: "1px solid var(--color-border)",
         }}>
             {/* Browser chrome */}
             <div style={{
@@ -91,6 +139,8 @@ function GalleryMockupScreen({ gradient, label }: { gradient: string; label: str
                 alignItems: "center",
                 background: "rgba(0,0,0,0.3)",
                 flexShrink: 0,
+                borderBottom: "1px solid var(--color-border)",
+                zIndex: 2,
             }}>
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255,255,255,0.2)" }} />
                 <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255,255,255,0.2)" }} />
@@ -98,65 +148,81 @@ function GalleryMockupScreen({ gradient, label }: { gradient: string; label: str
                 <div style={{ flex: 1, height: 10, borderRadius: 5, background: "rgba(255,255,255,0.1)", marginLeft: 16, maxWidth: 260 }} />
             </div>
 
-            {/* Page wireframe content */}
-            <div style={{ flex: 1, padding: "28px", display: "flex", flexDirection: "column", gap: "18px" }}>
-                {/* Nav */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div style={{ width: 40, height: 10, borderRadius: 5, background: "rgba(255,255,255,0.15)" }} />
-                    <div style={{ display: "flex", gap: "16px" }}>
-                        <div style={{ width: 36, height: 6, borderRadius: 3, background: "rgba(255,255,255,0.1)" }} />
-                        <div style={{ width: 36, height: 6, borderRadius: 3, background: "rgba(255,255,255,0.1)" }} />
-                        <div style={{ width: 36, height: 6, borderRadius: 3, background: "rgba(255,255,255,0.1)" }} />
+            {/* Page content or real image screenshot */}
+            {image ? (
+                <div style={{ flex: 1, position: "relative", overflow: "hidden", display: "flex", alignItems: "flex-start", justifyContent: "center" }}>
+                    <img 
+                        src={image} 
+                        alt={label} 
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            objectPosition: "top center",
+                            display: "block",
+                        }} 
+                    />
+                </div>
+            ) : (
+                <div style={{ flex: 1, padding: "28px", display: "flex", flexDirection: "column", gap: "18px" }}>
+                    {/* Nav */}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <div style={{ width: 40, height: 10, borderRadius: 5, background: "rgba(255,255,255,0.15)" }} />
+                        <div style={{ display: "flex", gap: "16px" }}>
+                            <div style={{ width: 36, height: 6, borderRadius: 3, background: "rgba(255,255,255,0.1)" }} />
+                            <div style={{ width: 36, height: 6, borderRadius: 3, background: "rgba(255,255,255,0.1)" }} />
+                            <div style={{ width: 36, height: 6, borderRadius: 3, background: "rgba(255,255,255,0.1)" }} />
+                        </div>
+                    </div>
+
+                    {/* Hero block */}
+                    <div style={{
+                        flex: 1,
+                        borderRadius: 12,
+                        background: "rgba(255,255,255,0.06)",
+                        border: "0.5px solid rgba(255,255,255,0.08)",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "12px",
+                        padding: "32px",
+                    }}>
+                        <div style={{ height: 14, width: "50%", borderRadius: 7, background: "rgba(255,255,255,0.18)" }} />
+                        <div style={{ height: 8, width: "70%", borderRadius: 4, background: "rgba(255,255,255,0.09)" }} />
+                        <div style={{ height: 8, width: "40%", borderRadius: 4, background: "rgba(255,255,255,0.06)" }} />
+                        <div style={{
+                            marginTop: 12,
+                            width: 80,
+                            height: 28,
+                            borderRadius: 8,
+                            background: "rgba(255,255,255,0.12)",
+                            border: "0.5px solid rgba(255,255,255,0.15)",
+                        }} />
+                    </div>
+
+                    {/* Cards row */}
+                    <div style={{ display: "flex", gap: "12px" }}>
+                        {[1, 2, 3].map(n => (
+                            <div key={n} style={{
+                                flex: 1,
+                                height: 65,
+                                borderRadius: 10,
+                                background: "rgba(255,255,255,0.04)",
+                                border: "0.5px solid rgba(255,255,255,0.06)",
+                                padding: "12px",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "flex-end",
+                                gap: "5px",
+                            }}>
+                                <div style={{ height: 5, width: "65%", borderRadius: 3, background: "rgba(255,255,255,0.1)" }} />
+                                <div style={{ height: 5, width: "40%", borderRadius: 3, background: "rgba(255,255,255,0.05)" }} />
+                            </div>
+                        ))}
                     </div>
                 </div>
-
-                {/* Hero block */}
-                <div style={{
-                    flex: 1,
-                    borderRadius: 12,
-                    background: "rgba(255,255,255,0.06)",
-                    border: "0.5px solid rgba(255,255,255,0.08)",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "12px",
-                    padding: "32px",
-                }}>
-                    <div style={{ height: 14, width: "50%", borderRadius: 7, background: "rgba(255,255,255,0.18)" }} />
-                    <div style={{ height: 8, width: "70%", borderRadius: 4, background: "rgba(255,255,255,0.09)" }} />
-                    <div style={{ height: 8, width: "40%", borderRadius: 4, background: "rgba(255,255,255,0.06)" }} />
-                    <div style={{
-                        marginTop: 12,
-                        width: 80,
-                        height: 28,
-                        borderRadius: 8,
-                        background: "rgba(255,255,255,0.12)",
-                        border: "0.5px solid rgba(255,255,255,0.15)",
-                    }} />
-                </div>
-
-                {/* Cards row */}
-                <div style={{ display: "flex", gap: "12px" }}>
-                    {[1, 2, 3].map(n => (
-                        <div key={n} style={{
-                            flex: 1,
-                            height: 65,
-                            borderRadius: 10,
-                            background: "rgba(255,255,255,0.04)",
-                            border: "0.5px solid rgba(255,255,255,0.06)",
-                            padding: "12px",
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "flex-end",
-                            gap: "5px",
-                        }}>
-                            <div style={{ height: 5, width: "65%", borderRadius: 3, background: "rgba(255,255,255,0.1)" }} />
-                            <div style={{ height: 5, width: "40%", borderRadius: 3, background: "rgba(255,255,255,0.05)" }} />
-                        </div>
-                    ))}
-                </div>
-            </div>
+            )}
 
             {/* Section label overlay */}
             <div style={{
@@ -165,9 +231,13 @@ function GalleryMockupScreen({ gradient, label }: { gradient: string; label: str
                 left: 20,
                 fontSize: "12px",
                 fontWeight: 600,
-                color: "rgba(255,255,255,0.4)",
+                color: image ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)",
                 letterSpacing: "1.5px",
                 textTransform: "uppercase",
+                background: image ? "rgba(0,0,0,0.5)" : "transparent",
+                padding: image ? "4px 10px" : "0",
+                borderRadius: image ? "6px" : "0",
+                zIndex: 2,
             }}>
                 {label}
             </div>
@@ -183,7 +253,7 @@ function ProjectModal({
     t,
     onClose,
 }: {
-    project: typeof projects[0];
+    project: Project;
     language: string;
     t: (es: string, en: string) => string;
     onClose: () => void;
@@ -281,6 +351,7 @@ function ProjectModal({
                             <div key={i} className={styles.marqueeItem}>
                                 <GalleryMockupScreen
                                     gradient={g.gradient}
+                                    image={g.image}
                                     label={language === "en" ? g.labelEn : g.label}
                                 />
                             </div>
@@ -314,16 +385,17 @@ function ProjectModal({
 
 /* ─── Full page mockup wireframe (card preview) ─── */
 
-function PageMockup() {
+function PageMockup({ image, label }: { image?: string; label?: string }) {
     return (
         <div style={{
             width: "100%",
             height: "100%",
-            background: "var(--color-bg-glass)",
+            background: image ? "var(--color-bg-secondary)" : "var(--color-bg-glass)",
             borderRadius: "12px",
             display: "flex",
             flexDirection: "column",
             overflow: "hidden",
+            border: "1px solid var(--color-border)",
         }}>
             {/* Browser chrome */}
             <div style={{
@@ -333,6 +405,7 @@ function PageMockup() {
                 alignItems: "center",
                 borderBottom: "1px solid var(--color-border)",
                 flexShrink: 0,
+                zIndex: 2,
             }}>
                 <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-border)" }} />
                 <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-border)" }} />
@@ -340,74 +413,90 @@ function PageMockup() {
                 <div style={{ flex: 1, height: 8, borderRadius: 4, background: "var(--color-border)", marginLeft: 12, maxWidth: 200 }} />
             </div>
 
-            {/* Page content */}
-            <div style={{ flex: 1, padding: "20px", display: "flex", flexDirection: "column", gap: "14px" }}>
-                {/* Nav */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div style={{ width: 30, height: 8, borderRadius: 4, background: "var(--color-border)" }} />
-                    <div style={{ display: "flex", gap: "14px" }}>
-                        <div style={{ width: 28, height: 5, borderRadius: 3, background: "var(--color-border)" }} />
-                        <div style={{ width: 28, height: 5, borderRadius: 3, background: "var(--color-border)" }} />
-                        <div style={{ width: 28, height: 5, borderRadius: 3, background: "var(--color-border)" }} />
-                    </div>
+            {/* Page content or thumbnail image */}
+            {image ? (
+                <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
+                    <img 
+                        src={image} 
+                        alt={label || "Preview"} 
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            objectPosition: "top center",
+                            display: "block",
+                        }} 
+                    />
                 </div>
-
-                {/* Hero */}
-                <div style={{
-                    flex: 1,
-                    borderRadius: 10,
-                    background: `linear-gradient(160deg, rgba(74,144,217,0.18), rgba(74,144,217,0.06))`,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "10px",
-                    padding: "24px",
-                    minHeight: 120,
-                }}>
-                    <div style={{ height: 10, width: "45%", borderRadius: 5, background: "var(--color-border)" }} />
-                    <div style={{ height: 7, width: "60%", borderRadius: 4, background: "var(--color-border)" }} />
-                    <div style={{ height: 7, width: "35%", borderRadius: 4, background: "var(--color-border)" }} />
-                    <div style={{
-                        marginTop: 10,
-                        width: 70,
-                        height: 22,
-                        borderRadius: 6,
-                        background: `var(--color-brand-subtle)`,
-                        border: `0.5px solid var(--color-border-brand)`,
-                    }} />
-                </div>
-
-                {/* Cards row */}
-                <div style={{ display: "flex", gap: "10px" }}>
-                    {[1, 2, 3].map(n => (
-                        <div key={n} style={{
-                            flex: 1,
-                            height: 55,
-                            borderRadius: 8,
-                            background: "var(--color-bg-glass)",
-                            border: "0.5px solid var(--color-border)",
-                            padding: "10px",
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "flex-end",
-                            gap: "4px",
-                        }}>
-                            <div style={{ height: 4, width: "70%", borderRadius: 2, background: "var(--color-border)" }} />
-                            <div style={{ height: 4, width: "45%", borderRadius: 2, background: "var(--color-border)" }} />
+            ) : (
+                <div style={{ flex: 1, padding: "20px", display: "flex", flexDirection: "column", gap: "14px" }}>
+                    {/* Nav */}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <div style={{ width: 30, height: 8, borderRadius: 4, background: "var(--color-border)" }} />
+                        <div style={{ display: "flex", gap: "14px" }}>
+                            <div style={{ width: 28, height: 5, borderRadius: 3, background: "var(--color-border)" }} />
+                            <div style={{ width: 28, height: 5, borderRadius: 3, background: "var(--color-border)" }} />
+                            <div style={{ width: 28, height: 5, borderRadius: 3, background: "var(--color-border)" }} />
                         </div>
-                    ))}
-                </div>
+                    </div>
 
-                {/* Footer lines */}
-                <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 6 }}>
-                    <div style={{ height: 4, width: 50, borderRadius: 2, background: "var(--color-border)" }} />
-                    <div style={{ display: "flex", gap: 8 }}>
-                        <div style={{ height: 4, width: 20, borderRadius: 2, background: "var(--color-border)" }} />
-                        <div style={{ height: 4, width: 20, borderRadius: 2, background: "var(--color-border)" }} />
+                    {/* Hero */}
+                    <div style={{
+                        flex: 1,
+                        borderRadius: 10,
+                        background: `linear-gradient(160deg, rgba(74,144,217,0.18), rgba(74,144,217,0.06))`,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "10px",
+                        padding: "24px",
+                        minHeight: 120,
+                    }}>
+                        <div style={{ height: 10, width: "45%", borderRadius: 5, background: "var(--color-border)" }} />
+                        <div style={{ height: 7, width: "60%", borderRadius: 4, background: "var(--color-border)" }} />
+                        <div style={{ height: 7, width: "35%", borderRadius: 4, background: "var(--color-border)" }} />
+                        <div style={{
+                            marginTop: 10,
+                            width: 70,
+                            height: 22,
+                            borderRadius: 6,
+                            background: `var(--color-brand-subtle)`,
+                            border: `0.5px solid var(--color-border-brand)`,
+                        }} />
+                    </div>
+
+                    {/* Cards row */}
+                    <div style={{ display: "flex", gap: "10px" }}>
+                        {[1, 2, 3].map(n => (
+                            <div key={n} style={{
+                                flex: 1,
+                                height: 55,
+                                borderRadius: 8,
+                                background: "var(--color-bg-glass)",
+                                border: "0.5px solid var(--color-border)",
+                                padding: "10px",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "flex-end",
+                                gap: "4px",
+                            }}>
+                                <div style={{ height: 4, width: "70%", borderRadius: 2, background: "var(--color-border)" }} />
+                                <div style={{ height: 4, width: "45%", borderRadius: 2, background: "var(--color-border)" }} />
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Footer lines */}
+                    <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 6 }}>
+                        <div style={{ height: 4, width: 50, borderRadius: 2, background: "var(--color-border)" }} />
+                        <div style={{ display: "flex", gap: 8 }}>
+                            <div style={{ height: 4, width: 20, borderRadius: 2, background: "var(--color-border)" }} />
+                            <div style={{ height: 4, width: 20, borderRadius: 2, background: "var(--color-border)" }} />
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
@@ -417,20 +506,19 @@ function PageMockup() {
 function StickyProjectCard({
     project,
     index,
-    total,
     t,
     language,
     onOpen,
 }: {
-    project: typeof projects[0];
+    project: Project;
     index: number;
-    total: number;
     t: (es: string, en: string) => string;
     language: string;
     onOpen: () => void;
 }) {
     const stickyTop = 80 + index * 16;
     const accentColor = "var(--color-brand)";
+
 
     return (
         <div style={{
@@ -531,7 +619,7 @@ function StickyProjectCard({
 
                     {/* Right: Page Mockup */}
                     <div className={styles.rightPageMockup}>
-                        <PageMockup />
+                        <PageMockup image={project.thumbnail} label={t(project.title, project.titleEn)} />
                     </div>
                 </div>
 
@@ -608,7 +696,6 @@ export default function PortfolioSection() {
                         key={project.id}
                         project={project}
                         index={i}
-                        total={projects.length}
                         t={t}
                         language={language}
                         onOpen={() => setOpenProject(project)}
