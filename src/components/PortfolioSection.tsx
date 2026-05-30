@@ -55,6 +55,60 @@ const projects: Project[] = [
         ],
     },
     {
+        id: "puertoamor",
+        tag: "ECOTURISMO",
+        tagEn: "ECOTOURISM",
+        title: "Puerto Amor Eco-Habs",
+        titleEn: "Puerto Amor Eco-Habs",
+        features: [
+            "Sistema de reservas online",
+            "Experiencia inmersiva",
+            "Diseño adaptativo",
+            "Galería de paisajes"
+        ],
+        featuresEn: [
+            "Online booking system",
+            "Immersive experience",
+            "Responsive design",
+            "Landscape gallery"
+        ],
+        thumbnail: "/images/puertoamor-1.png",
+        gallery: [
+            { label: "Inicio", labelEn: "Home", image: "/images/puertoamor-1.png" },
+            { label: "Experiencias", labelEn: "Experiences", image: "/images/puertoamor-2.png" },
+            { label: "Alojamiento", labelEn: "Accommodation", image: "/images/puertoamor-3.png" },
+            { label: "Naturaleza", labelEn: "Nature", image: "/images/puertoamor-4.png" },
+        ],
+    },
+    {
+        id: "psicologia",
+        tag: "SALUD MENTAL",
+        tagEn: "MENTAL HEALTH",
+        title: "Blog & Terapia Psicológica",
+        titleEn: "Psychology Blog & Therapy",
+        features: [
+            "Blog de artículos",
+            "Reserva de citas",
+            "Perfil profesional",
+            "Diseño empático y accesible"
+        ],
+        featuresEn: [
+            "Article blog",
+            "Appointment booking",
+            "Professional profile",
+            "Empathetic and accessible design"
+        ],
+        thumbnail: "/images/psicologia-1.png",
+        gallery: [
+            { label: "Inicio", labelEn: "Home", image: "/images/psicologia-1.png" },
+            { label: "Diarios", labelEn: "Journals", image: "/images/psicologia-2.png" },
+            { label: "Artículo", labelEn: "Article", image: "/images/psicologia-3.png" },
+            { label: "Servicios", labelEn: "Services", image: "/images/psicologia-4.png" },
+            { label: "Reservas", labelEn: "Booking", image: "/images/psicologia-5.png" },
+            { label: "Modo admin", labelEn: "Admin Mode", image: "/images/psicologia-6.png" },
+        ],
+    },
+    {
         id: "ecommerce",
         tag: "COMERCIO",
         tagEn: "COMMERCE",
