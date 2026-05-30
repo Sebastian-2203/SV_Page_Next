@@ -68,7 +68,7 @@ export default function Footer() {
                     </p>
                     <div className={styles.socialWrapper}>
                         {[
-                            { href: "mailto:contacto@syvsolutions.com", label: "EMAIL" },
+                            { href: "mailto:sebastianmahecha2217@gmail.com", label: "EMAIL" },
                             { href: "https://wa.me/573102163947", label: "WHATSAPP" },
                             { href: "https://instagram.com/syv.solutions", label: "INSTAGRAM" },
                         ].map(l => (

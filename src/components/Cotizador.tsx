@@ -95,7 +95,7 @@ export default function Cotizador() {
     };
 
     const handleEmail = () => {
-        const email = "contacto@syvsolutions.com";
+        const email = "sebastianmahecha2217@gmail.com";
         const subject = encodeURIComponent("Cotización de proyecto web");
         const body = generateSummaryText().replace(/%0A/g, '%0D%0A'); // formato para email
         window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
