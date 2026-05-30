@@ -31,41 +31,55 @@ const BrainIcon = () => (
    Sub-components for individual card visuals
    ─────────────────────────────────────────────── */
 
-// Browser mockup with shimmer animation (Web Design card)
+// Lighthouse-style score gauges (Web Design card)
+function LighthouseGauge({ score, label, delay }: { score: number; label: string; delay: number }) {
+    const radius = 28;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (score / 100) * circumference;
+    const color = score >= 90 ? '#0cce6b' : score >= 50 ? '#ffa400' : '#ff4e42';
+
+    return (
+        <div className={styles.lighthouseGauge} style={{ '--gauge-delay': `${delay}s` } as React.CSSProperties}>
+            <svg width="68" height="68" viewBox="0 0 68 68" className={styles.lighthouseRing}>
+                {/* Track */}
+                <circle cx="34" cy="34" r={radius} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="4" />
+                {/* Score arc */}
+                <circle
+                    cx="34" cy="34" r={radius} fill="none"
+                    stroke={color}
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeDasharray={circumference}
+                    strokeDashoffset={circumference}
+                    className={styles.lighthouseArc}
+                    style={{
+                        '--target-offset': offset,
+                        '--circumference': circumference,
+                        '--gauge-color': color,
+                    } as React.CSSProperties}
+                    transform="rotate(-90 34 34)"
+                />
+            </svg>
+            <span className={styles.lighthouseScore} style={{ color }}>{score}</span>
+            <span className={styles.lighthouseLabel}>{label}</span>
+        </div>
+    );
+}
+
 function BrowserMockup() {
     return (
-        <div style={{
-            background: 'var(--color-bg-secondary)',
-            borderRadius: '10px',
-            padding: '12px',
-            marginTop: '16px',
-            marginBottom: '16px',
-        }}>
-            {/* Browser chrome bar */}
-            <div style={{ display: 'flex', gap: '5px', marginBottom: '10px', alignItems: 'center' }}>
-                <div style={{ flex: 1, height: 6, borderRadius: 3, background: 'var(--color-border)' }} />
+        <div className={styles.lighthouseContainer}>
+            <div className={styles.lighthouseHeader}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#ffa400' }}>
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+                <span className={styles.lighthouseTitle}>PageSpeed Insights</span>
             </div>
-            {/* Text lines */}
-            <div style={{
-                height: 6,
-                borderRadius: 3,
-                background: 'var(--color-border)',
-                width: '100%',
-                marginBottom: 8,
-            }} />
-            <div style={{
-                height: 6,
-                borderRadius: 3,
-                background: 'var(--color-border-brand)',
-                width: '80%',
-                marginBottom: 12,
-            }} />
-            {/* Hero block */}
-            <div style={{
-                height: 36,
-                borderRadius: 6,
-                background: 'var(--color-brand-subtle)',
-            }} />
+            <div className={styles.lighthouseGauges}>
+                <LighthouseGauge score={98} label="Performance" delay={0} />
+                <LighthouseGauge score={100} label="SEO" delay={0.3} />
+                <LighthouseGauge score={97} label="Accessibility" delay={0.6} />
+            </div>
         </div>
     );
 }

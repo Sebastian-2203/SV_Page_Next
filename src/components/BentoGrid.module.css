@@ -164,3 +164,95 @@
     5% { color: var(--color-text-primary); text-shadow: 0 0 8px rgba(255,255,255,0.2); }
     20% { color: var(--color-text-secondary); }
 }
+
+/* ───────────────────────────────────────────────
+   Lighthouse Score Gauges
+   ─────────────────────────────────────────────── */
+
+.lighthouseContainer {
+    background: var(--color-bg-secondary);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border: 0.5px solid var(--color-border);
+}
+
+.lighthouseHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid var(--color-border);
+}
+
+.lighthouseTitle {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.lighthouseGauges {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 8px;
+}
+
+.lighthouseGauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    animation: gaugeEntrance 0.6s ease-out both;
+    animation-delay: var(--gauge-delay, 0s);
+}
+
+@keyframes gaugeEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.7) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.lighthouseRing {
+    filter: drop-shadow(0 0 6px var(--gauge-color, rgba(12, 206, 107, 0.4)));
+}
+
+.lighthouseArc {
+    animation: arcFill 1.8s ease-out both;
+    animation-delay: calc(var(--gauge-delay, 0s) + 0.3s);
+}
+
+@keyframes arcFill {
+    from {
+        stroke-dashoffset: var(--circumference);
+    }
+    to {
+        stroke-dashoffset: var(--target-offset);
+    }
+}
+
+.lighthouseScore {
+    position: absolute;
+    top: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.5px;
+}
+
+.lighthouseLabel {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
